@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Konnect - Company Info</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom scrollbar for table */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-[#F9FAFB] font-sans text-gray-700">
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col">
+      <div class="flex items-center h-16 px-6 shadow-sm border-b border-gray-200">
+        <span class="font-extrabold text-2xl select-none flex items-center gap-1 text-gray-900" aria-label="Konnect logo">
+          <span class="text-orange-600">K</span>onnect
+        </span>
+      </div>
+      <nav class="mt-6 flex flex-col gap-1 px-4">
+        <a href="#" class="flex items-center gap-3 px-3 py-2 text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-md shadow-sm">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Companies
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-gray-500 hover:text-orange-600 hover:bg-gray-100 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"></circle><path d="M5.5 21a6.5 6.5 0 0 1 13 0"></path></svg>
+          All Employees
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-gray-500 hover:text-orange-600 hover:bg-gray-100 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+          Settings
+        </a>
+      </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col">
+      <!-- Topbar -->
+      <header class="flex items-center justify-between bg-white h-16 px-6 border-b border-gray-200">
+        <form class="relative flex-1 max-w-lg" role="search" aria-label="Site search">
+          <input 
+            type="search" 
+            placeholder="Search"
+            class="w-full rounded-lg bg-[#FEECE4] text-gray-700 placeholder:text-gray-400 py-2 px-4 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+          <span class="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400 pointer-events-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.4-5.6a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" />
+            </svg>
+          </span>
+        </form>
+        <div class="flex items-center gap-6">
+          <button aria-label="Notifications" class="relative text-gray-500 hover:text-gray-700 transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6.002 6.002 0 0 0-5-5.917V5a2 2 0 1 0-4 0v.083A6.002 6.002 0 0 0 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 0 1-6 0v-1m6 0H9"></path>
+            </svg>
+            <span class="absolute -top-1 -right-1 inline-flex rounded-full bg-red-600 w-1.5 h-1.5"></span>
+          </button>
+          <button aria-label="User menu" class="flex items-center gap-2 bg-[#FEECE4] text-orange-600 rounded-full px-3 py-1 text-sm font-semibold select-none focus:outline-none focus:ring-2 focus:ring-orange-400" aria-haspopup="true" aria-expanded="false" aria-controls="user-menu">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/018c498d-1a64-4a74-a6a2-721d1cf64404.png" alt="Profile picture of David Johnson - young man with dark hair and beard smiling, wearing casual shirt" class="rounded-full w-8 h-8 object-cover" onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/12172aee-07e6-4682-8217-67ff67094e6e.png';" />
+            David Johnson
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="flex-1 overflow-y-auto p-8">
+        <div class="max-w-7xl mx-auto space-y-7">
+          <header aria-label="Company Name and breadcrumb" class="mb-4">
+            <h1 class="text-gray-900 font-bold text-xl sm:text-2xl">Tech Innovations Inc.</h1>
+            <nav class="mt-1 text-sm sm:text-base text-gray-500 flex flex-wrap items-center gap-1 select-none" aria-label="Breadcrumb">
+              <span>Companies</span>
+              <svg class="w-3 h-3 inline mx-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+              <span class="font-semibold text-gray-600">Company Info</span>
+            </nav>
+            <nav class="mt-6 flex space-x-6 border-b border-gray-200 pb-2 text-sm sm:text-base text-gray-500">
+              <button class="border-b-2 border-orange-500 mb-[-2px] text-orange-600 font-semibold pb-1 focus:outline-none">Company Info</button>
+              <button class="hover:text-orange-600 focus:outline-none">Employee Info</button>
+              <button class="hover:text-orange-600 focus:outline-none">Earnings</button>
+              <button class="hover:text-orange-600 focus:outline-none">Deductions</button>
+              <button class="hover:text-orange-600 focus:outline-none">Reports</button>
+              <button class="hover:text-orange-600 focus:outline-none">Uploads</button>
+              <button class="hover:text-orange-600 focus:outline-none">Templates</button>
+              <button class="hover:text-orange-600 focus:outline-none">Settings</button>
+            </nav>
+          </header>
+
+          <!-- Company Info Card -->
+          <section aria-labelledby="basic-info-title" class="bg-white rounded-lg shadow-sm p-5 text-sm sm:text-base border border-gray-100 max-w-full">
+            <div class="flex justify-between items-start mb-4">
+              <h2 id="basic-info-title" class="text-orange-600 font-bold text-sm sm:text-base">Basic Information</h2>
+              <button aria-label="Edit Basic Information" title="Edit" class="p-2 rounded hover:bg-gray-100 text-gray-400 focus:outline-none">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-y-4 gap-x-7 text-gray-600">
+              <dl>
+                <dt class="font-semibold text-xs sm:text-sm mb-1">Company Name</dt>
+                <dd>Tech Innovations Inc.</dd>
+              </dl>
+              <dl>
+                <dt class="font-semibold text-xs sm:text-sm mb-1">Contact No.</dt>
+                <dd>+94 77 123 4567</dd>
+              </dl>
+              <dl>
+                <dt class="font-semibold text-xs sm:text-sm mb-1">Address</dt>
+                <dd>No. 45, Galle Road, Colombo 3</dd>
+              </dl>
+              <dl>
+                <dt class="font-semibold text-xs sm:text-sm mb-1 mt-3 sm:mt-0">Act</dt>
+                <dd>Shop & Office Act</dd>
+              </dl>
+              <dl>
+                <dt class="font-semibold text-xs sm:text-sm mb-1 mt-3 sm:mt-0">Description</dt>
+                <dd>Innovative AI Solutions tailored just for you.</dd>
+              </dl>
+              <div></div>
+            </div>
+
+            <h3 class="text-orange-600 font-bold mt-8 mb-2 text-sm sm:text-base">Statutory Contribution Details</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-7 text-gray-600 text-xs sm:text-sm">
+              <dl>
+                <dt class="font-semibold mb-0.5">EPF Rate</dt>
+                <dd>3%</dd>
+              </dl>
+              <dl>
+                <dt class="font-semibold mb-0.5">ETF Rate</dt>
+                <dd>12%</dd>
+              </dl>
+            </div>
+
+            <h4 class="text-orange-600 font-semibold mt-6 mb-2 text-xs">APIT Rates</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-y-4 gap-x-7 text-gray-600 text-xs sm:text-sm">
+              <div>
+                <p>25,000LKR - 50,000LKR</p>
+                <p>3%</p>
+              </div>
+              <div>
+                <p>50,000LKR - 75,000LKR</p>
+                <p>5%</p>
+              </div>
+              <div>
+                <p>75,000LKR - 100,000LKR</p>
+                <p>12%</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Designations Section -->
+          <section aria-labelledby="designations-title" class="bg-white rounded-lg shadow-sm p-5 text-sm sm:text-base max-w-full">
+            <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+              <h2 id="designations-title" class="text-orange-600 font-bold text-sm sm:text-base mb-2 sm:mb-0">Designations</h2>
+              <div class="flex gap-2">
+                <form role="search" class="relative">
+                  <input
+                    type="search"
+                    aria-label="Search Designations"
+                    placeholder="Search"
+                    class="rounded-md border border-gray-200 py-1.5 pl-8 pr-3 text-xs sm:text-sm text-gray-600 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  />
+                  <span class="pointer-events-none absolute inset-y-0 left-2 pl-1 flex items-center text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.4-5.6a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" />
+                    </svg>
+                  </span>
+                </form>
+                <button class="bg-orange-600 text-white text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-md whitespace-nowrap hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500">+ Designation</button>
+              </div>
+            </header>
+            <div class="overflow-x-auto rounded-md border border-gray-200 text-xs sm:text-sm">
+              <table class="min-w-full border-collapse">
+                <thead class="bg-[#FEECE4] text-gray-600 font-semibold select-none">
+                  <tr>
+                    <th class="p-2 text-left w-6 sm:w-8">
+                      <input type="checkbox" aria-label="Select all designations" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
+                    </th>
+                    <th class="p-2 text-left">Designation</th>
+                    <th class="p-2 text-left hidden sm:table-cell">Added Date</th>
+                    <th class="p-2 text-left w-24 sm:w-28">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Rows -->
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2">UI UX Designer</td>
+                    <td class="p-2 hidden sm:table-cell">Apr 01, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete UI UX Designer" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit UI UX Designer" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2">Product Designer</td>
+                    <td class="p-2 hidden sm:table-cell">Apr 02, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Product Designer" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Product Designer" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2">Graphic Designer</td>
+                    <td class="p-2 hidden sm:table-cell">Apr 03, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Graphic Designer" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Graphic Designer" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2">Web Designer</td>
+                    <td class="p-2 hidden sm:table-cell">Apr 04, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Web Designer" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Web Designer" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2">Interaction Designer</td>
+                    <td class="p-2 hidden sm:table-cell">Apr 05, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Interaction Designer" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Interaction Designer" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2">Visual Designer</td>
+                    <td class="p-2 hidden sm:table-cell">Apr 08, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Visual Designer" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Visual Designer" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2">Motion Designer</td>
+                    <td class="p-2 hidden sm:table-cell">Apr 09, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Motion Designer" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Motion Designer" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2">User Researcher</td>
+                    <td class="p-2 hidden sm:table-cell">Apr 10, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete User Researcher" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit User Researcher" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2">Information Architect</td>
+                    <td class="p-2 hidden sm:table-cell">Apr 11, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Information Architect" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Information Architect" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2">Content Strategist</td>
+                    <td class="p-2 hidden sm:table-cell">Apr 12, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Content Strategist" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Content Strategist" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2">UX Writer</td>
+                    <td class="p-2 hidden sm:table-cell">Apr 15, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete UX Writer" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit UX Writer" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <nav class="mt-3 flex items-center justify-end gap-2 text-xs text-gray-400 select-none">
+              <button class="py-1 px-2 rounded hover:bg-gray-200 hover:text-gray-700 transition cursor-default" aria-disabled="true">Prev</button>
+              <button aria-current="page" class="py-1 px-3 rounded bg-orange-600 text-white font-semibold">1</button>
+              <button class="py-1 px-3 rounded hover:bg-gray-200 hover:text-gray-700 transition">2</button>
+              <button class="py-1 px-3 rounded hover:bg-gray-200 hover:text-gray-700 transition">3</button>
+              <span>…</span>
+              <button class="py-1 px-3 rounded hover:bg-gray-200 hover:text-gray-700 transition">10</button>
+              <button class="py-1 px-2 rounded hover:bg-gray-200 hover:text-gray-700 transition">Next</button>
+            </nav>
+          </section>
+
+          <!-- Levels Section -->
+          <section aria-labelledby="levels-title" class="bg-white rounded-lg shadow-sm p-5 text-sm sm:text-base max-w-full mt-8">
+            <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+              <h2 id="levels-title" class="text-orange-600 font-bold text-sm sm:text-base mb-2 sm:mb-0">Levels</h2>
+              <div class="flex gap-2">
+                <form role="search" class="relative">
+                  <input
+                    type="search"
+                    aria-label="Search Levels"
+                    placeholder="Search"
+                    class="rounded-md border border-gray-200 py-1.5 pl-8 pr-3 text-xs sm:text-sm text-gray-600 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  />
+                  <span class="pointer-events-none absolute inset-y-0 left-2 pl-1 flex items-center text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.4-5.6a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" />
+                    </svg>
+                  </span>
+                </form>
+                <button class="bg-orange-600 text-white text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-md whitespace-nowrap hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500">+ Levels</button>
+              </div>
+            </header>
+            <div class="overflow-x-auto rounded-md border border-gray-200 text-xs sm:text-sm">
+              <table class="min-w-full border-collapse">
+                <thead class="bg-[#FEECE4] text-gray-600 font-semibold select-none">
+                  <tr>
+                    <th class="p-2 text-left w-6 sm:w-8">
+                      <input type="checkbox" aria-label="Select all levels" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
+                    </th>
+                    <th class="p-2 text-left w-24">Level</th>
+                    <th class="p-2 text-left">Designations</th>
+                    <th class="p-2 text-left hidden sm:table-cell w-32">Added Date</th>
+                    <th class="p-2 text-left w-28">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2 font-semibold whitespace-nowrap">Grade I</td>
+                    <td class="p-2">Associate Software Engineer, Junior Graphic Designer, Content Moderator, IT Support Specialist</td>
+                    <td class="p-2 hidden sm:table-cell whitespace-nowrap">Apr 01, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Grade I" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Grade I" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2 font-semibold whitespace-nowrap">Grade II</td>
+                    <td class="p-2">Systems Analyst, Digital Marketer</td>
+                    <td class="p-2 hidden sm:table-cell whitespace-nowrap">Apr 15, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Grade II" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Grade II" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2 font-semibold whitespace-nowrap">Grade III</td>
+                    <td class="p-2">Senior Front-End Developer, UI Animator</td>
+                    <td class="p-2 hidden sm:table-cell whitespace-nowrap">May 01, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Grade III" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Grade III" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2 font-semibold whitespace-nowrap">Grade IV</td>
+                    <td class="p-2">Lead Backend Developer, Senior Visual Designer</td>
+                    <td class="p-2 hidden sm:table-cell whitespace-nowrap">May 15, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Grade IV" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Grade IV" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2 font-semibold whitespace-nowrap">Grade V</td>
+                    <td class="p-2">Senior Data Analyst, Lead Product Designer</td>
+                    <td class="p-2 hidden sm:table-cell whitespace-nowrap">Jun 01, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Grade V" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Grade V" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2 font-semibold whitespace-nowrap">Grade VI</td>
+                    <td class="p-2">Marketing Manager, Art Director</td>
+                    <td class="p-2 hidden sm:table-cell whitespace-nowrap">Jun 15, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Grade VI" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Grade VI" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2 font-semibold whitespace-nowrap">Grade VII</td>
+                    <td class="p-2">Principal Engineer, Senior Usability Specialist</td>
+                    <td class="p-2 hidden sm:table-cell whitespace-nowrap">Jul 01, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Grade VII" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Grade VII" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2 font-semibold whitespace-nowrap">Grade VIII</td>
+                    <td class="p-2">Head of Product, Principal UI Engineer</td>
+                    <td class="p-2 hidden sm:table-cell whitespace-nowrap">Jul 15, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Grade VIII" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Grade VIII" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2 font-semibold whitespace-nowrap">Grade IX</td>
+                    <td class="p-2">Director of Customer Success, Lead Graphic Artist</td>
+                    <td class="p-2 hidden sm:table-cell whitespace-nowrap">Aug 01, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Grade IX" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Grade IX" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2 font-semibold whitespace-nowrap">Grade X</td>
+                    <td class="p-2">Head of Digital Marketing, Senior Motion Graphics Artist</td>
+                    <td class="p-2 hidden sm:table-cell whitespace-nowrap">Aug 15, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Grade X" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Grade X" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-gray-50">
+                    <td class="p-2"><input type="checkbox" class="rounded border-gray-300 text-orange-600 focus:ring-orange-500" /></td>
+                    <td class="p-2 font-semibold whitespace-nowrap">Grade XI</td>
+                    <td class="p-2">Senior Technical Writer, Lead Service Designer</td>
+                    <td class="p-2 hidden sm:table-cell whitespace-nowrap">Sep 01, 2024</td>
+                    <td class="p-2 flex gap-1">
+                      <button aria-label="Delete Grade XI" title="Delete" class="bg-red-100 text-red-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6l-2 14H7L5 6"></path>
+                          <path d="M10 11v6"></path>
+                          <path d="M14 11v6"></path>
+                          <path d="M9 6V4h6v2"></path>
+                        </svg>
+                      </button>
+                      <button aria-label="Edit Grade XI" title="Edit" class="bg-blue-100 text-blue-600 rounded px-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <nav class="mt-3 flex items-center justify-end gap-2 text-xs text-gray-400 select-none">
+              <button class="py-1 px-2 rounded hover:bg-gray-200 hover:text-gray-700 transition cursor-default" aria-disabled="true">Prev</button>
+              <button aria-current="page" class="py-1 px-3 rounded bg-orange-600 text-white font-semibold">1</button>
+              <button class="py-1 px-3 rounded hover:bg-gray-200 hover:text-gray-700 transition">2</button>
+              <button class="py-1 px-3 rounded hover:bg-gray-200 hover:text-gray-700 transition">3</button>
+              <span>…</span>
+              <button class="py-1 px-3 rounded hover:bg-gray-200 hover:text-gray-700 transition">10</button>
+              <button class="py-1 px-2 rounded hover:bg-gray-200 hover:text-gray-700 transition">Next</button>
+            </nav>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
+

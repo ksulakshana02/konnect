@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Konnect - Employee Info</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom scroll bar for table */
+    ::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #f97316; /* Orange-500 */
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f3f4f6; /* Gray-100 */
+    }
+
+    /* Custom focus for checkbox */
+    input[type="checkbox"]:focus-visible {
+      outline-offset: 2px;
+      outline: 2px solid #fb923c; /* Orange-400 */
+      outline-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-700">
+
+  <div class="min-h-screen flex flex-col">
+
+    <!-- Top Bar -->
+    <header class="flex justify-between items-center px-6 py-4 bg-white shadow-sm rounded-b-lg mb-4 sticky top-0 z-10">
+      <div class="flex items-center space-x-4 max-w-xl w-full">
+        <div class="text-gray-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline align-middle" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0a7.5 7.5 0 10-10.605-.833 7.5 7.5 0 0010.605.833z" />
+          </svg>
+        </div>
+        <input type="search" placeholder="Search" aria-label="Search" 
+          class="flex-grow rounded-lg bg-orange-100 text-orange-700 placeholder-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-300 px-4 py-2 text-sm font-medium"
+        />
+      </div>
+
+      <div class="flex items-center space-x-6">
+        <button type="button" aria-label="Notifications" class="relative text-gray-400 hover:text-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 7 7.388 7 8.75v5.408l-1.293 1.293a1 1 0 00.707 1.707H15z"/>
+          </svg>
+          <span class="absolute top-0 right-0 block h-2 w-2 rounded-full ring-2 ring-white bg-orange-600"></span>
+        </button>
+        <div class="flex items-center space-x-2 relative">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/55d52fce-4e64-4476-8e5e-d91ae449e24f.png" alt="Profile picture of David Johnson, a man with dark hair" 
+          class="rounded-full border border-gray-300 object-cover w-10 h-10" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3150775d-fda4-4fa5-bbef-1618f16a86bf.png'"/>
+          <button id="userMenuButton" aria-expanded="false" aria-haspopup="true"
+            class="text-gray-700 font-medium text-sm hover:text-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 rounded flex items-center space-x-2">
+            <span>David Johnson</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <!-- Dropdown menu placeholder -->
+        </div>
+      </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+
+      <!-- Sidebar -->
+      <nav aria-label="Primary" class="bg-white shadow-inner w-60 flex flex-col rounded-r-lg overflow-hidden">
+        <div class="px-6 py-8 flex items-center space-x-2 border-b">
+          <span class="text-2xl font-extrabold tracking-tight text-gray-900 select-none">
+            <span class="text-orange-600">K</span>onnect
+          </span>
+        </div>
+        <ul class="flex flex-col py-6 space-y-3">
+          <li>
+            <button aria-current="page" class="flex items-center space-x-3 w-full px-6 py-3 text-white bg-orange-600 rounded-r-lg shadow hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h4v11H3zM11 18h4v3h-4zM15 3h4v9h-4zM7 10h4v11H7z" />
+              </svg>
+              <span class="text-sm font-semibold select-none">Companies</span>
+            </button>
+          </li>
+          <li>
+            <button class="flex items-center space-x-3 w-full px-6 py-3 text-gray-500 hover:text-orange-600 hover:bg-orange-50 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h6M7 16h4M3 21a4 4 0 014-4h10a1 1 0 011 1v3H3zM16 7l-1-2M6 8h.01"/>
+              </svg>
+              <span class="text-sm font-semibold select-none">All Employees</span>
+            </button>
+          </li>
+          <li>
+            <button class="flex items-center space-x-3 w-full px-6 py-3 text-gray-500 hover:text-orange-600 hover:bg-orange-50 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v4m0 0v4m0-4h4m-4 0H8m4 8a4 4 0 004-4H8a4 4 0 004 4z"/>
+              </svg>
+              <span class="text-sm font-semibold select-none">Settings</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main content -->
+      <main class="flex-1 p-8 overflow-auto">
+        
+        <!-- Company & page title -->
+        <header class="mb-6 max-w-5xl">
+          <h1 class="text-xl font-extrabold text-gray-900 mb-1 select-text">Tech Innovations Inc.</h1>
+          <nav aria-label="Breadcrumb" class="text-gray-600 text-sm select-text flex flex-wrap gap-1 font-medium">
+            <span>Companies</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block h-4 w-4 mt-[2px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+            <span class="font-semibold text-gray-800">Employee Info</span>
+          </nav>
+        </header>
+
+        <!-- Tabs -->
+        <nav aria-label="Tabs" class="border-b border-gray-200 max-w-5xl mb-6">
+          <ul class="inline-flex space-x-8 text-sm font-medium text-gray-500">
+            <li>
+              <a href="#" class="pb-3 pt-4 inline-block hover:text-gray-900 border-b-2 border-transparent hover:border-orange-400 transition-colors select-none">Company Info</a>
+            </li>
+            <li>
+              <a href="#" aria-current="page" class="pb-3 pt-4 inline-block text-orange-600 border-b-2 border-orange-600 select-none">Employee Info</a>
+            </li>
+            <li>
+              <a href="#" class="pb-3 pt-4 inline-block hover:text-gray-900 border-b-2 border-transparent hover:border-orange-400 transition-colors select-none">Earnings</a>
+            </li>
+            <li>
+              <a href="#" class="pb-3 pt-4 inline-block hover:text-gray-900 border-b-2 border-transparent hover:border-orange-400 transition-colors select-none">Deductions</a>
+            </li>
+            <li>
+              <a href="#" class="pb-3 pt-4 inline-block hover:text-gray-900 border-b-2 border-transparent hover:border-orange-400 transition-colors select-none">Reports</a>
+            </li>
+            <li>
+              <a href="#" class="pb-3 pt-4 inline-block hover:text-gray-900 border-b-2 border-transparent hover:border-orange-400 transition-colors select-none">Uploads</a>
+            </li>
+            <li>
+              <a href="#" class="pb-3 pt-4 inline-block hover:text-gray-900 border-b-2 border-transparent hover:border-orange-400 transition-colors select-none">Templates</a>
+            </li>
+            <li>
+              <a href="#" class="pb-3 pt-4 inline-block hover:text-gray-900 border-b-2 border-transparent hover:border-orange-400 transition-colors select-none">Settings</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Employee Info Card -->
+        <section class="bg-white rounded-lg shadow max-w-7xl p-6 overflow-auto">
+
+          <!-- Card header with title and controls -->
+          <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-4 md:gap-0">
+            <h2 class="font-semibold text-gray-900 select-text">Employee Info</h2>
+            <div class="flex flex-wrap gap-2">
+              <button aria-label="Search employees" title="Search employees"
+                class="rounded border border-gray-300 py-1 px-3 inline-flex items-center space-x-2 text-gray-600 hover:border-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0a7.5 7.5 0 10-10.605-.833 7.5 7.5 0 0010.605.833z" />
+                </svg>
+                <span class="text-xs leading-5 font-medium select-none">Search</span>
+              </button>
+              <button aria-label="Filter employees" title="Filter employees"
+                class="rounded border border-gray-300 py-1 px-3 inline-flex items-center space-x-2 text-gray-600 hover:border-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 012 0v12a1 1 0 01-2 0V4zm16 3a1 1 0 00-1-1h-1v7h1a1 1 0 001-1V7zm-5-3v7h2v3a1 1 0 002 0v-3a3 3 0 00-3-3h-1z"/>
+                </svg>
+                <span class="text-xs leading-5 font-medium select-none">Filter</span>
+              </button>
+              <button aria-label="Import Excel" title="Import Excel"
+                class="rounded border border-gray-300 py-1 px-3 inline-flex items-center space-x-2 text-gray-600 hover:border-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v-1a4 4 0 014-4h8a4 4 0 014 4v1M16 12v4m0 0l-2-2m2 2l2-2m-7-4v4m0 0l-2-2m2 2l2-2"/>
+                </svg>
+                <span class="text-xs leading-5 font-medium select-none">Import Excel</span>
+              </button>
+              <button aria-label="Add Employee" title="Add Employee"
+                class="bg-orange-600 hover:bg-orange-700 text-white rounded px-4 py-2 flex items-center text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-1 shadow">
+                <span>+ Employee</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Employee table -->
+          <div class="overflow-x-auto border border-gray-200 rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200 text-sm">
+              <thead class="bg-orange-100 text-orange-700 font-semibold select-none">
+                <tr>
+                  <th scope="col" class="p-3 text-left">
+                    <input type="checkbox" aria-label="Select all employees" class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
+                  </th>
+                  <th scope="col" class="whitespace-nowrap px-3 py-3">Employee ID</th>
+                  <th scope="col" class="whitespace-nowrap px-3 py-3">Full Name</th>
+                  <th scope="col" class="whitespace-nowrap px-3 py-3">Gender</th>
+                  <th scope="col" class="whitespace-nowrap px-3 py-3">Mobile No.</th>
+                  <th scope="col" class="whitespace-nowrap px-3 py-3">Email</th>
+                  <th scope="col" class="whitespace-nowrap px-3 py-3">Designation</th>
+                  <th scope="col" class="whitespace-nowrap px-3 py-3">Join Date</th>
+                  <th scope="col" class="whitespace-nowrap px-3 py-3 text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200 bg-white">
+                <tr>
+                  <td class="p-3 text-left">
+                    <input type="checkbox" aria-label="Select employee EMP12657" class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
+                  </td>
+                  <td class="px-3 py-4 font-mono whitespace-nowrap text-gray-700 select-text">EMP12657</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Alexandra Johnson</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Male</td>
+                  <td class="px-3 py-4 whitespace-nowrap">+94 77 123 4567</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-gray-600 select-text">alexandra@co.com</td>
+                  <td class="px-3 py-4 whitespace-nowrap">UI UX Designer</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Mar 15, 2023</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-center flex items-center justify-center space-x-2">
+                    <button aria-label="Delete employee EMP12657" title="Delete employee EMP12657" 
+                      class="p-1 rounded bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                    <button aria-label="Edit employee EMP12657" title="Edit employee EMP12657" 
+                      class="p-1 rounded bg-blue-100 text-blue-600 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5h7m-3 0v7m-5 0l-6 6v-7a2 2 0 012-2h4M13 17v4h4l6-6m-1.414 1.414L16 16" />
+                      </svg>
+                    </button>
+                    <button aria-label="View employee EMP12657" title="View employee EMP12657" 
+                      class="p-1 rounded bg-yellow-100 text-yellow-600 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="p-3 text-left">
+                    <input type="checkbox" aria-label="Select employee EMP12658" class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
+                  </td>
+                  <td class="px-3 py-4 font-mono whitespace-nowrap text-gray-700 select-text">EMP12658</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Jordan Smith</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Female</td>
+                  <td class="px-3 py-4 whitespace-nowrap">+94 77 987 6543</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-gray-600 select-text">jordan.smith@co.com</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Product Manager</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Apr 20, 2023</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-center flex items-center justify-center space-x-2">
+                    <button aria-label="Delete employee EMP12658" title="Delete employee EMP12658" class="p-1 rounded bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                    <button aria-label="Edit employee EMP12658" title="Edit employee EMP12658" class="p-1 rounded bg-blue-100 text-blue-600 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5h7m-3 0v7m-5 0l-6 6v-7a2 2 0 012-2h4M13 17v4h4l6-6m-1.414 1.414L16 16" />
+                      </svg>
+                    </button>
+                    <button aria-label="View employee EMP12658" title="View employee EMP12658" class="p-1 rounded bg-yellow-100 text-yellow-600 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="p-3 text-left">
+                    <input type="checkbox" aria-label="Select employee EMP12659" class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
+                  </td>
+                  <td class="px-3 py-4 font-mono whitespace-nowrap text-gray-700 select-text">EMP12659</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Michael Brown</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Male</td>
+                  <td class="px-3 py-4 whitespace-nowrap">+94 77 234 5678</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-gray-600 select-text">michael.brown@co.com</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Frontend Developer</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Feb 10, 2023</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-center flex items-center justify-center space-x-2">
+                    <button aria-label="Delete employee EMP12659" title="Delete employee EMP12659" class="p-1 rounded bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                    <button aria-label="Edit employee EMP12659" title="Edit employee EMP12659" class="p-1 rounded bg-blue-100 text-blue-600 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5h7m-3 0v7m-5 0l-6 6v-7a2 2 0 012-2h4M13 17v4h4l6-6m-1.414 1.414L16 16" />
+                      </svg>
+                    </button>
+                    <button aria-label="View employee EMP12659" title="View employee EMP12659" class="p-1 rounded bg-yellow-100 text-yellow-600 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="p-3 text-left">
+                    <input type="checkbox" aria-label="Select employee EMP12660" class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
+                  </td>
+                  <td class="px-3 py-4 font-mono whitespace-nowrap text-gray-700 select-text">EMP12660</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Emily Davis</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Female</td>
+                  <td class="px-3 py-4 whitespace-nowrap">+94 77 345 6789</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-gray-600 select-text">emily.davis@co.com</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Graphic Designer</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Jan 5, 2023</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-center flex items-center justify-center space-x-2">
+                    <button aria-label="Delete employee EMP12660" title="Delete employee EMP12660" class="p-1 rounded bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                    <button aria-label="Edit employee EMP12660" title="Edit employee EMP12660" class="p-1 rounded bg-blue-100 text-blue-600 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5h7m-3 0v7m-5 0l-6 6v-7a2 2 0 012-2h4M13 17v4h4l6-6m-1.414 1.414L16 16" />
+                      </svg>
+                    </button>
+                    <button aria-label="View employee EMP12660" title="View employee EMP12660" class="p-1 rounded bg-yellow-100 text-yellow-600 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="p-3 text-left">
+                    <input type="checkbox" aria-label="Select employee EMP12661" class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
+                  </td>
+                  <td class="px-3 py-4 font-mono whitespace-nowrap text-gray-700 select-text">EMP12661</td>
+                  <td class="px-3 py-4 whitespace-nowrap">William Garcia</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Male</td>
+                  <td class="px-3 py-4 whitespace-nowrap">+94 77 456 7890</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-gray-600 select-text">william.garcia@co.com</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Software Engineer</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Mar 22, 2023</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-center flex items-center justify-center space-x-2">
+                    <button aria-label="Delete employee EMP12661" title="Delete employee EMP12661" class="p-1 rounded bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                    <button aria-label="Edit employee EMP12661" title="Edit employee EMP12661" class="p-1 rounded bg-blue-100 text-blue-600 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5h7m-3 0v7m-5 0l-6 6v-7a2 2 0 012-2h4M13 17v4h4l6-6m-1.414 1.414L16 16" />
+                      </svg>
+                    </button>
+                    <button aria-label="View employee EMP12661" title="View employee EMP12661" class="p-1 rounded bg-yellow-100 text-yellow-600 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="p-3 text-left">
+                    <input type="checkbox" aria-label="Select employee EMP12662" class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
+                  </td>
+                  <td class="px-3 py-4 font-mono whitespace-nowrap text-gray-700 select-text">EMP12662</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Sophia Martinez</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Female</td>
+                  <td class="px-3 py-4 whitespace-nowrap">+94 77 567 8901</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-gray-600 select-text">sophia.martinez@co.com</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Data Analyst</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Apr 2, 2023</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-center flex items-center justify-center space-x-2">
+                    <button aria-label="Delete employee EMP12662" title="Delete employee EMP12662" class="p-1 rounded bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                    <button aria-label="Edit employee EMP12662" title="Edit employee EMP12662" class="p-1 rounded bg-blue-100 text-blue-600 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5h7m-3 0v7m-5 0l-6 6v-7a2 2 0 012-2h4M13 17v4h4l6-6m-1.414 1.414L16 16" />
+                      </svg>
+                    </button>
+                    <button aria-label="View employee EMP12662" title="View employee EMP12662" class="p-1 rounded bg-yellow-100 text-yellow-600 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="p-3 text-left">
+                    <input type="checkbox" aria-label="Select employee EMP12663" class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
+                  </td>
+                  <td class="px-3 py-4 font-mono whitespace-nowrap text-gray-700 select-text">EMP12663</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Daniel Rodriguez</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Male</td>
+                  <td class="px-3 py-4 whitespace-nowrap">+94 77 678 9012</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-gray-600 select-text">daniel.rodriguez@co.com</td>
+                  <td class="px-3 py-4 whitespace-nowrap">DevOps Engineer</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Jan 15, 2023</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-center flex items-center justify-center space-x-2">
+                    <button aria-label="Delete employee EMP12663" title="Delete employee EMP12663" class="p-1 rounded bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                    <button aria-label="Edit employee EMP12663" title="Edit employee EMP12663" class="p-1 rounded bg-blue-100 text-blue-600 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5h7m-3 0v7m-5 0l-6 6v-7a2 2 0 012-2h4M13 17v4h4l6-6m-1.414 1.414L16 16" />
+                      </svg>
+                    </button>
+                    <button aria-label="View employee EMP12663" title="View employee EMP12663" class="p-1 rounded bg-yellow-100 text-yellow-600 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="p-3 text-left">
+                    <input type="checkbox" aria-label="Select employee EMP12664" class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
+                  </td>
+                  <td class="px-3 py-4 font-mono whitespace-nowrap text-gray-700 select-text">EMP12664</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Isabella Wilson</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Female</td>
+                  <td class="px-3 py-4 whitespace-nowrap">+94 77 789 0123</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-gray-600 select-text">isabella.wilson@co.com</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Content Writer</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Feb 28, 2023</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-center flex items-center justify-center space-x-2">
+                    <button aria-label="Delete employee EMP12664" title="Delete employee EMP12664" class="p-1 rounded bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                    <button aria-label="Edit employee EMP12664" title="Edit employee EMP12664" class="p-1 rounded bg-blue-100 text-blue-600 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5h7m-3 0v7m-5 0l-6 6v-7a2 2 0 012-2h4M13 17v4h4l6-6m-1.414 1.414L16 16" />
+                      </svg>
+                    </button>
+                    <button aria-label="View employee EMP12664" title="View employee EMP12664" class="p-1 rounded bg-yellow-100 text-yellow-600 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="p-3 text-left">
+                    <input type="checkbox" aria-label="Select employee EMP12665" class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
+                  </td>
+                  <td class="px-3 py-4 font-mono whitespace-nowrap text-gray-700 select-text">EMP12665</td>
+                  <td class="px-3 py-4 whitespace-nowrap">James Anderson</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Male</td>
+                  <td class="px-3 py-4 whitespace-nowrap">+94 77 890 1234</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-gray-600 select-text">james.anderson@co.com</td>
+                  <td class="px-3 py-4 whitespace-nowrap">SEO Specialist</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Mar 10, 2023</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-center flex items-center justify-center space-x-2">
+                    <button aria-label="Delete employee EMP12665" title="Delete employee EMP12665" class="p-1 rounded bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                    <button aria-label="Edit employee EMP12665" title="Edit employee EMP12665" class="p-1 rounded bg-blue-100 text-blue-600 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5h7m-3 0v7m-5 0l-6 6v-7a2 2 0 012-2h4M13 17v4h4l6-6m-1.414 1.414L16 16" />
+                      </svg>
+                    </button>
+                    <button aria-label="View employee EMP12665" title="View employee EMP12665" class="p-1 rounded bg-yellow-100 text-yellow-600 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="p-3 text-left">
+                    <input type="checkbox" aria-label="Select employee EMP12666" class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
+                  </td>
+                  <td class="px-3 py-4 font-mono whitespace-nowrap text-gray-700 select-text">EMP12666</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Olivia Thomas</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Female</td>
+                  <td class="px-3 py-4 whitespace-nowrap">+94 77 901 2345</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-gray-600 select-text">olivia.thomas@co.com</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Marketing Coordinator</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Mar 30, 2023</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-center flex items-center justify-center space-x-2">
+                    <button aria-label="Delete employee EMP12666" title="Delete employee EMP12666" class="p-1 rounded bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                    <button aria-label="Edit employee EMP12666" title="Edit employee EMP12666" class="p-1 rounded bg-blue-100 text-blue-600 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5h7m-3 0v7m-5 0l-6 6v-7a2 2 0 012-2h4M13 17v4h4l6-6m-1.414 1.414L16 16" />
+                      </svg>
+                    </button>
+                    <button aria-label="View employee EMP12666" title="View employee EMP12666" class="p-1 rounded bg-yellow-100 text-yellow-600 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="p-3 text-left">
+                    <input type="checkbox" aria-label="Select employee EMP12667" class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500" />
+                  </td>
+                  <td class="px-3 py-4 font-mono whitespace-nowrap text-gray-700 select-text">EMP12667</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Lucas Jackson</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Male</td>
+                  <td class="px-3 py-4 whitespace-nowrap">+94 77 012 3456</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-gray-600 select-text">lucas.jackson@co.com</td>
+                  <td class="px-3 py-4 whitespace-nowrap">System Administrator</td>
+                  <td class="px-3 py-4 whitespace-nowrap">Apr 5, 2023</td>
+                  <td class="px-3 py-4 whitespace-nowrap text-center flex items-center justify-center space-x-2">
+                    <button aria-label="Delete employee EMP12667" title="Delete employee EMP12667" class="p-1 rounded bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                    <button aria-label="Edit employee EMP12667" title="Edit employee EMP12667" class="p-1 rounded bg-blue-100 text-blue-600 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5h7m-3 0v7m-5 0l-6 6v-7a2 2 0 012-2h4M13 17v4h4l6-6m-1.414 1.414L16 16" />
+                      </svg>
+                    </button>
+                    <button aria-label="View employee EMP12667" title="View employee EMP12667" class="p-1 rounded bg-yellow-100 text-yellow-600 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <nav aria-label="Pagination" class="flex justify-center items-center mt-8 space-x-2 text-gray-500 text-sm select-none flex-wrap gap-2">
+            <button disabled class="cursor-default text-gray-300 hover:text-gray-300 focus:outline-none">Prev</button>
+            <button aria-current="page" class="bg-orange-600 text-white rounded w-8 h-8 flex items-center justify-center font-semibold focus:outline-none focus:ring-2 focus:ring-orange-400">
+              1
+            </button>
+            <button class="hover:text-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 rounded w-8 h-8 flex items-center justify-center">2</button>
+            <button class="hover:text-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 rounded w-8 h-8 flex items-center justify-center">3</button>
+            <span>...</span>
+            <button class="hover:text-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 rounded w-8 h-8 flex items-center justify-center">10</button>
+            <button class="hover:text-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 rounded px-2 py-1">Next</button>
+          </nav>
+
+        </section>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>
+
