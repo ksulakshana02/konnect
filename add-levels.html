@@ -178,144 +178,70 @@
         </nav>
 
         <form id="add-company-form" class="space-y-6 max-w-6xl">
-          <!-- Basic Information -->
-          <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="basic-info-heading">
-            <h3 id="basic-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block">Basic Information</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div>
-                <label for="company-name" class="block text-sm text-[#556476] font-medium mb-3">Company Name</label>
-                <input type="text" id="company-name" name="companyName" placeholder="Company Name"
-                  class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-              </div>
-              <div>
-                <label for="contact-no" class="block text-sm text-[#556476] font-medium mb-3">Contact No.</label>
-                <input type="text" id="contact-no" name="contactNo" placeholder="Contact No."
-                  class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-              </div>
-              <div>
-                <label for="address" class="block text-sm text-[#556476] font-medium mb-3">Address</label>
-                <input type="text" id="address" name="address" placeholder="Address"
-                  class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-              </div>
 
-              <div>
-                <label for="select-act" class="block text-sm text-[#556476] font-medium mb-3">Select Act</label>
-                <select id="select-act" name="selectAct"
-                  class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
-                  <option disabled selected>Select Act</option>
-                  <option>Act 1</option>
-                  <option>Act 2</option>
-                  <option>Act 3</option>
-                </select>
-              </div>
-              <div>
-                <label for="working-days" class="block text-sm text-[#556476] font-medium mb-3">Working Days</label>
-                <input type="text" id="working-days" name="workingDays" placeholder="Working Days"
-                  class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-              </div>
-            </div>
-          </fieldset>
+          <!-- Levels -->
+          <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="levels-info-heading">
+            <h3 id="levels-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block">Levels</h3>
 
-          <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="company-desc-heading">
-            <h3 id="company-desc-heading" class="block text-sm text-[#556476] font-medium mb-3">Company Description</h3>
-            <textarea id="company-description" name="companyDescription" rows="5" placeholder="Company Description"
-              class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"></textarea>
-          </fieldset>
+            <div id="levels-container" class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
+                <div class="md:col-span-1">
+                  <label class="block text-sm text-[#556476] font-medium mb-3" for="level-name-1">Name</label>
+                  <input type="text" id="level-name-1" name="levelName[]" placeholder="Name"
+                    class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
+                </div>
 
+                <div class="md:col-span-2 relative">
+                  <label class="block text-sm text-[#556476] font-medium mb-3" for="level-designations-1">Designations</label>
+                  <div class="relative">
+                    <input type="text" id="level-designations-1" class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-10 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                      placeholder="Designations" autocomplete="off" />
+                    <div id="level-designations-dropdown-1"
+                      class="absolute z-20 w-full bg-white border border-gray-300 rounded-md shadow-md mt-1 max-h-56 overflow-auto hidden">
+                      <!-- dynamic options -->
+                    </div>
+                    <svg width="19" height="18" viewBox="0 0 19 18" class="h-5 w-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.5096 12.69L15.8196 15M15.0898 8.625C15.0898 10.1168 14.4972 11.5476 13.4423 12.6025C12.3874 13.6574 10.9567 14.25 9.46484 14.25C7.973 14.25 6.54226 13.6574 5.48737 12.6025C4.43248 11.5476 3.83984 10.1168 3.83984 8.625C3.83984 7.13316 4.43248 5.70242 5.48737 4.64752C6.54226 3.59263 7.973 3 9.46484 3C10.9567 3 12.3874 3.59263 13.4423 4.64752C14.4972 5.70242 15.0898 7.13316 15.0898 8.625Z" stroke="#172635" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
 
-          <!-- Statutory Contribution Details -->
-          <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="statutory-info-heading">
-            <h3 id="statutory-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block">Statutory Contribution
-              Details</h3>
+                  </div>
+                </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
-              <div>
-                <label for="epf-rate" class="block text-sm text-[#556476] font-medium mb-3">EPF Rate</label>
-                <input type="text" id="epf-rate" name="epfRate" placeholder="EPF Rate"
-                  class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-              </div>
-              <div>
-                <label for="etf-rate" class="block text-sm text-[#556476] font-medium mb-3">ETF Rate</label>
-                <input type="text" id="etf-rate" name="etfRate" placeholder="ETF Rate"
-                  class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                <div class="flex flex-wrap gap-2 md:col-span-3" aria-live="polite" aria-relevant="additions removals"
+                  id="added-designations-1">
+                  <!-- <span
+                    class="flex items-center gap-1 bg-orange-100 text-orange-700 rounded-full py-1 px-3 text-sm cursor-default select-none">
+                    UI UX Designer
+                    <button type="button" aria-label="Remove UI UX Designer" data-name="UI UX Designer"
+                      class="text-orange-700 hover:text-orange-900 focus:outline-none">×</button>
+                  </span>
+                  <span
+                    class="flex items-center gap-1 bg-orange-100 text-orange-700 rounded-full py-1 px-3 text-sm cursor-default select-none">
+                    QA Engineer
+                    <button type="button" aria-label="Remove QA Engineer" data-name="QA Engineer"
+                      class="text-orange-700 hover:text-orange-900 focus:outline-none">×</button>
+                  </span> -->
+                </div>
               </div>
             </div>
 
-            <p class="text-[#FF5A1D] font-bold text-sm mb-3">APIT Rates</p>
-
-            <div id="apit-rates-container" class="space-y-4">
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
-                <div>
-                  <label for="starting-amount" class="block text-sm text-[#556476] font-medium mb-3">Starting Amount</label>
-                  <input type="text" id="starting-amount" name="apit_starting_amount[]" placeholder="Starting Amount"
-                    class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-                </div>
-
-                <div>
-                  <label for="ending-amount" class="block text-sm text-[#556476] font-medium mb-3">Ending Amount</label>
-                  <input type="text" id="ending-amount" name="apit_ending_amount[]" placeholder="Ending Amount"
-                    class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-                </div>
-
-                
-                <div>
-                  <label for="precentage" class="block text-sm text-[#556476] font-medium mb-3">Percentage</label>
-                  <input type="text" id="precentage" name="apit_percentage[]" placeholder="Percentage"
-                  class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-                </div>
-              </div>
-
-            </div>
-            <button type="button" id="add-apit-rate" class="text-sm font-bold text-[#FF5A1D] mt-2 hover:underline">+ Add More</button>
+            <button type="button" id="add-level" class="text-sm font-bold text-[#FF5A1D] mt-2 hover:underline">+ Add More</button>
           </fieldset>
 
-          <!-- Designations -->
-          <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="designations-info-heading">
-            <h3 id="designations-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block">Designations</h3>
-
-            <div id="designations-container" class="space-y-4">
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-                <div>
-                  <label class="block text-sm text-[#556476] font-medium mb-3" for="designation-name-1">Name</label>
-                  <input type="text" id="designation-name-1" name="designationName[]" placeholder="Name"
-                    class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
-                </div>
-                <div>
-                  <label class="block text-sm text-[#556476] font-medium mb-3" for="designation-date-1">Effective Date</label>
-                  <input type="date" id="designation-date-1" name="designationDate[]" placeholder="Effective Date"
-                    class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-                <div>
-                  <label class="block text-sm text-[#556476] font-medium mb-3" for="designation-name-2">Name</label>
-                  <input type="text" id="designation-name-2" name="designationName[]" placeholder="Name"
-                    class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
-                </div>
-                <div>
-                  <label class="block text-sm text-[#556476] font-medium mb-3" for="designation-date-2">Effective Date</label>
-                  <input type="date" id="designation-date-2" name="designationDate[]" placeholder="Effective Date"
-                    class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
-                </div>
-              </div>
-            </div>
-            <button type="button" id="add-designation" class="text-sm font-bold text-[#FF5A1D] mt-2 hover:underline">+ Add More</button>
-          </fieldset>
 
           <!-- Form Actions -->
-          <div class="flex justify-between bg-white items-center max-w-6xl">
+        <div class="flex justify-between bg-white items-center max-w-6xl">
             <button type="reset"
-              class="text-[#FF5A1D] border border-[#FF5A1D] text-sm rounded-lg px-5 py-2 font-normal hover:bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-400">
+              class="text-[#FF5A1D] border border-[#FF5A1D] text-sm rounded-lg px-5 py-3 font-normal hover:bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-400">
               Clear all
             </button>
             <div class="space-x-3">
               <button type="button"
-                class="bg-white border border-[#E8E9EB] rounded-lg px-6 py-2 font-normal text-sm text-[#556476] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                class="bg-white border border-[#E8E9EB] rounded-lg px-6 py-3 font-normal text-sm text-[#556476] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-400">
                 Cancel
               </button>
               <button type="submit"
-                class="bg-[#FF5A1D] rounded-lg px-6 py-2 font-normal text-sm text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                class="bg-[#FF5A1D] rounded-lg px-6 py-3 font-normal text-sm text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400">
                 Save
               </button>
             </div>
@@ -326,55 +252,6 @@
   </div>
 
   <script>
-    // Add more APIT rate entries
-    const addApitRateBtn = document.getElementById('add-apit-rate');
-    const apitRatesContainer = document.getElementById('apit-rates-container');
-
-    addApitRateBtn.addEventListener('click', () => {
-      const div = document.createElement('div');
-      div.classList.add('grid', 'grid-cols-1', 'md:grid-cols-3', 'gap-2', 'items-center');
-      div.innerHTML = `
-                <div>
-                  <label for="starting-amount" class="block text-sm text-[#556476] font-medium mb-3">Starting Amount</label>
-                  <input type="text" id="starting-amount" name="apit_starting_amount[]" placeholder="Starting Amount"
-                    class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-                </div>
-                <div>
-                  <label for="ending-amount" class="block text-sm text-[#556476] font-medium mb-3">Ending Amount</label>
-                  <input type="text" id="ending-amount" name="apit_ending_amount[]" placeholder="Ending Amount"
-                    class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-                </div>
-                <div>
-                  <label for="precentage" class="block text-sm text-[#556476] font-medium mb-3">Percentage</label>
-                  <input type="text" id="precentage" name="apit_percentage[]" placeholder="Percentage"
-                  class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-                </div>
-        `;
-      apitRatesContainer.appendChild(div);
-    });
-
-    // Add more designation entries
-    const addDesignationBtn = document.getElementById('add-designation');
-    const designationsContainer = document.getElementById('designations-container');
-
-    addDesignationBtn.addEventListener('click', () => {
-      const count = designationsContainer.children.length + 1;
-      const div = document.createElement('div');
-      div.classList.add('grid', 'grid-cols-1', 'md:grid-cols-3', 'gap-6', 'items-center');
-      div.innerHTML = `
-        <div>
-          <label class="block text-sm text-[#556476] font-medium mb-3" for="designation-name-${count}">Name</label>
-          <input type="text" id="designation-name-${count}" name="designationName[]" placeholder="Name"
-            class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
-        </div>
-        <div>
-          <label class="block text-sm text-[#556476] font-medium mb-3" for="designation-date-${count}">Effective Date</label>
-          <input type="date" id="designation-date-${count}" name="designationDate[]" placeholder="Effective Date"
-            class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
-        </div>
-      `;
-      designationsContainer.appendChild(div);
-    });
 
     // Add more levels entries
     const addLevelBtn = document.getElementById('add-level');
@@ -397,25 +274,24 @@
     addLevelBtn.addEventListener('click', () => {
       const count = levelsContainer.children.length + 1;
       const div = document.createElement('div');
-      div.classList.add('grid', 'grid-cols-1', 'md:grid-cols-6', 'gap-4', 'items-center');
+      div.classList.add('grid', 'grid-cols-1', 'md:grid-cols-5', 'gap-4', 'items-center');
       div.innerHTML = `
         <div class="md:col-span-1">
-          <label class="block text-gray-700 font-medium mb-1" for="level-name-${count}">Name</label>
+          <label class="block text-sm text-[#556476] font-medium mb-3" for="level-name-${count}">Name</label>
           <input type="text" id="level-name-${count}" name="levelName[]" placeholder="Name"
-            class="w-full border border-gray-300 rounded-md py-2 px-3 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
+            class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
         </div>
 
         <div class="md:col-span-2 relative">
-          <label class="block text-gray-700 font-medium mb-1" for="level-designations-${count}">Designations</label>
+          <label class="block text-sm text-[#556476] font-medium mb-3" for="level-designations-${count}">Designations</label>
           <div class="relative">
-            <input type="text" id="level-designations-${count}" class="w-full border border-gray-300 rounded-md py-2 px-10 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+            <input type="text" id="level-designations-${count}" class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-10 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
               placeholder="Designations" autocomplete="off" />
             <div id="level-designations-dropdown-${count}"
               class="absolute z-20 w-full bg-white border border-gray-300 rounded-md shadow-md mt-1 max-h-56 overflow-auto hidden">
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103 10.5a7.5 7.5 0 0013.65 6.15z"></path>
+            <svg width="19" height="18" viewBox="0 0 19 18" class="h-5 w-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.5096 12.69L15.8196 15M15.0898 8.625C15.0898 10.1168 14.4972 11.5476 13.4423 12.6025C12.3874 13.6574 10.9567 14.25 9.46484 14.25C7.973 14.25 6.54226 13.6574 5.48737 12.6025C4.43248 11.5476 3.83984 10.1168 3.83984 8.625C3.83984 7.13316 4.43248 5.70242 5.48737 4.64752C6.54226 3.59263 7.973 3 9.46484 3C10.9567 3 12.3874 3.59263 13.4423 4.64752C14.4972 5.70242 15.0898 7.13316 15.0898 8.625Z" stroke="#172635" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
         </div>
