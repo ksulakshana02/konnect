@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Employee Info - Konnect</title>
+  <title>Employee Info Inner - Konnect</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
       /* Custom scrollbar for table body */
@@ -115,11 +115,6 @@
       <div class="flex items-center gap-6">
         <!-- Notification bell -->
         <button aria-label="Notifications" class="relative">
-          <!--                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 hover:text-orange-500 transition-colors"-->
-          <!--                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">-->
-          <!--                      <path stroke-linecap="round" stroke-linejoin="round"-->
-          <!--                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-5-5.916V4a1 1 0 00-2 0v1.084A6 6 0 006 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />-->
-          <!--                    </svg>-->
           <svg class="h-6 w-6 text-gray-600 hover:text-orange-500 transition-colors" width="22" height="22"
                viewBox="0 0 22 22" fill="none"
                xmlns="http://www.w3.org/2000/svg">
@@ -182,6 +177,11 @@
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
             <span class="text-[#556476]">Employee Info</span>
+            <svg class="w-3 h-3 inline mx-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <span class="text-[#556476]">EMP12657_Alexandra Johnson</span>
           </nav>
           <nav class="mt-6 flex space-x-6 border-b border-[#E8E9EB] pb-2 text-sm text-[#556476]">
             <button
@@ -199,105 +199,228 @@
         </header>
 
 
-        <section aria-label="Manage Companies Panel"
-                 class="bg-white rounded-xl p-6 shadow-md flex flex-col flex-grow max-w-full overflow-hidden">
-          <div class="flex items-center justify-between mb-6">
-            <h3 class="text-[17px] font-bold text-[#172635]">Employee Info</h3>
-            <div class="flex items-center gap-4">
-              <button
-                id="search-btn"
-                aria-label="Search companies"
-                class="flex items-center gap-3 px-4 py-2 text-xs border border-2 border-[#E8E9EB] rounded-md text-[#172635] hover:text-blue-600 transition focus:outline-none"
-                onclick="document.getElementById('search-company').focus()"
-              >
-                <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M10.4606 10.4167L12.7939 12.75M2.29395 6.91667C2.29395 8.15434 2.78561 9.34133 3.66078 10.2165C4.53595 11.0917 5.72293 11.5833 6.96061 11.5833C8.19829 11.5833 9.38527 11.0917 10.2604 10.2165C11.1356 9.34133 11.6273 8.15434 11.6273 6.91667C11.6273 5.67899 11.1356 4.492 10.2604 3.61684C9.38527 2.74167 8.19829 2.25 6.96061 2.25C5.72293 2.25 4.53595 2.74167 3.66078 3.61684C2.78561 4.492 2.29395 5.67899 2.29395 6.91667Z"
-                    stroke="#172635" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                Search
+        <form id="add-company-form" class="space-y-6 max-w-6xl">
+          <!-- Basic Information -->
+          <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="basic-info-heading">
+            <h3 id="basic-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block">Basic Information</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <label for="full-name" class="block text-sm text-[#556476] font-medium mb-3">Full Name</label>
+                <input type="text" id="full-name" name="companyName" placeholder="Full Name"
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+              <div>
+                <label for="select-gender" class="block text-sm text-[#556476] font-medium mb-3">Gender</label>
+                <select id="select-gender" name="selectGender"
+                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+                  <option disabled selected>Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+              </div>
+              <div>
+                <label for="email" class="block text-sm text-[#556476] font-medium mb-3">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email"
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+
+              <div>
+                <label for="mobile" class="block text-sm text-[#556476] font-medium mb-3">Mobile No.</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="Mobile No."
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+              <div>
+                <label for="birth" class="block text-sm text-[#556476] font-medium mb-3">Date of Birth</label>
+                <input type="date" id="birth" name="birth" placeholder="Date of Birth"
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+            </div>
+          </fieldset>
+
+
+          <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="basic-info-heading">
+            <h3 id="employment-details-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block">Employment
+              Details</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <label for="select-designation"
+                       class="block text-sm text-[#556476] font-medium mb-3">Designation</label>
+                <select id="select-designation" name="selectDesignation"
+                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+                  <option disabled selected>Designation</option>
+                  <option>SE</option>
+                  <option>UX</option>
+                </select>
+              </div>
+              <div>
+                <label for="join-date" class="block text-sm text-[#556476] font-medium mb-3">Join Date</label>
+                <input type="date" id="join-date" name="birth" placeholder="Join Date"
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+              <div>
+                <label for="select-department" class="block text-sm text-[#556476] font-medium mb-3">Department</label>
+                <select id="select-department" name="selectDepartment"
+                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+                  <option disabled selected>Department</option>
+                  <option>SE</option>
+                  <option>UX</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="epf-number" class="block text-sm text-[#556476] font-medium mb-3">EPF Number</label>
+                <input type="text" id="epf-number" name="mobile" placeholder="EPF Number"
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+              <div>
+                <label for="employment-status" class="block text-sm text-[#556476] font-medium mb-3">Employment
+                  Status</label>
+                <select id="employment-status" name="employmentStatus"
+                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+                  <option disabled selected>Employment Status</option>
+                  <option>Active</option>
+                  <option>Inactive</option>
+                </select>
+              </div>
+              <div>
+                <label for="employment-type" class="block text-sm text-[#556476] font-medium mb-3">Employment
+                  Type</label>
+                <select id="employment-type" name="employmentType"
+                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+                  <option disabled selected>Employment Type</option>
+                  <option>Full Time</option>
+                  <option>Part Time</option>
+                </select>
+              </div>
+
+            </div>
+          </fieldset>
+
+
+          <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="basic-info-heading">
+            <h3 id="salary-compensation-details-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block">Salary &
+              Compensation</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <label for="basic-salary" class="block text-sm text-[#556476] font-medium mb-3">Basic Salary</label>
+                <input type="text" id="basic-salary" name="basicSalary" placeholder="Basic Salary"
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+              <div>
+                <label for="payment-frequency" class="block text-sm text-[#556476] font-medium mb-3">Payment
+                  Frequency</label>
+                <select id="payment-frequency" name="paymentFrequency"
+                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+                  <option disabled selected>Payment Frequency</option>
+                  <option>Monthly</option>
+                  <option>Daily</option>
+                </select>
+              </div>
+              <div>
+                <label for="select-currency" class="block text-sm text-[#556476] font-medium mb-3">Currency</label>
+                <select id="select-currency" name="selectCurrency"
+                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+                  <option disabled selected>Currency</option>
+                  <option>LKR</option>
+                  <option>USD</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+
+          <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="basic-info-heading">
+            <h3 id="bank-details-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block">Bank Details</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <label for="bank-name" class="block text-sm text-[#556476] font-medium mb-3">Bank Name</label>
+                <select id="bank-name" name="bankName"
+                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+                  <option disabled selected>Bank Name</option>
+                  <option>People</option>
+                  <option>Sampath</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="holder-name" class="block text-sm text-[#556476] font-medium mb-3">Account Holder Name</label>
+                <input type="text" id="holder-name" name="holderName" placeholder="Account Holder Name"
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+              <div>
+                <label for="account-number" class="block text-sm text-[#556476] font-medium mb-3">Account Number</label>
+                <input type="text" id="account-number" name="accountNumber" placeholder="Account Number"
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+              <div>
+                <label for="bank-branch" class="block text-sm text-[#556476] font-medium mb-3">Bank Branch</label>
+                <input type="text" id="bank-branch" name="bankBranch" placeholder="Bank Branch"
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+              <div>
+                <label for="ifsc-code" class="block text-sm text-[#556476] font-medium mb-3">IFSC / SWIFT Code</label>
+                <input type="text" id="ifsc-code" name="ifscCode" placeholder="IFSC / SWIFT Code"
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+
+              <div>
+                <label for="payment-method" class="block text-sm text-[#556476] font-medium mb-3">Payment Method</label>
+                <select id="payment-method" name="paymentMethod"
+                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+                  <option disabled selected>Payment Method</option>
+                  <option>Bank Transfer</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+
+
+          <!-- Statutory Contribution Details -->
+          <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="statutory-info-heading">
+            <h3 id="deduction-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block">Individual Earnings & Deductions</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+              <div>
+                <label for="variable-name" class="block text-sm text-[#556476] font-medium mb-3">Variable Name</label>
+                <select id="variable-name" name="variableName"
+                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+                  <option disabled selected>Variable Name</option>
+                  <option>Christmas_Bonus</option>
+                </select>
+              </div>
+              <div>
+                <label for="amount" class="block text-sm text-[#556476] font-medium mb-3">Amount</label>
+                <input type="text" id="amount" name="amount" placeholder="Amount"
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+            </div>
+            <button type="button" id="add-apit-rate" class="text-sm font-bold text-[#FF5A1D] mt-2 hover:underline">+ Add
+              More
+            </button>
+          </fieldset>
+
+
+
+          <!-- Form Actions -->
+          <div class="flex justify-between bg-white items-center max-w-6xl">
+            <button type="reset"
+                    class="text-[#FF5A1D] border border-[#FF5A1D] text-sm rounded-lg px-5 py-2 font-normal hover:bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-400">
+              Clear all
+            </button>
+            <div class="space-x-3">
+              <button type="button"
+                      class="bg-white border border-[#E8E9EB] rounded-lg px-6 py-2 font-normal text-sm text-[#556476] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                Cancel
               </button>
-              <button
-                id="filter-btn"
-                aria-label="Filter companies"
-                class="flex items-center gap-3 px-4 py-2 text-xs border border-2 border-[#E8E9EB] rounded-md text-[#172635] hover:text-blue-600 transition focus:outline-none"
-                onclick="toggleFilterPanel()"
-              >
-                <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.87728 2.25H12.2106C12.3653 2.25 12.5137 2.31146 12.6231 2.42085C12.7325 2.53025 12.7939 2.67862 12.7939 2.83333V3.7585C12.7939 3.9132 12.7324 4.06155 12.623 4.17092L8.88153 7.91242C8.77212 8.02179 8.71064 8.17014 8.71061 8.32483V12.0027C8.71061 12.0914 8.69039 12.1789 8.6515 12.2586C8.6126 12.3383 8.55606 12.4081 8.48615 12.4626C8.41625 12.5172 8.33483 12.5551 8.24808 12.5734C8.16133 12.5918 8.07154 12.5901 7.98553 12.5686L6.81886 12.2769C6.69272 12.2453 6.58075 12.1725 6.50074 12.07C6.42074 11.9674 6.37728 11.8411 6.37728 11.7111V8.32483C6.37725 8.17014 6.31577 8.02179 6.20636 7.91242L2.46486 4.17092C2.35546 4.06155 2.29398 3.9132 2.29395 3.7585V2.83333C2.29395 2.67862 2.3554 2.53025 2.4648 2.42085C2.5742 2.31146 2.72257 2.25 2.87728 2.25Z" stroke="#172635" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Filter
-              </button>
-              <button
-                id="export-btn"
-                aria-label="Filter companies"
-                class="flex items-center gap-3 px-4 py-2 text-xs border border-2 border-[#E8E9EB] rounded-md text-[#172635] hover:text-blue-600 transition focus:outline-none"
-              >
-                <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.91895 2.83333C4.91895 2.51104 5.15403 2.25 5.44394 2.25H12.2689C12.5589 2.25 12.7939 2.51104 12.7939 2.83333V12.1667C12.7939 12.489 12.5589 12.75 12.2689 12.75H5.44394C5.15403 12.75 4.91895 12.489 4.91895 12.1667V10.4167H2.81895C2.52903 10.4167 2.29395 10.1556 2.29395 9.83333V5.16667C2.29395 4.84437 2.52903 4.58333 2.81895 4.58333H4.91895V2.83333ZM8.71061 4.58333V2.83333H5.50228V4.58333H8.71061ZM9.29395 2.83333V4.58333H12.2106V2.83333H9.29395ZM8.71061 5.16667H7.54395V7.20833H8.71061V5.16667ZM9.29395 7.20833V5.16667H12.2106V7.20833H9.29395ZM8.71061 7.79167H7.54395V9.83333H8.71061V7.79167ZM9.29395 9.83333V7.79167H12.2106V9.83333H9.29395ZM8.71061 10.4167H5.50228V12.1667H8.71061V10.4167ZM9.29395 12.1667V10.4167H12.2106V12.1667H9.29395ZM6.96061 5.16667V9.83333H2.81895V5.16667H6.96061ZM3.8182 6.04167H4.4444L4.95278 7.13658L5.48974 6.04167H6.07482L5.26895 7.5L6.09349 8.95833H5.47603L4.92215 7.81208L4.3709 8.95833H3.7444L4.58265 7.49475L3.8182 6.04167Z" fill="black"/>
-                </svg>
-                Import Excel
-              </button>
-              <button
-                id="add-company-btn"
-                class="flex items-center gap-3 px-4 py-2 text-xs border border-2 border-[#E8E9EB] bg-[#FF5A1D] rounded-md text-white hover:bg-orange-600 transition focus:outline-none"
-              >
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8.625 9.375H4.5V8.625H8.625V4.5H9.375V8.625H13.5V9.375H9.375V13.5H8.625V9.375Z"
-                        fill="white" />
-                </svg>
-                Employee
+              <button type="submit"
+                      class="bg-[#FF5A1D] rounded-lg px-6 py-2 font-normal text-sm text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                Save
               </button>
             </div>
           </div>
+        </form>
 
-          <!-- Table container -->
-          <div class="overflow-x-auto border border-gray-200 rounded-lg">
-            <table class="min-w-full text-sm text-left text-gray-700" aria-describedby="companies-table-caption"
-                   role="grid">
-              <caption id="companies-table-caption" class="sr-only">List of registered companies with contact
-                information and acts
-              </caption>
-              <thead class="bg-[#FF5A1D33]/20 text-[#556476] text-xs font-normal sticky top-0 z-10">
-              <tr>
-                <th scope="col" class="p-3 w-6">
-                  <input
-                    id="select-all"
-                    type="checkbox"
-                    aria-label="Select all companies"
-                    class="rounded border border-pink-400 accent-[#FF5A1D33]/20 focus:outline-none focus:ring-2 focus:ring-pink-400"
-                    onclick="toggleSelectAll(this)"
-                  />
-                </th>
-                <th scope="col" class="p-3 whitespace-nowrap">Employee ID</th>
-                <th scope="col" class="p-3 whitespace-nowrap">Full Name</th>
-                <th scope="col" class="p-3 whitespace-nowrap">Gender</th>
-                <th scope="col" class="p-3 whitespace-nowrap">Mobile No.</th>
-                <th scope="col" class="p-3 whitespace-nowrap">Email</th>
-                <th scope="col" class="p-3 whitespace-nowrap">Designation</th>
-                <th scope="col" class="p-3 whitespace-nowrap">Join Date</th>
-                <th scope="col" class="p-3 w-28 text-center">Actions</th>
-              </tr>
-              </thead>
-              <tbody id="companies-tbody" class="divide-y divide-gray-200 scrollbar-thin max-h-[52vh] overflow-y-auto"
-                     role="rowgroup">
-              <!-- Rows will be populated dynamically -->
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Pagination -->
-          <nav class="mt-6 flex justify-center items-center gap-2 text-sm text-gray-600"
-               aria-label="Pagination navigation">
-            <button id="prev-page" aria-label="Go to previous page" disabled
-                    class="disabled:opacity-50 px-3 py-1 rounded hover:bg-pink-100 disabled:cursor-not-allowed">Prev
-            </button>
-            <div id="pagination-numbers" class="flex gap-1"></div>
-            <button id="next-page" aria-label="Go to next page" class="px-3 py-1 rounded hover:bg-pink-100">Next
-            </button>
-          </nav>
-        </section>
 
       </div>
     </main>
