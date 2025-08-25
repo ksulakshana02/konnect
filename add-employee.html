@@ -34,10 +34,10 @@
 
   <!-- Sidebar -->
   <aside
-    class="bg-[#F6F6F8] w-72 flex flex-col shadow-md select-none z-10"
+    class="bg-[#F6F6F8] w-72 flex flex-col shadow-md select-none z-10 border-r-[2px] border-[#E8E9EB]"
     aria-label="Sidebar Navigation"
   >
-    <div class="px-16 py-8 flex items-center gap-2 border-b border-gray-200">
+    <div class="px-16 py-8 flex items-center gap-2">
       <!-- <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 flex items-center gap-1">
         <span class="text-pink-600">K</span>onnect
       </h1> -->
@@ -45,7 +45,7 @@
     </div>
     <nav class="flex flex-col flex-grow p-4 space-y-2 text-gray-700">
       <button
-        class="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-pink-700 focus:outline-none"
+        class="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
         aria-current="page"
       >
         <svg class="w-5 h-5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,19 +96,23 @@
     </nav>
   </aside>
 
-  <main class="flex-1 flex flex-col bg-gray-50">
+  <main class="flex-1 flex flex-col bg-[#F6F6F8]">
     <!-- Header -->
-    <header class="flex justify-between items-center border-b border-gray-200 px-6 py-4 bg-white">
+    <header class="flex justify-between items-center border-b-[2px] border-[#E8E9EB] px-6 py-6 bg-white">
       <div class="w-96">
         <label for="search" class="sr-only">Search</label>
         <div class="relative">
           <input id="search" type="search" placeholder="Search"
-                 class="w-full rounded-md bg-orange-50 placeholder-orange-400 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
-          <svg xmlns="http://www.w3.org/2000/svg" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" fill="none"
-               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M21 21l-5.197-5.197M15.803 15.803A7.5 7.5 0 1110.5 3a7.5 7.5 0 015.303 12.803z" />
+                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
+<!--          <svg xmlns="http://www.w3.org/2000/svg" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" fill="none"-->
+<!--               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">-->
+<!--            <path stroke-linecap="round" stroke-linejoin="round"-->
+<!--                  d="M21 21l-5.197-5.197M15.803 15.803A7.5 7.5 0 1110.5 3a7.5 7.5 0 015.303 12.803z" />-->
+<!--          </svg>-->
+          <svg width="15" height="15" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.2779 10.2078L11.9728 11.9027M11.4374 7.22504C11.4374 8.31969 11.0025 9.3695 10.2285 10.1435C9.45447 10.9176 8.40465 11.3524 7.31 11.3524C6.21535 11.3524 5.16553 10.9176 4.3915 10.1435C3.61747 9.3695 3.18262 8.31969 3.18262 7.22504C3.18262 6.13039 3.61747 5.08057 4.3915 4.30654C5.16553 3.5325 6.21535 3.09766 7.31 3.09766C8.40465 3.09766 9.45447 3.5325 10.2285 4.30654C11.0025 5.08057 11.4374 6.13039 11.4374 7.22504Z" stroke="#556476" stroke-width="1.32076" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
+
         </div>
       </div>
 
@@ -165,8 +169,8 @@
       </div>
     </header>
 
-    <main class="flex-1 overflow-y-auto p-8">
-      <div class="max-w-7xl mx-auto space-y-7">
+    <main class="flex-1 overflow-y-auto ">
+      <div class="max-w-7xl mx-auto space-y-7 p-8">
         <header aria-label="Company Name and breadcrumb" class="mb-4">
           <h1 class="text-[#172635] font-bold text-xl">Tech Innovations Inc.</h1>
           <nav class="mt-1 text-[17px] font-medium text-[#556476] flex flex-wrap items-center gap-1 select-none"
@@ -403,25 +407,25 @@
 
 
           <!-- Form Actions -->
-          <div class="flex justify-between bg-white items-center max-w-6xl">
-            <button type="reset"
-                    class="text-[#FF5A1D] border border-[#FF5A1D] text-sm rounded-lg px-5 py-2 font-normal hover:bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-400">
-              Clear all
-            </button>
-            <div class="space-x-3">
-              <button type="button"
-                      class="bg-white border border-[#E8E9EB] rounded-lg px-6 py-2 font-normal text-sm text-[#556476] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-400">
-                Cancel
-              </button>
-              <button type="submit"
-                      class="bg-[#FF5A1D] rounded-lg px-6 py-2 font-normal text-sm text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400">
-                Save
-              </button>
-            </div>
-          </div>
         </form>
 
 
+      </div>
+      <div class="flex justify-between bg-white py-6 w-full items-center px-8 mt-6 bottom-0">
+        <button type="reset"
+                class="text-[#FF5A1D] border border-[#FF5A1D] text-sm rounded-lg px-5 py-2 font-normal hover:bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-400">
+          Clear all
+        </button>
+        <div class="space-x-3">
+          <button type="button"
+                  class="bg-white border border-[#E8E9EB] rounded-lg px-6 py-2 font-normal text-sm text-[#556476] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-400">
+            Cancel
+          </button>
+          <button type="submit"
+                  class="bg-[#FF5A1D] rounded-lg px-6 py-2 font-normal text-sm text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400">
+            Save
+          </button>
+        </div>
       </div>
     </main>
   </main>
