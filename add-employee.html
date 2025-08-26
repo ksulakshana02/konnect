@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Employee Info Inner - Konnect</title>
+  <title>Add Employee - Konnect</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
       /* Custom scrollbar for table body */
@@ -19,6 +19,17 @@
       .scrollbar-thin::-webkit-scrollbar-thumb {
           background-color: rgba(251 113 133 / 0.75);
           border-radius: 10px;
+      }
+
+      .active-nav {
+          border-right: 5px solid #FFA600;
+      }
+
+      .active-tab {
+          border-bottom-width: 2px;
+          border-bottom-color: #FF5C00;
+          color: #374151;
+          font-weight: 600;
       }
 
       /* Override Tailwind custom focus for checkbox to have ring-2 with pink-300 */
@@ -38,14 +49,11 @@
     aria-label="Sidebar Navigation"
   >
     <div class="px-16 py-8 flex items-center gap-2">
-      <!-- <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 flex items-center gap-1">
-        <span class="text-pink-600">K</span>onnect
-      </h1> -->
       <img src="./logo.png" alt="logo" class="" />
     </div>
-    <nav class="flex flex-col flex-grow p-4 space-y-2 text-gray-700">
+    <nav class="flex flex-col flex-grow py-4 pl-4 space-y-2 text-gray-700">
       <button
-        class="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
+        class="active-nav flex items-center gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
         aria-current="page"
       >
         <svg class="w-5 h-5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">

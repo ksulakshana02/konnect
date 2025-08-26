@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Konnect - Manage Companies</title>
+  <title>All Employees - Konnect</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* Custom scrollbar for table body */
@@ -81,47 +81,44 @@
   <main class="flex flex-col flex-grow max-w-full">
 
     <!-- Topbar -->
-    <header class="flex bg-white p-6 items-center justify-between mb-6">
-      <div class="relative flex-grow max-w-lg">
-        <svg
-          class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-pink-400 pointer-events-none"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <circle cx="11" cy="11" r="7" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
-        <input
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          class="block w-full rounded-xl bg-[#FF5A1D33]/20 border border-pink-300 text-[#556476] placeholder-[#556476] text-sm font-medium px-4 py-2 focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-300"
-        />
-      </div>
-      <div class="flex items-center gap-4">
-        <button
-          aria-label="Notifications"
-          class="relative p-2 rounded-full focus:outline-none focus:ring"
-        >
-          <svg class="w-6 h-6 text-gray-600" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5.65921 17.1039V9.17929C5.65921 7.77814 6.21582 6.43437 7.20658 5.44361C8.19734 4.45285 9.54111 3.89624 10.9423 3.89624C12.3434 3.89624 13.6872 4.45285 14.6779 5.44361C15.6687 6.43437 16.2253 7.77814 16.2253 9.17929V17.1039M5.65921 17.1039H16.2253M5.65921 17.1039H3.89819M16.2253 17.1039H17.9863M10.0618 19.7454H11.8228" stroke="#556476" stroke-width="0.880508" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M10.9423 3.89621C11.4286 3.89621 11.8228 3.50199 11.8228 3.0157C11.8228 2.52941 11.4286 2.13519 10.9423 2.13519C10.456 2.13519 10.0618 2.52941 10.0618 3.0157C10.0618 3.50199 10.456 3.89621 10.9423 3.89621Z" stroke="#556476" stroke-width="0.880508"/>
+    <header class="flex justify-between items-center border-b-[2px] border-[#E8E9EB] px-6 py-6 bg-white">
+      <div class="w-96">
+        <label for="search" class="sr-only">Search</label>
+        <div class="relative">
+          <input id="search" type="search" placeholder="Search"
+                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
+          <!--          <svg xmlns="http://www.w3.org/2000/svg" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" fill="none"-->
+          <!--               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">-->
+          <!--            <path stroke-linecap="round" stroke-linejoin="round"-->
+          <!--                  d="M21 21l-5.197-5.197M15.803 15.803A7.5 7.5 0 1110.5 3a7.5 7.5 0 015.303 12.803z" />-->
+          <!--          </svg>-->
+          <svg width="15" height="15" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.2779 10.2078L11.9728 11.9027M11.4374 7.22504C11.4374 8.31969 11.0025 9.3695 10.2285 10.1435C9.45447 10.9176 8.40465 11.3524 7.31 11.3524C6.21535 11.3524 5.16553 10.9176 4.3915 10.1435C3.61747 9.3695 3.18262 8.31969 3.18262 7.22504C3.18262 6.13039 3.61747 5.08057 4.3915 4.30654C5.16553 3.5325 6.21535 3.09766 7.31 3.09766C8.40465 3.09766 9.45447 3.5325 10.2285 4.30654C11.0025 5.08057 11.4374 6.13039 11.4374 7.22504Z" stroke="#556476" stroke-width="1.32076" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
 
-          <span
-            class="absolute top-0 right-0 block w-2.5 h-2.5 bg-pink-600 rounded-full ring-2 ring-white"
-          ></span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <!-- Notification bell -->
+        <button aria-label="Notifications" class="relative">
+          <svg class="h-6 w-6 text-gray-600 hover:text-orange-500 transition-colors" width="22" height="22"
+               viewBox="0 0 22 22" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M5.65921 17.1039V9.17929C5.65921 7.77814 6.21582 6.43437 7.20658 5.44361C8.19734 4.45285 9.54111 3.89624 10.9423 3.89624C12.3434 3.89624 13.6872 4.45285 14.6779 5.44361C15.6687 6.43437 16.2253 7.77814 16.2253 9.17929V17.1039M5.65921 17.1039H16.2253M5.65921 17.1039H3.89819M16.2253 17.1039H17.9863M10.0618 19.7454H11.8228"
+              stroke="#556476" stroke-width="0.880508" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M10.9423 3.89621C11.4286 3.89621 11.8228 3.50199 11.8228 3.0157C11.8228 2.52941 11.4286 2.13519 10.9423 2.13519C10.456 2.13519 10.0618 2.52941 10.0618 3.0157C10.0618 3.50199 10.456 3.89621 10.9423 3.89621Z"
+              stroke="#556476" stroke-width="0.880508" />
+          </svg>
+          <span class="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-orange-400"></span>
         </button>
-        <div class="relative group">
+
+        <!-- Profile dropdown -->
+        <div class="relative" id="profileDropdownRoot">
           <button
-            id="profile-menu-button"
-            aria-haspopup="true"
-            aria-expanded="false"
+            id="profileButton" aria-haspopup="true" aria-expanded="false"
             class="flex items-center gap-2 bg-[#FF5A1D33] hover:bg-orange-200 rounded-full px-3 py-1 text-[#556476] font-normal focus:outline-none focus:ring-2 focus:ring-orange-300"
             aria-label="User menu David Johnson"
           >
@@ -133,7 +130,7 @@
             />
             <span class="text-sm">David Johnson</span>
             <svg
-              class="w-3 h-3 text-pink-700"
+              class="w-3 h-3 text-orange-700"
               fill="none"
               stroke="currentColor"
               stroke-width="2"
@@ -145,7 +142,12 @@
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </button>
-          <!-- Dropdown can be implemented here if needed -->
+          <div id="profileDropdown"
+               class="hidden absolute right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Profile</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Settings</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Logout</a>
+          </div>
         </div>
       </div>
     </header>
