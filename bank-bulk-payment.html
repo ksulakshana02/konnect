@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bank Bulk Payment - Konnect</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+      /* Custom scroll for sidebar if needed */
+      /* Remove focus outline on elements except keyboard */
+      :focus:not(:focus-visible) {
+          outline: none;
+      }
+
+      /* Custom orange border for active nav item */
+      .active-nav {
+          border-right: 5px solid #FFA600;
+      }
+
+      /* Navbar bottom border for active tab */
+      .active-tab {
+          border-bottom-width: 2px;
+          border-bottom-color: #FF5C00;
+          color: #374151;
+          font-weight: 600;
+      }
+
+      /* subtle icon scaling on hover */
+      .icon-hover:hover {
+          transform: scale(1.05);
+          transition: transform 0.15s ease-in-out;
+      }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-700 font-sans antialiased select-none">
+
+<div class="flex h-screen">
+  <!-- Sidebar -->
+  <aside
+    class="bg-[#F6F6F8] w-72 flex flex-col shadow-md select-none z-10 border-r-[2px] border-[#E8E9EB]"
+    aria-label="Sidebar Navigation"
+  >
+    <div class="px-16 py-8 flex items-center gap-2">
+      <img src="./logo.png" alt="logo" class="" />
+    </div>
+    <nav class="flex flex-col flex-grow py-4 pl-4 space-y-2 text-gray-700">
+      <button
+        class="active-nav flex items-center gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
+        aria-current="page"
+      >
+        <svg class="w-5 h-5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M2.33602 1.78427H9.64088C10.0698 1.78427 10.418 2.13242 10.418 2.56139V8.00118C10.418 8.16606 10.4835 8.32419 10.6001 8.44078C10.7167 8.55737 10.8748 8.62287 11.0397 8.62287H13.371C13.8 8.62287 14.1481 8.97102 14.1481 9.39998V16.7048H12.2831V14.5289C12.2831 14.2816 12.1848 14.0444 12.0099 13.8695C11.835 13.6946 11.5979 13.5964 11.3505 13.5964H4.51194C4.26461 13.5964 4.02742 13.6946 3.85253 13.8695C3.67765 14.0444 3.5794 14.2816 3.5794 14.5289V16.7048H1.71433V2.40596C1.71433 2.24108 1.77983 2.08295 1.89642 1.96636C2.01301 1.84977 2.17114 1.78427 2.33602 1.78427ZM11.0397 16.7048H8.55292V14.8398H11.0397V16.7048ZM7.30954 16.7048H4.82278V14.8398H7.30954V16.7048ZM14.7698 17.9482C14.9347 17.9482 15.0928 17.8827 15.2094 17.7661C15.326 17.6495 15.3915 17.4914 15.3915 17.3265V9.39998C15.3915 9.13465 15.3393 8.87191 15.2377 8.62677C15.1362 8.38164 14.9873 8.1589 14.7997 7.97128C14.6121 7.78366 14.3894 7.63483 14.1442 7.53329C13.8991 7.43175 13.6364 7.37949 13.371 7.37949H11.6614V2.56139C11.6614 2.29605 11.6091 2.03332 11.5076 1.78818C11.406 1.54304 11.2572 1.3203 11.0696 1.13268C10.882 0.945062 10.6592 0.796234 10.4141 0.694694C10.169 0.593155 9.90622 0.540894 9.64088 0.540894H2.33602C1.84137 0.540894 1.36698 0.737392 1.01721 1.08716C0.667445 1.43693 0.470947 1.91132 0.470947 2.40596V17.3265C0.470947 17.4914 0.536447 17.6495 0.653036 17.7661C0.769626 17.8827 0.927755 17.9482 1.09264 17.9482H14.7698ZM4.51194 5.51442C4.75926 5.51442 4.99645 5.41617 5.17134 5.24128C5.34622 5.0664 5.44447 4.82921 5.44447 4.58188C5.44447 4.33456 5.34622 4.09736 5.17134 3.92248C4.99645 3.74759 4.75926 3.64935 4.51194 3.64935C4.26461 3.64935 4.02742 3.74759 3.85253 3.92248C3.67765 4.09736 3.5794 4.33456 3.5794 4.58188C3.5794 4.82921 3.67765 5.0664 3.85253 5.24128C4.02742 5.41617 4.26461 5.51442 4.51194 5.51442ZM4.51194 8.62287C4.75926 8.62287 4.99645 8.52462 5.17134 8.34974C5.34622 8.17485 5.44447 7.93766 5.44447 7.69033C5.44447 7.44301 5.34622 7.20582 5.17134 7.03093C4.99645 6.85605 4.75926 6.7578 4.51194 6.7578C4.26461 6.7578 4.02742 6.85605 3.85253 7.03093C3.67765 7.20582 3.5794 7.44301 3.5794 7.69033C3.5794 7.93766 3.67765 8.17485 3.85253 8.34974C4.02742 8.52462 4.26461 8.62287 4.51194 8.62287ZM5.44447 10.7988C5.44447 11.0461 5.34622 11.2833 5.17134 11.4582C4.99645 11.6331 4.75926 11.7313 4.51194 11.7313C4.26461 11.7313 4.02742 11.6331 3.85253 11.4582C3.67765 11.2833 3.5794 11.0461 3.5794 10.7988C3.5794 10.5515 3.67765 10.3143 3.85253 10.1394C4.02742 9.9645 4.26461 9.86625 4.51194 9.86625C4.75926 9.86625 4.99645 9.9645 5.17134 10.1394C5.34622 10.3143 5.44447 10.5515 5.44447 10.7988ZM7.62039 5.51442C7.86771 5.51442 8.10491 5.41617 8.27979 5.24128C8.45467 5.0664 8.55292 4.82921 8.55292 4.58188C8.55292 4.33456 8.45467 4.09736 8.27979 3.92248C8.10491 3.74759 7.86771 3.64935 7.62039 3.64935C7.37306 3.64935 7.13587 3.74759 6.96099 3.92248C6.7861 4.09736 6.68785 4.33456 6.68785 4.58188C6.68785 4.82921 6.7861 5.0664 6.96099 5.24128C7.13587 5.41617 7.37306 5.51442 7.62039 5.51442ZM8.55292 7.69033C8.55292 7.93766 8.45467 8.17485 8.27979 8.34974C8.10491 8.52462 7.86771 8.62287 7.62039 8.62287C7.37306 8.62287 7.13587 8.52462 6.96099 8.34974C6.7861 8.17485 6.68785 7.93766 6.68785 7.69033C6.68785 7.44301 6.7861 7.20582 6.96099 7.03093C7.13587 6.85605 7.37306 6.7578 7.62039 6.7578C7.86771 6.7578 8.10491 6.85605 8.27979 7.03093C8.45467 7.20582 8.55292 7.44301 8.55292 7.69033ZM7.62039 11.7313C7.86771 11.7313 8.10491 11.6331 8.27979 11.4582C8.45467 11.2833 8.55292 11.0461 8.55292 10.7988C8.55292 10.5515 8.45467 10.3143 8.27979 10.1394C8.10491 9.9645 7.86771 9.86625 7.62039 9.86625C7.37306 9.86625 7.13587 9.9645 6.96099 10.1394C6.7861 10.3143 6.68785 10.5515 6.68785 10.7988C6.68785 11.0461 6.7861 11.2833 6.96099 11.4582C7.13587 11.6331 7.37306 11.7313 7.62039 11.7313ZM11.6614 10.7988C11.6614 11.0461 11.5631 11.2833 11.3882 11.4582C11.2134 11.6331 10.9762 11.7313 10.7288 11.7313C10.4815 11.7313 10.2443 11.6331 10.0694 11.4582C9.89455 11.2833 9.7963 11.0461 9.7963 10.7988C9.7963 10.5515 9.89455 10.3143 10.0694 10.1394C10.2443 9.9645 10.4815 9.86625 10.7288 9.86625C10.9762 9.86625 11.2134 9.9645 11.3882 10.1394C11.5631 10.3143 11.6614 10.5515 11.6614 10.7988Z"
+            fill="white" />
+        </svg>
+        Companies
+      </button>
+      <button
+        class="flex items-center gap-3 text-[#556476] px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+      >
+        <svg class="w-5 h-5 text-[#556476]" width="21" height="20" viewBox="0 0 21 20" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_293_1885)">
+            <path
+              d="M1.60583 19.3317H20.2565M15.8475 19.3317H6.01486L4.73667 13.5549C4.70859 13.4297 4.70631 13.3001 4.72997 13.174C4.75363 13.0478 4.80273 12.9278 4.87427 12.8213C4.93916 12.7216 5.02747 12.6392 5.13149 12.5814C5.23552 12.5236 5.35211 12.4921 5.47109 12.4897H16.3913C16.5103 12.4921 16.6269 12.5236 16.7309 12.5814C16.8349 12.6392 16.9232 12.7216 16.9881 12.8213C17.0597 12.9278 17.1088 13.0478 17.1324 13.174C17.1561 13.3001 17.1538 13.4297 17.1257 13.5549L15.8475 19.3317Z"
+              stroke="#556476" stroke-width="1.24338" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M7.98438 2.36365C8.51395 2.91279 9.14875 3.34959 9.85088 3.64796C10.553 3.94633 11.3081 4.10015 12.071 4.10024C12.8443 4.10024 13.6094 3.94274 14.3198 3.6377M9.68781 15.6015C9.68781 15.9313 9.81881 16.2475 10.052 16.4807C10.2852 16.7139 10.6014 16.8449 10.9312 16.8449C11.261 16.8449 11.5772 16.7139 11.8104 16.4807C12.0436 16.2475 12.1746 15.9313 12.1746 15.6015C12.1746 15.2717 12.0436 14.9555 11.8104 14.7223C11.5772 14.4891 11.261 14.3581 10.9312 14.3581C10.6014 14.3581 10.2852 14.4891 10.052 14.7223C9.81881 14.9555 9.68781 15.2717 9.68781 15.6015Z"
+              stroke="#556476" stroke-width="1.24338" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M15.0758 10.628C14.5566 10.0409 13.9187 9.57088 13.2042 9.24895C12.4897 8.92702 11.7149 8.76054 10.9312 8.76054C10.1475 8.76054 9.37279 8.92702 8.65829 9.24895C7.94378 9.57088 7.30581 10.0409 6.78662 10.628M7.51193 4.10021C7.51193 5.00706 7.87217 5.87677 8.51342 6.51801C9.15466 7.15926 10.0244 7.5195 10.9312 7.5195C11.8381 7.5195 12.7078 7.15926 13.349 6.51801C13.9903 5.87677 14.3505 5.00706 14.3505 4.10021C14.3505 3.19335 13.9903 2.32364 13.349 1.6824C12.7078 1.04115 11.8381 0.680908 10.9312 0.680908C10.0244 0.680908 9.15466 1.04115 8.51342 1.6824C7.87217 2.32364 7.51193 3.19335 7.51193 4.10021Z"
+              stroke="#556476" stroke-width="1.24338" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <defs>
+            <clipPath id="clip0_293_1885">
+              <rect width="19.8941" height="19.8941" fill="white" transform="translate(0.984131 0.0592041)" />
+            </clipPath>
+          </defs>
+        </svg>
+
+        All Employees
+      </button>
+      <button
+        class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+      >
+        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M17.4689 11.2082L18.5929 12.2091C18.8005 12.3823 18.9392 12.6241 18.9839 12.8907C19.0286 13.1574 18.9764 13.4312 18.8366 13.6626L17.4814 15.9778C17.3762 16.155 17.2261 16.3013 17.0462 16.4018C16.8642 16.5025 16.6598 16.5559 16.4518 16.5572C16.3228 16.558 16.1944 16.5387 16.0714 16.5L14.6328 16.025C14.3808 16.1867 14.1188 16.3313 13.847 16.459L13.5448 17.9175C13.4889 18.1858 13.3395 18.4255 13.1233 18.5939C12.9044 18.7653 12.6329 18.8558 12.3549 18.85H9.54858C9.27058 18.8558 8.99912 18.7653 8.78017 18.5939C8.56442 18.4253 8.4155 18.1856 8.35991 17.9175L8.05653 16.459C7.7882 16.3296 7.52787 16.1843 7.27693 16.0238L5.83336 16.5C5.71027 16.5387 5.58191 16.558 5.45289 16.5572C5.24531 16.5557 5.04142 16.5023 4.85979 16.4018C4.68005 16.3016 4.52993 16.1558 4.42461 15.979L3.02083 13.6626C2.8749 13.4291 2.81913 13.1504 2.864 12.8787C2.90886 12.607 3.05127 12.3609 3.26454 12.1867L4.38731 10.768V10.3279L3.26329 9.32695C3.05573 9.15374 2.91704 8.91193 2.87233 8.64531C2.82763 8.37869 2.87987 8.10487 3.01959 7.87343L4.42337 5.55826C4.52851 5.38104 4.67865 5.23476 4.85855 5.13427C5.04017 5.03376 5.24407 4.98033 5.45164 4.97884C5.5795 4.97078 5.70784 4.98252 5.83212 5.01366L7.24709 5.51101C7.49991 5.34937 7.76184 5.20472 8.0329 5.07707L8.33629 3.61859C8.39187 3.35047 8.5408 3.11078 8.75655 2.94219C8.9755 2.77078 9.24695 2.6803 9.52496 2.68605H12.3076C12.5856 2.6803 12.8571 2.77078 13.0761 2.94219C13.2936 3.11253 13.4429 3.3525 13.4963 3.61859L13.7997 5.07707C14.0691 5.20555 14.329 5.35061 14.5793 5.51225L16.0241 5.03728C16.1845 4.98512 16.3539 4.9668 16.5217 4.9835C16.6895 5.00019 16.852 5.05153 16.9989 5.13427C17.1792 5.23622 17.3284 5.38294 17.4341 5.55702L18.8366 7.87343C18.9845 8.10498 19.0431 8.38243 19.0015 8.65401C18.9599 8.92559 18.8208 9.17273 18.6103 9.34933L17.4689 10.3217V11.2082Z"
+            stroke="#556476" stroke-width="1.24338" />
+          <path
+            d="M14.0397 10.768C14.0397 11.5924 13.7122 12.3831 13.1292 12.966C12.5463 13.549 11.7556 13.8765 10.9312 13.8765C10.1068 13.8765 9.31615 13.549 8.7332 12.966C8.15025 12.3831 7.82275 11.5924 7.82275 10.768C7.82275 9.94359 8.15025 9.15294 8.7332 8.56999C9.31615 7.98704 10.1068 7.65955 10.9312 7.65955C11.7556 7.65955 12.5463 7.98704 13.1292 8.56999C13.7122 9.15294 14.0397 9.94359 14.0397 10.768Z"
+            stroke="#556476" stroke-width="1.24338" />
+        </svg>
+        Settings
+      </button>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <div class="flex flex-col flex-1 min-w-0 overflow-hidden">
+    <!-- Header -->
+    <header class="flex justify-between items-center border-b-[2px] border-[#E8E9EB] px-6 py-6 bg-white">
+      <div class="w-96">
+        <label for="search" class="sr-only">Search</label>
+        <div class="relative">
+          <input id="search" type="search" placeholder="Search"
+                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
+          <svg width="15" height="15" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" viewBox="0 0 15 15"
+               fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10.2779 10.2078L11.9728 11.9027M11.4374 7.22504C11.4374 8.31969 11.0025 9.3695 10.2285 10.1435C9.45447 10.9176 8.40465 11.3524 7.31 11.3524C6.21535 11.3524 5.16553 10.9176 4.3915 10.1435C3.61747 9.3695 3.18262 8.31969 3.18262 7.22504C3.18262 6.13039 3.61747 5.08057 4.3915 4.30654C5.16553 3.5325 6.21535 3.09766 7.31 3.09766C8.40465 3.09766 9.45447 3.5325 10.2285 4.30654C11.0025 5.08057 11.4374 6.13039 11.4374 7.22504Z"
+              stroke="#556476" stroke-width="1.32076" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <!-- Notification bell -->
+        <button aria-label="Notifications" class="relative">
+          <svg class="h-6 w-6 text-gray-600 hover:text-orange-500 transition-colors" width="22" height="22"
+               viewBox="0 0 22 22" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M5.65921 17.1039V9.17929C5.65921 7.77814 6.21582 6.43437 7.20658 5.44361C8.19734 4.45285 9.54111 3.89624 10.9423 3.89624C12.3434 3.89624 13.6872 4.45285 14.6779 5.44361C15.6687 6.43437 16.2253 7.77814 16.2253 9.17929V17.1039M5.65921 17.1039H16.2253M5.65921 17.1039H3.89819M16.2253 17.1039H17.9863M10.0618 19.7454H11.8228"
+              stroke="#556476" stroke-width="0.880508" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M10.9423 3.89621C11.4286 3.89621 11.8228 3.50199 11.8228 3.0157C11.8228 2.52941 11.4286 2.13519 10.9423 2.13519C10.456 2.13519 10.0618 2.52941 10.0618 3.0157C10.0618 3.50199 10.456 3.89621 10.9423 3.89621Z"
+              stroke="#556476" stroke-width="0.880508" />
+          </svg>
+          <span class="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-orange-400"></span>
+        </button>
+
+        <!-- Profile dropdown -->
+        <div class="relative" id="profileDropdownRoot">
+          <button
+            id="profileButton" aria-haspopup="true" aria-expanded="false"
+            class="flex items-center gap-2 bg-[#FF5A1D33] hover:bg-orange-200 rounded-full px-3 py-1 text-[#556476] font-normal focus:outline-none focus:ring-2 focus:ring-orange-300"
+            aria-label="User menu David Johnson"
+          >
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/53b9f3e6-dff9-48bb-a8a3-01614eca485a.png"
+              alt="Profile photo of David Johnson with curly dark hair and friendly smile"
+              class="w-8 h-8 rounded-full object-cover"
+              onerror="this.onerror=null; this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fc3ddb6e-d228-4871-8bd1-eea86e0be643.png';"
+            />
+            <span class="text-sm">David Johnson</span>
+            <svg
+              class="w-3 h-3 text-orange-700"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div id="profileDropdown"
+               class="hidden absolute right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Profile</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Settings</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto ">
+      <div class="max-w-7xl mx-auto space-y-7 p-8">
+        <!-- Breadcrumb and Title -->
+        <header aria-label="Company Name and breadcrumb" class="mb-4">
+          <h1 class="text-[#172635] font-bold text-xl">Tech Innovations Inc.</h1>
+          <nav class="mt-1 text-[17px] font-medium text-[#556476] flex flex-wrap items-center gap-1 select-none"
+               aria-label="Breadcrumb">
+            <span>Companies</span>
+            <svg class="w-3 h-3 inline mx-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <span class="text-[#172635]">Reports</span>
+          </nav>
+          <nav class="mt-6 flex space-x-6 border-b border-[#E8E9EB] pb-2 text-sm text-[#556476]">
+            <button class="hover:text-orange-600 focus:outline-none">Company Info</button>
+            <button class="hover:text-orange-600 focus:outline-none">Employee Info</button>
+            <button class="hover:text-orange-600 focus:outline-none">Earnings</button>
+            <button class="hover:text-orange-600 focus:outline-none">Deductions</button>
+            <button class="border-b-2 border-[#FF5A1D] mb-[-10px] pb-1 focus:outline-none">Reports</button>
+            <button class="hover:text-orange-600 focus:outline-none">Uploads</button>
+            <button class="hover:text-orange-600 focus:outline-none">Templates</button>
+            <button class="hover:text-orange-600 focus:outline-none">Settings</button>
+          </nav>
+        </header>
+      </div>
+
+      <!-- Main content - Reports grid -->
+      <main class="flex-1 overflow-auto px-10">
+        <section aria-label="Manage Companies Panel"
+                 class="bg-white rounded-xl p-6 shadow-md flex flex-col flex-grow max-w-full overflow-hidden">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-[17px] font-bold text-[#172635]">Bank Payment Details - June 2025</h3>
+            <div class="flex items-center gap-4">
+              <button
+                id="search-btn"
+                aria-label="Search companies"
+                class="flex items-center gap-3 px-4 py-2 border border-2 border-[#E8E9EB] rounded-md text-xs text-[#172635] hover:text-blue-600 transition focus:outline-none"
+                onclick="document.getElementById('search-company').focus()"
+              >
+                <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M10.4606 10.4167L12.7939 12.75M2.29395 6.91667C2.29395 8.15434 2.78561 9.34133 3.66078 10.2165C4.53595 11.0917 5.72293 11.5833 6.96061 11.5833C8.19829 11.5833 9.38527 11.0917 10.2604 10.2165C11.1356 9.34133 11.6273 8.15434 11.6273 6.91667C11.6273 5.67899 11.1356 4.492 10.2604 3.61684C9.38527 2.74167 8.19829 2.25 6.96061 2.25C5.72293 2.25 4.53595 2.74167 3.66078 3.61684C2.78561 4.492 2.29395 5.67899 2.29395 6.91667Z"
+                    stroke="#172635" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Search
+              </button>
+              <button
+                id="month-btn"
+                aria-label="select month"
+                class="flex items-center gap-3 px-4 py-2 border border-2 border-[#E8E9EB] rounded-md text-xs text-[#172635] hover:text-blue-600 transition focus:outline-none"
+                onclick="document.getElementById('search-company').focus()"
+              >
+                <svg width="16" height="15" class="w-5 h-5" viewBox="0 0 16 15" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7.0625 4.53125C6.97962 4.53125 6.90013 4.56417 6.84153 4.62278C6.78292 4.68138 6.75 4.76087 6.75 4.84375C6.75 4.92663 6.78292 5.00612 6.84153 5.06472C6.90013 5.12333 6.97962 5.15625 7.0625 5.15625H8.9375C9.02038 5.15625 9.09987 5.12333 9.15847 5.06472C9.21708 5.00612 9.25 4.92663 9.25 4.84375C9.25 4.76087 9.21708 4.68138 9.15847 4.62278C9.09987 4.56417 9.02038 4.53125 8.9375 4.53125H7.0625ZM6.4375 7.96875C6.4375 8.13451 6.37165 8.29348 6.25444 8.41069C6.13723 8.5279 5.97826 8.59375 5.8125 8.59375C5.64674 8.59375 5.48777 8.5279 5.37056 8.41069C5.25335 8.29348 5.1875 8.13451 5.1875 7.96875C5.1875 7.80299 5.25335 7.64402 5.37056 7.52681C5.48777 7.4096 5.64674 7.34375 5.8125 7.34375C5.97826 7.34375 6.13723 7.4096 6.25444 7.52681C6.37165 7.64402 6.4375 7.80299 6.4375 7.96875ZM6.4375 10.1562C6.4375 10.322 6.37165 10.481 6.25444 10.5982C6.13723 10.7154 5.97826 10.7812 5.8125 10.7812C5.64674 10.7812 5.48777 10.7154 5.37056 10.5982C5.25335 10.481 5.1875 10.322 5.1875 10.1562C5.1875 9.99049 5.25335 9.83152 5.37056 9.71431C5.48777 9.5971 5.64674 9.53125 5.8125 9.53125C5.97826 9.53125 6.13723 9.5971 6.25444 9.71431C6.37165 9.83152 6.4375 9.99049 6.4375 10.1562ZM8 8.59375C8.16576 8.59375 8.32473 8.5279 8.44194 8.41069C8.55915 8.29348 8.625 8.13451 8.625 7.96875C8.625 7.80299 8.55915 7.64402 8.44194 7.52681C8.32473 7.4096 8.16576 7.34375 8 7.34375C7.83424 7.34375 7.67527 7.4096 7.55806 7.52681C7.44085 7.64402 7.375 7.80299 7.375 7.96875C7.375 8.13451 7.44085 8.29348 7.55806 8.41069C7.67527 8.5279 7.83424 8.59375 8 8.59375ZM8.625 10.1562C8.625 10.322 8.55915 10.481 8.44194 10.5982C8.32473 10.7154 8.16576 10.7812 8 10.7812C7.83424 10.7812 7.67527 10.7154 7.55806 10.5982C7.44085 10.481 7.375 10.322 7.375 10.1562C7.375 9.99049 7.44085 9.83152 7.55806 9.71431C7.67527 9.5971 7.83424 9.53125 8 9.53125C8.16576 9.53125 8.32473 9.5971 8.44194 9.71431C8.55915 9.83152 8.625 9.99049 8.625 10.1562ZM10.1875 8.59375C10.3533 8.59375 10.5122 8.5279 10.6294 8.41069C10.7467 8.29348 10.8125 8.13451 10.8125 7.96875C10.8125 7.80299 10.7467 7.64402 10.6294 7.52681C10.5122 7.4096 10.3533 7.34375 10.1875 7.34375C10.0217 7.34375 9.86277 7.4096 9.74556 7.52681C9.62835 7.64402 9.5625 7.80299 9.5625 7.96875C9.5625 8.13451 9.62835 8.29348 9.74556 8.41069C9.86277 8.5279 10.0217 8.59375 10.1875 8.59375Z"
+                    fill="#172635" />
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M5.5 2.1875C5.58288 2.1875 5.66237 2.22042 5.72097 2.27903C5.77958 2.33763 5.8125 2.41712 5.8125 2.5V3.125H10.1875V2.5C10.1875 2.41712 10.2204 2.33763 10.279 2.27903C10.3376 2.22042 10.4171 2.1875 10.5 2.1875C10.5829 2.1875 10.6624 2.22042 10.721 2.27903C10.7796 2.33763 10.8125 2.41712 10.8125 2.5V3.12687C10.9654 3.12812 11.1017 3.13354 11.2212 3.14312C11.4494 3.16187 11.6494 3.20125 11.8344 3.295C12.1283 3.44493 12.3672 3.68407 12.5169 3.97812C12.6112 4.16312 12.6506 4.36312 12.6694 4.59062C12.6875 4.8125 12.6875 5.08562 12.6875 5.42438V10.2006C12.6875 10.5394 12.6875 10.8131 12.6694 11.0337C12.6506 11.2619 12.6112 11.4619 12.5169 11.6469C12.3671 11.9407 12.1282 12.1796 11.8344 12.3294C11.6494 12.4237 11.4494 12.4631 11.2219 12.4819C11 12.5 10.7269 12.5 10.3887 12.5H5.61188C5.27312 12.5 4.99938 12.5 4.77875 12.4819C4.55063 12.4631 4.35062 12.4237 4.16562 12.3294C3.87157 12.1797 3.63243 11.9408 3.4825 11.6469C3.38875 11.4619 3.34937 11.2619 3.33062 11.0344C3.3125 10.8125 3.3125 10.5387 3.3125 10.2V5.425C3.3125 5.12813 3.3125 4.8825 3.325 4.67687L3.33062 4.59188C3.34937 4.36375 3.38875 4.16375 3.4825 3.97875C3.63233 3.6846 3.87147 3.44545 4.16562 3.29562C4.35062 3.20187 4.55062 3.1625 4.77812 3.14375C4.89854 3.13417 5.035 3.12875 5.1875 3.1275V2.5C5.1875 2.41712 5.22042 2.33763 5.27903 2.27903C5.33763 2.22042 5.41712 2.1875 5.5 2.1875ZM5.1875 4.0625V3.75187C5.068 3.75286 4.94857 3.75766 4.82938 3.76625C4.64062 3.78125 4.53187 3.81 4.44937 3.85188C4.27282 3.94178 4.12928 4.08532 4.03938 4.26187C3.9975 4.34437 3.96875 4.45312 3.95375 4.64188C3.9375 4.835 3.9375 5.0825 3.9375 5.4375V5.78125H12.0625V5.4375C12.0625 5.0825 12.0625 4.835 12.0463 4.64188C12.0313 4.45312 12.0025 4.34437 11.9606 4.26187C11.8707 4.08532 11.7272 3.94178 11.5506 3.85188C11.4681 3.81 11.3594 3.78125 11.1706 3.76625C11.0514 3.75766 10.932 3.75286 10.8125 3.75187V4.0625C10.8125 4.14538 10.7796 4.22487 10.721 4.28347C10.6624 4.34208 10.5829 4.375 10.5 4.375C10.4171 4.375 10.3376 4.34208 10.279 4.28347C10.2204 4.22487 10.1875 4.14538 10.1875 4.0625V3.75H5.8125V4.0625C5.8125 4.14538 5.77958 4.22487 5.72097 4.28347C5.66237 4.34208 5.58288 4.375 5.5 4.375C5.41712 4.375 5.33763 4.34208 5.27903 4.28347C5.22042 4.22487 5.1875 4.14538 5.1875 4.0625ZM12.0625 6.40625H3.9375V10.1875C3.9375 10.5425 3.9375 10.7906 3.95375 10.9831C3.96875 11.1719 3.9975 11.2806 4.03938 11.3631C4.12928 11.5397 4.27282 11.6832 4.44937 11.7731C4.53187 11.815 4.64062 11.8438 4.82938 11.8588C5.0225 11.875 5.27 11.875 5.625 11.875H10.375C10.73 11.875 10.9781 11.875 11.1706 11.8588C11.3594 11.8438 11.4681 11.815 11.5506 11.7731C11.7272 11.6832 11.8707 11.5397 11.9606 11.3631C12.0025 11.2806 12.0313 11.1719 12.0463 10.9831C12.0625 10.7906 12.0625 10.5425 12.0625 10.1875V6.40625Z"
+                        fill="#172635" />
+                </svg>
+                Month
+              </button>
+              <button
+                id="filter-btn"
+                aria-label="Filter companies"
+                class="flex items-center gap-3 px-4 py-2 border border-2 border-[#E8E9EB] rounded-md text-xs text-[#172635] hover:text-blue-600 transition focus:outline-none"
+                onclick="toggleFilterPanel()"
+              >
+                <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M2.87728 2.25H12.2106C12.3653 2.25 12.5137 2.31146 12.6231 2.42085C12.7325 2.53025 12.7939 2.67862 12.7939 2.83333V3.7585C12.7939 3.9132 12.7324 4.06155 12.623 4.17092L8.88153 7.91242C8.77212 8.02179 8.71064 8.17014 8.71061 8.32483V12.0027C8.71061 12.0914 8.69039 12.1789 8.6515 12.2586C8.6126 12.3383 8.55606 12.4081 8.48615 12.4626C8.41625 12.5172 8.33483 12.5551 8.24808 12.5734C8.16133 12.5918 8.07154 12.5901 7.98553 12.5686L6.81886 12.2769C6.69272 12.2453 6.58075 12.1725 6.50074 12.07C6.42074 11.9674 6.37728 11.8411 6.37728 11.7111V8.32483C6.37725 8.17014 6.31577 8.02179 6.20636 7.91242L2.46486 4.17092C2.35546 4.06155 2.29398 3.9132 2.29395 3.7585V2.83333C2.29395 2.67862 2.3554 2.53025 2.4648 2.42085C2.5742 2.31146 2.72257 2.25 2.87728 2.25Z"
+                    stroke="#172635" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Filter
+              </button>
+            </div>
+          </div>
+
+          <!-- Filter panel (hidden by default) -->
+          <!--          <div-->
+          <!--            id="filter-panel"-->
+          <!--            class="mb-4 p-4 bg-pink-50 rounded-lg border border-pink-300 hidden"-->
+          <!--            aria-label="Filter options"-->
+          <!--          >-->
+          <!--            <form id="filter-form" class="flex flex-wrap gap-4">-->
+          <!--              <div class="flex flex-col">-->
+          <!--                <label for="filter-act" class="text-sm font-medium text-pink-700 mb-1">Act</label>-->
+          <!--                <select id="filter-act"-->
+          <!--                        class="rounded-lg border border-pink-300 px-3 py-2 text-pink-800 bg-pink-100 focus:outline-none focus:ring-1 focus:ring-pink-400">-->
+          <!--                  <option value="">All</option>-->
+          <!--                  <option value="Shop & Office Act">Shop & Office Act</option>-->
+          <!--                  <option value="Wages Board Act">Wages Board Act</option>-->
+          <!--                </select>-->
+          <!--              </div>-->
+          <!--              <div class="flex flex-col flex-grow min-w-[180px]">-->
+          <!--                <label for="filter-desc" class="text-sm font-medium text-pink-700 mb-1">Description Contains</label>-->
+          <!--                <input-->
+          <!--                  id="filter-desc"-->
+          <!--                  type="text"-->
+          <!--                  placeholder="e.g. innovative"-->
+          <!--                  class="rounded-lg border border-pink-300 px-3 py-2 text-pink-800 bg-pink-100 focus:outline-none focus:ring-1 focus:ring-pink-400"-->
+          <!--                />-->
+          <!--              </div>-->
+          <!--              <div class="flex items-end">-->
+          <!--                <button-->
+          <!--                  type="button"-->
+          <!--                  class="bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold text-sm shadow hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-400"-->
+          <!--                  onclick="applyFilter()"-->
+          <!--                >-->
+          <!--                  Apply-->
+          <!--                </button>-->
+          <!--              </div>-->
+          <!--            </form>-->
+          <!--          </div>-->
+
+          <!-- Table container -->
+          <div class="overflow-x-auto border border-[#E8E9EB] rounded-lg">
+            <table class="min-w-full text-sm text-left text-gray-700" aria-describedby="companies-table-caption"
+                   role="grid">
+              <caption id="companies-table-caption" class="sr-only">List of registered companies with contact
+                information and acts
+              </caption>
+              <thead class="bg-[#FF5A1D33]/20 text-[#556476] text-xs font-normal sticky top-0 z-10">
+              <tr class="items-center">
+                <th scope="col" class="p-3 w-6">
+                  <input
+                    id="select-all"
+                    type="checkbox"
+                    aria-label="Select all companies"
+                    class="rounded border border-pink-400 accent-[#FF5A1D33]/20 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                    onclick="toggleSelectAll(this)"
+                  />
+                </th>
+                <th scope="col" class="p-3 whitespace-nowrap font-normal">Bank Name</th>
+                <th scope="col" class="p-3 whitespace-nowrap font-normal">Bank Code</th>
+                <!--                <th scope="col" class="p-3 whitespace-nowrap">Company Name</th>-->
+                <th scope="col" class="p-3 whitespace-nowrap font-normal">Emp Count</th>
+                <th scope="col" class="p-3 whitespace-nowrap max-w-xs font-normal">Total Pay</th>
+                <th scope="col" class="p-3 whitespace-nowrap max-w-xs font-normal">Payment Date</th>
+                <th scope="col" class="p-3 whitespace-nowrap max-w-xs font-normal">Status</th>
+                <!--                <th scope="col" class="p-3 whitespace-nowrap max-w-xs">Designation</th>-->
+<!--                <th scope="col" class="p-3 whitespace-nowrap max-w-xs font-normal">Join Date</th>-->
+                <th scope="col" class="p-3 w-28 text-center font-normal">Actions</th>
+              </tr>
+              </thead>
+              <tbody id="companies-tbody" class="divide-y divide-gray-200 scrollbar-thin max-h-[52vh] overflow-y-auto"
+                     role="rowgroup">
+              <!-- Rows will be populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <nav class="mt-6 flex justify-center items-center gap-2 text-sm text-gray-600"
+               aria-label="Pagination navigation">
+            <button id="prev-page" aria-label="Go to previous page" disabled
+                    class="disabled:opacity-50 px-3 py-1 rounded hover:bg-pink-100 disabled:cursor-not-allowed">Prev
+            </button>
+            <div id="pagination-numbers" class="flex gap-1"></div>
+            <button id="next-page" aria-label="Go to next page" class="px-3 py-1 rounded hover:bg-pink-100">Next
+            </button>
+          </nav>
+        </section>
+      </main>
+    </main>
+  </div>
+</div>
+
+</body>
+</html>
+
