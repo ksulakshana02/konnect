@@ -7,24 +7,29 @@
   <title>Employee Info - Konnect</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-      /* Custom scrollbar for table body */
-      .scrollbar-thin::-webkit-scrollbar {
-          height: 6px;
-      }
-
-      .scrollbar-thin::-webkit-scrollbar-track {
-          background: transparent;
-      }
-
-      .scrollbar-thin::-webkit-scrollbar-thumb {
-          background-color: rgba(251 113 133 / 0.75);
-          border-radius: 10px;
-      }
-
-      /* Override Tailwind custom focus for checkbox to have ring-2 with pink-300 */
-      input[type="checkbox"]:focus {
+      /* Custom scroll for sidebar if needed */
+      /* Remove focus outline on elements except keyboard */
+      :focus:not(:focus-visible) {
           outline: none;
-          box-shadow: 0 0 0 3px rgb(251 113 133 / 0.6);
+      }
+
+      /* Custom orange border for active nav item */
+      .active-nav {
+          border-right: 5px solid #FFA600;
+      }
+
+      /* Navbar bottom border for active tab */
+      .active-tab {
+          border-bottom-width: 2px;
+          border-bottom-color: #FF5C00;
+          color: #374151;
+          font-weight: 600;
+      }
+
+      /* subtle icon scaling on hover */
+      .icon-hover:hover {
+          transform: scale(1.05);
+          transition: transform 0.15s ease-in-out;
       }
   </style>
 </head>
@@ -34,18 +39,15 @@
 
   <!-- Sidebar -->
   <aside
-    class="bg-[#F6F6F8] w-72 flex flex-col shadow-md select-none z-10"
+    class="bg-[#F6F6F8] w-72 flex flex-col shadow-md select-none z-10 border-r-[2px] border-[#E8E9EB]"
     aria-label="Sidebar Navigation"
   >
-    <div class="px-16 py-8 flex items-center gap-2 border-b border-gray-200">
-      <!-- <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 flex items-center gap-1">
-        <span class="text-pink-600">K</span>onnect
-      </h1> -->
+    <div class="px-16 py-8 flex items-center gap-2">
       <img src="./logo.png" alt="logo" class="" />
     </div>
-    <nav class="flex flex-col flex-grow p-4 space-y-2 text-gray-700">
+    <nav class="flex flex-col flex-grow py-4 pl-4 space-y-2 text-gray-700">
       <button
-        class="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-pink-700 focus:outline-none"
+        class="active-nav flex items-center gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
         aria-current="page"
       >
         <svg class="w-5 h-5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,28 +100,25 @@
 
   <main class="flex-1 flex flex-col bg-gray-50">
     <!-- Header -->
-    <header class="flex justify-between items-center border-b border-gray-200 px-6 py-4 bg-white">
+    <header class="flex justify-between items-center border-b-[2px] border-[#E8E9EB] px-6 py-6 bg-white">
       <div class="w-96">
-        <label for="search" class="sr-only">Search</label>
+        <label for="search-input" class="sr-only">Search</label>
         <div class="relative">
-          <input id="search" type="search" placeholder="Search"
-                 class="w-full rounded-md bg-orange-50 placeholder-orange-400 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
-          <svg xmlns="http://www.w3.org/2000/svg" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" fill="none"
-               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M21 21l-5.197-5.197M15.803 15.803A7.5 7.5 0 1110.5 3a7.5 7.5 0 015.303 12.803z" />
+          <input id="search-input" type="search" placeholder="Search"
+                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
+          <svg width="15" height="15" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" viewBox="0 0 15 15"
+               fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10.2779 10.2078L11.9728 11.9027M11.4374 7.22504C11.4374 8.31969 11.0025 9.3695 10.2285 10.1435C9.45447 10.9176 8.40465 11.3524 7.31 11.3524C6.21535 11.3524 5.16553 10.9176 4.3915 10.1435C3.61747 9.3695 3.18262 8.31969 3.18262 7.22504C3.18262 6.13039 3.61747 5.08057 4.3915 4.30654C5.16553 3.5325 6.21535 3.09766 7.31 3.09766C8.40465 3.09766 9.45447 3.5325 10.2285 4.30654C11.0025 5.08057 11.4374 6.13039 11.4374 7.22504Z"
+              stroke="#556476" stroke-width="1.32076" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
+
         </div>
       </div>
 
       <div class="flex items-center gap-6">
         <!-- Notification bell -->
         <button aria-label="Notifications" class="relative">
-          <!--                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 hover:text-orange-500 transition-colors"-->
-          <!--                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">-->
-          <!--                      <path stroke-linecap="round" stroke-linejoin="round"-->
-          <!--                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-5-5.916V4a1 1 0 00-2 0v1.084A6 6 0 006 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />-->
-          <!--                    </svg>-->
           <svg class="h-6 w-6 text-gray-600 hover:text-orange-500 transition-colors" width="22" height="22"
                viewBox="0 0 22 22" fill="none"
                xmlns="http://www.w3.org/2000/svg">
@@ -266,7 +265,7 @@
                     id="select-all"
                     type="checkbox"
                     aria-label="Select all companies"
-                    class="rounded border border-pink-400 accent-[#FF5A1D33]/20 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                    class="rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none"
                     onclick="toggleSelectAll(this)"
                   />
                 </th>
@@ -303,6 +302,232 @@
     </main>
   </main>
 </div>
+
+<script>
+
+
+  function escapeHtml(text) {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+
+  function getEmployees() {
+    try {
+      const stored = localStorage.getItem('employees');
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      console.error("Error parsing employees from localStorage:", e);
+      return [];
+    }
+  }
+
+  function saveEmployees(employees) {
+    try {
+      localStorage.setItem('employees', JSON.stringify(employees));
+    } catch (e) {
+      console.error("Error saving employees to localStorage:", e);
+    }
+  }
+
+  // Sample data initialization
+  function initializeSampleData() {
+    const employees = getEmployees();
+    if (employees.length === 0) {
+      const sampleEmployees = [
+        { id: "EMP001", fullName: "John Smith", gender: "Male", mobile: "+1-555-123-4567", email: "john.smith@techinnovations.com", designation: "Frontend Developer", joinDate: "2023-01-15" },
+        { id: "EMP002", fullName: "Emma Johnson", gender: "Female", mobile: "+1-555-234-5678", email: "emma.johnson@techinnovations.com", designation: "UI UX Designer", joinDate: "2022-06-20" },
+        { id: "EMP003", fullName: "Michael Brown", gender: "Male", mobile: "+1-555-345-6789", email: "michael.brown@techinnovations.com", designation: "Backend Developer", joinDate: "2021-11-10" },
+        { id: "EMP004", fullName: "Sarah Davis", gender: "Female", mobile: "+1-555-456-7890", email: "sarah.davis@techinnovations.com", designation: "Project Manager", joinDate: "2023-03-22" },
+        { id: "EMP005", fullName: "David Wilson", gender: "Male", mobile: "+1-555-567-8901", email: "david.wilson@techinnovations.com", designation: "QA Engineer", joinDate: "2022-09-05" },
+        { id: "EMP006", fullName: "Laura Martinez", gender: "Female", mobile: "+1-555-678-9012", email: "laura.martinez@techinnovations.com", designation: "Business Analyst", joinDate: "2023-07-18" },
+        { id: "EMP007", fullName: "James Taylor", gender: "Male", mobile: "+1-555-789-0123", email: "james.taylor@techinnovations.com", designation: "HR Manager", joinDate: "2021-04-30" },
+        { id: "EMP008", fullName: "Emily Anderson", gender: "Female", mobile: "+1-555-890-1234", email: "emily.anderson@techinnovations.com", designation: "Marketing Specialist", joinDate: "2023-02-14" },
+      ];
+      saveEmployees(sampleEmployees);
+    }
+  }
+
+  // Pagination variables
+  const rowsPerPage = 5;
+  let currentPage = 1;
+  let filteredEmployees = [];
+
+  // DOM elements
+  const tbody = document.getElementById('companies-tbody');
+  const prevPageBtn = document.getElementById('prev-page');
+  const nextPageBtn = document.getElementById('next-page');
+  const paginationNumbers = document.getElementById('pagination-numbers');
+  const selectAllCheckbox = document.getElementById('select-all');
+  const searchInput = document.getElementById('search-input');
+  const addEmployeeBtn = document.getElementById('add-company-btn');
+
+  // Render table
+  function renderTable(page, employees) {
+    tbody.innerHTML = '';
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const paginatedEmployees = employees.slice(start, end);
+
+    paginatedEmployees.forEach(employee => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td class="p-3">
+          <input type="checkbox" class="row-checkbox rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none" data-id="${employee.id}"/>
+        </td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.id}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.fullName}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.gender}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.mobile}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.email}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.designation}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.joinDate}</td>
+        <td class="p-3 flex justify-center gap-2">
+        <button aria-label="Delete ${escapeHtml(employee.id)}" class="bg-[#FFE9E5] text-red-600 p-1 rounded hover:bg-red-200 transition focus:outline-none" onclick="deleteCompany('${employee.id}')" title="Delete">
+          <svg class="w-4 h-4" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.9431 8.70157C2.71689 8.70157 2.52331 8.62109 2.36236 8.46014C2.20141 8.29919 2.12079 8.10547 2.12052 7.87899V2.53221H1.70923V1.70963H3.76568V1.29834H6.23342V1.70963H8.28987V2.53221H7.87858V7.87899C7.87858 8.1052 7.79811 8.29891 7.63715 8.46014C7.4762 8.62137 7.28248 8.70184 7.056 8.70157H2.9431ZM7.056 2.53221H2.9431V7.87899H7.056V2.53221ZM3.76568 7.05641H4.58826V3.35479H3.76568V7.05641ZM5.41084 7.05641H6.23342V3.35479H5.41084V7.05641Z" fill="#ED2227"/>
+          </svg>
+        </button>
+        <button aria-label="Edit ${escapeHtml(employee.id)}" class="bg-[#E7E9FD] text-blue-700 p-1 rounded hover:bg-blue-200 transition focus:outline-none" onclick="editCompany('${employee.id}')" title="Edit">
+          <svg class="w-4 h-4" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.1206 7.87871H2.70663L6.7266 3.85874L6.14056 3.27271L2.1206 7.29268V7.87871ZM1.70935 8.70121C1.59282 8.70121 1.49522 8.66173 1.41654 8.58277C1.33785 8.50381 1.29837 8.4062 1.2981 8.28996V7.29268C1.2981 7.18301 1.31866 7.07841 1.35978 6.97889C1.40091 6.87937 1.45917 6.79205 1.53456 6.71692L6.7266 1.53517C6.80885 1.45978 6.89973 1.40152 6.99925 1.36039C7.09878 1.31927 7.20323 1.29871 7.31263 1.29871C7.42202 1.29871 7.52826 1.31927 7.63135 1.36039C7.73443 1.40152 7.82354 1.46321 7.89866 1.54546L8.46413 2.12121C8.54638 2.1966 8.60628 2.28571 8.64384 2.38852C8.6814 2.49133 8.70032 2.59414 8.7006 2.69696C8.7006 2.80662 8.68168 2.91122 8.64384 3.01074C8.60601 3.11026 8.5461 3.20101 8.46413 3.28299L3.28238 8.46474C3.20698 8.54013 3.11952 8.59839 3.02 8.63952C2.92048 8.68064 2.81602 8.70121 2.70663 8.70121H1.70935ZM6.42844 3.57086L6.14056 3.27271L6.7266 3.85874L6.42844 3.57086Z" fill="#4A58EC"/>
+          </svg>
+        </button>
+        <button aria-label="Details of ${escapeHtml(employee.id)}" class="bg-[#FFA6001A]/10 text-yellow-700 p-1 rounded hover:bg-yellow-200 transition focus:outline-none" onclick="detailsCompany('${employee.id}')" title="Details">
+          <svg class="w-4 h-4" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.56445 7.375C6.32384 7.375 6.93945 6.75939 6.93945 6C6.93945 5.24061 6.32384 4.625 5.56445 4.625C4.80506 4.625 4.18945 5.24061 4.18945 6C4.18945 6.75939 4.80506 7.375 5.56445 7.375Z" stroke="#FFA600" stroke-width="0.916667"/>
+            <path d="M9.31734 5.51142C9.49517 5.72775 9.58409 5.83546 9.58409 6C9.58409 6.16454 9.49517 6.27225 9.31734 6.48858C8.66651 7.27875 7.23101 8.75 5.56451 8.75C3.89801 8.75 2.46251 7.27875 1.81167 6.48858C1.63384 6.27225 1.54492 6.16454 1.54492 6C1.54492 5.83546 1.63384 5.72775 1.81167 5.51142C2.46251 4.72125 3.89801 3.25 5.56451 3.25C7.23101 3.25 8.66651 4.72125 9.31734 5.51142Z" stroke="#FFA600" stroke-width="0.916667"/>
+          </svg>
+        </button>
+      </td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    updatePagination(employees);
+    attachRowEventListeners();
+  }
+
+  // Update pagination controls
+  function updatePagination(employees) {
+    const pageCount = Math.ceil(employees.length / rowsPerPage);
+    paginationNumbers.innerHTML = '';
+
+    for (let i = 1; i <= pageCount; i++) {
+      const btn = document.createElement('button');
+      btn.textContent = i;
+      btn.className = `px-3 py-1 rounded ${i === currentPage ? 'bg-[#FF5A1D] text-white' : 'hover:bg-pink-100'}`;
+      btn.addEventListener('click', () => {
+        currentPage = i;
+        renderTable(currentPage, filteredEmployees);
+        prevPageBtn.disabled = currentPage === 1;
+        nextPageBtn.disabled = currentPage === pageCount;
+      });
+      paginationNumbers.appendChild(btn);
+    }
+
+    prevPageBtn.disabled = currentPage === 1;
+    nextPageBtn.disabled = currentPage === pageCount;
+  }
+
+  // Toggle Select All checkbox
+  function toggleSelectAll(checkbox) {
+    const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+    rowCheckboxes.forEach(cb => (cb.checked = checkbox.checked));
+  }
+
+  // Attach event listeners for Edit and Delete buttons
+  function attachRowEventListeners() {
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-id');
+        // Placeholder for edit functionality (e.g., redirect to edit page)
+        alert(`Edit employee with ID: ${id}`);
+        // Example: window.location.href = `edit-employee.html?id=${id}`;
+      });
+    });
+
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-id');
+        if (confirm(`Are you sure you want to delete employee with ID: ${id}?`)) {
+          let employees = getEmployees();
+          employees = employees.filter(emp => emp.id !== id);
+          saveEmployees(employees);
+          filteredEmployees = employees;
+          currentPage = Math.min(currentPage, Math.ceil(employees.length / rowsPerPage)) || 1;
+          renderTable(currentPage, filteredEmployees);
+        }
+      });
+    });
+  }
+
+  // Search functionality
+  function handleSearch() {
+    const query = searchInput.value.trim().toLowerCase();
+    filteredEmployees = getEmployees().filter(emp =>
+      emp.fullName.toLowerCase().includes(query)
+    );
+    currentPage = 1;
+    renderTable(currentPage, filteredEmployees);
+  }
+
+  // Filter panel toggle (placeholder)
+  function toggleFilterPanel() {
+    // Placeholder for filter panel implementation
+    alert('Filter panel not implemented yet.');
+    // Example: Could show a modal with designation filters
+  }
+
+  // Profile dropdown toggle
+  document.getElementById('profileButton').addEventListener('click', () => {
+    const dropdown = document.getElementById('profileDropdown');
+    dropdown.classList.toggle('hidden');
+    const isExpanded = !dropdown.classList.contains('hidden');
+    document.getElementById('profileButton').setAttribute('aria-expanded', isExpanded);
+  });
+
+  // Initialize on page load
+  window.addEventListener('load', () => {
+    initializeSampleData();
+    filteredEmployees = getEmployees();
+    renderTable(currentPage, filteredEmployees);
+
+    // Pagination navigation
+    prevPageBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderTable(currentPage, filteredEmployees);
+      }
+    });
+
+    nextPageBtn.addEventListener('click', () => {
+      const pageCount = Math.ceil(filteredEmployees.length / rowsPerPage);
+      if (currentPage < pageCount) {
+        currentPage++;
+        renderTable(currentPage, filteredEmployees);
+      }
+    });
+
+    // Search input
+    searchInput.addEventListener('input', handleSearch);
+
+    // Add Employee button (placeholder)
+    addEmployeeBtn.addEventListener('click', () => {
+      alert('Add employee functionality not implemented yet.');
+      // Example: window.location.href = 'add-employee.html';
+    });
+
+    // Select All checkbox
+    selectAllCheckbox.addEventListener('change', () => toggleSelectAll(selectAllCheckbox));
+  });
+</script>
+
+
 </body>
 </html>
 
