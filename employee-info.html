@@ -387,17 +387,17 @@
         <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.designation}</td>
         <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.joinDate}</td>
         <td class="p-3 flex justify-center gap-2">
-        <button aria-label="Delete ${escapeHtml(employee.id)}" class="bg-[#FFE9E5] text-red-600 p-1 rounded hover:bg-red-200 transition focus:outline-none" onclick="deleteCompany('${employee.id}')" title="Delete">
+        <button aria-label="Delete ${escapeHtml(employee.id)}" class="delete-btn bg-[#FFE9E5] text-red-600 p-1 rounded hover:bg-red-200 transition focus:outline-none" data-id="${employee.id}" title="Delete">
           <svg class="w-4 h-4" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.9431 8.70157C2.71689 8.70157 2.52331 8.62109 2.36236 8.46014C2.20141 8.29919 2.12079 8.10547 2.12052 7.87899V2.53221H1.70923V1.70963H3.76568V1.29834H6.23342V1.70963H8.28987V2.53221H7.87858V7.87899C7.87858 8.1052 7.79811 8.29891 7.63715 8.46014C7.4762 8.62137 7.28248 8.70184 7.056 8.70157H2.9431ZM7.056 2.53221H2.9431V7.87899H7.056V2.53221ZM3.76568 7.05641H4.58826V3.35479H3.76568V7.05641ZM5.41084 7.05641H6.23342V3.35479H5.41084V7.05641Z" fill="#ED2227"/>
           </svg>
         </button>
-        <button aria-label="Edit ${escapeHtml(employee.id)}" class="bg-[#E7E9FD] text-blue-700 p-1 rounded hover:bg-blue-200 transition focus:outline-none" onclick="editCompany('${employee.id}')" title="Edit">
+        <button aria-label="Edit ${escapeHtml(employee.id)}" class="edit-btn bg-[#E7E9FD] text-blue-700 p-1 rounded hover:bg-blue-200 transition focus:outline-none" data-id="${employee.id}" title="Edit">
           <svg class="w-4 h-4" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.1206 7.87871H2.70663L6.7266 3.85874L6.14056 3.27271L2.1206 7.29268V7.87871ZM1.70935 8.70121C1.59282 8.70121 1.49522 8.66173 1.41654 8.58277C1.33785 8.50381 1.29837 8.4062 1.2981 8.28996V7.29268C1.2981 7.18301 1.31866 7.07841 1.35978 6.97889C1.40091 6.87937 1.45917 6.79205 1.53456 6.71692L6.7266 1.53517C6.80885 1.45978 6.89973 1.40152 6.99925 1.36039C7.09878 1.31927 7.20323 1.29871 7.31263 1.29871C7.42202 1.29871 7.52826 1.31927 7.63135 1.36039C7.73443 1.40152 7.82354 1.46321 7.89866 1.54546L8.46413 2.12121C8.54638 2.1966 8.60628 2.28571 8.64384 2.38852C8.6814 2.49133 8.70032 2.59414 8.7006 2.69696C8.7006 2.80662 8.68168 2.91122 8.64384 3.01074C8.60601 3.11026 8.5461 3.20101 8.46413 3.28299L3.28238 8.46474C3.20698 8.54013 3.11952 8.59839 3.02 8.63952C2.92048 8.68064 2.81602 8.70121 2.70663 8.70121H1.70935ZM6.42844 3.57086L6.14056 3.27271L6.7266 3.85874L6.42844 3.57086Z" fill="#4A58EC"/>
           </svg>
         </button>
-        <button aria-label="Details of ${escapeHtml(employee.id)}" class="bg-[#FFA6001A]/10 text-yellow-700 p-1 rounded hover:bg-yellow-200 transition focus:outline-none" onclick="detailsCompany('${employee.id}')" title="Details">
+        <button aria-label="Details of ${escapeHtml(employee.id)}" class="view-btn bg-[#FFA6001A]/10 text-yellow-700 p-1 rounded hover:bg-yellow-200 transition focus:outline-none" data-id="${employee.id}" title="Details">
           <svg class="w-4 h-4" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M5.56445 7.375C6.32384 7.375 6.93945 6.75939 6.93945 6C6.93945 5.24061 6.32384 4.625 5.56445 4.625C4.80506 4.625 4.18945 5.24061 4.18945 6C4.18945 6.75939 4.80506 7.375 5.56445 7.375Z" stroke="#FFA600" stroke-width="0.916667"/>
             <path d="M9.31734 5.51142C9.49517 5.72775 9.58409 5.83546 9.58409 6C9.58409 6.16454 9.49517 6.27225 9.31734 6.48858C8.66651 7.27875 7.23101 8.75 5.56451 8.75C3.89801 8.75 2.46251 7.27875 1.81167 6.48858C1.63384 6.27225 1.54492 6.16454 1.54492 6C1.54492 5.83546 1.63384 5.72775 1.81167 5.51142C2.46251 4.72125 3.89801 3.25 5.56451 3.25C7.23101 3.25 8.66651 4.72125 9.31734 5.51142Z" stroke="#FFA600" stroke-width="0.916667"/>
@@ -420,7 +420,7 @@
     for (let i = 1; i <= pageCount; i++) {
       const btn = document.createElement('button');
       btn.textContent = i;
-      btn.className = `px-3 py-1 rounded ${i === currentPage ? 'bg-[#FF5A1D] text-white' : 'hover:bg-pink-100'}`;
+      btn.className = `px-3 py-1 rounded ${i === currentPage ? 'bg-pink-100 text-gray-900' : 'hover:bg-pink-100'}`;
       btn.addEventListener('click', () => {
         currentPage = i;
         renderTable(currentPage, filteredEmployees);
@@ -462,6 +462,13 @@
           currentPage = Math.min(currentPage, Math.ceil(employees.length / rowsPerPage)) || 1;
           renderTable(currentPage, filteredEmployees);
         }
+      });
+    });
+
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-id');
+        window.location.href = `employee-info-inner.html?id=${id}`;
       });
     });
   }
@@ -516,10 +523,9 @@
     // Search input
     searchInput.addEventListener('input', handleSearch);
 
-    // Add Employee button (placeholder)
+    // Add Employee button
     addEmployeeBtn.addEventListener('click', () => {
-      alert('Add employee functionality not implemented yet.');
-      // Example: window.location.href = 'add-employee.html';
+      window.location.href = 'add-employee.html';
     });
 
     // Select All checkbox

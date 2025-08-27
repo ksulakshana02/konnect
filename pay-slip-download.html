@@ -340,6 +340,207 @@
   </div>
 </div>
 
+<script>
+  function getEmployees() {
+    try {
+      const stored = localStorage.getItem('employees');
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      console.error("Error parsing employees from localStorage:", e);
+      return [];
+    }
+  }
+
+  function saveEmployees(employees) {
+    try {
+      localStorage.setItem('employees', JSON.stringify(employees));
+    } catch (e) {
+      console.error("Error saving employees to localStorage:", e);
+    }
+  }
+
+  // Escape HTML to prevent XSS
+  function escapeHtml(unsafe) {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  // Sample data initialization
+  function initializeSampleData() {
+    const employees = getEmployees();
+    if (employees.length === 0) {
+      const sampleEmployees = [
+        { id: "EMP001", fullName: "John Smith", gender: "Male", mobile: "+1-555-123-4567", email: "john.smith@techinnovations.com", designation: "Frontend Developer", joinDate: "2023-01-15" },
+        { id: "EMP002", fullName: "Emma Johnson", gender: "Female", mobile: "+1-555-234-5678", email: "emma.johnson@techinnovations.com", designation: "UI UX Designer", joinDate: "2022-06-20" },
+        { id: "EMP003", fullName: "Michael Brown", gender: "Male", mobile: "+1-555-345-6789", email: "michael.brown@techinnovations.com", designation: "Backend Developer", joinDate: "2021-11-10" },
+        { id: "EMP004", fullName: "Sarah Davis", gender: "Female", mobile: "+1-555-456-7890", email: "sarah.davis@techinnovations.com", designation: "Project Manager", joinDate: "2023-03-22" },
+        { id: "EMP005", fullName: "David Wilson", gender: "Male", mobile: "+1-555-567-8901", email: "david.wilson@techinnovations.com", designation: "QA Engineer", joinDate: "2022-09-05" },
+        { id: "EMP006", fullName: "Laura Martinez", gender: "Female", mobile: "+1-555-678-9012", email: "laura.martinez@techinnovations.com", designation: "Business Analyst", joinDate: "2023-07-18" },
+        { id: "EMP007", fullName: "James Taylor", gender: "Male", mobile: "+1-555-789-0123", email: "james.taylor@techinnovations.com", designation: "HR Manager", joinDate: "2021-04-30" },
+        { id: "EMP008", fullName: "Emily Anderson", gender: "Female", mobile: "+1-555-890-1234", email: "emily.anderson@techinnovations.com", designation: "Marketing Specialist", joinDate: "2023-02-14" },
+      ];
+      saveEmployees(sampleEmployees);
+    }
+  }
+
+  // Pagination variables
+  const rowsPerPage = 5;
+  let currentPage = 1;
+  let filteredEmployees = [];
+  let selectedMonth = "June 2025"; // Default month
+
+  // DOM elements
+  const tbody = document.getElementById('companies-tbody');
+  const prevPageBtn = document.getElementById('prev-page');
+  const nextPageBtn = document.getElementById('next-page');
+  const paginationNumbers = document.getElementById('pagination-numbers');
+  const selectAllCheckbox = document.getElementById('select-all');
+  const searchInput = document.getElementById('search');
+  const monthBtn = document.getElementById('month-btn');
+
+  // Render table
+  function renderTable(page, employees) {
+    tbody.innerHTML = '';
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const paginatedEmployees = employees.slice(start, end);
+
+    paginatedEmployees.forEach(employee => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td class="p-3">
+          <input type="checkbox" class="row-checkbox rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none" data-id="${employee.id}"/>
+        </td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.id}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.fullName}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.gender}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.mobile}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.email}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.designation}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.joinDate}</td>
+        <td class="p-3 flex justify-center gap-2">
+          <button aria-label="Details of ${escapeHtml(employee.fullName)}" class="view-btn bg-[#FFA6001A]/10 text-yellow-700 p-1 rounded hover:bg-yellow-200 transition focus:outline-none" data-id="${employee.fullName}" title="Details">
+          <svg class="w-4 h-4" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.56445 7.375C6.32384 7.375 6.93945 6.75939 6.93945 6C6.93945 5.24061 6.32384 4.625 5.56445 4.625C4.80506 4.625 4.18945 5.24061 4.18945 6C4.18945 6.75939 4.80506 7.375 5.56445 7.375Z" stroke="#FFA600" stroke-width="0.916667"/>
+            <path d="M9.31734 5.51142C9.49517 5.72775 9.58409 5.83546 9.58409 6C9.58409 6.16454 9.49517 6.27225 9.31734 6.48858C8.66651 7.27875 7.23101 8.75 5.56451 8.75C3.89801 8.75 2.46251 7.27875 1.81167 6.48858C1.63384 6.27225 1.54492 6.16454 1.54492 6C1.54492 5.83546 1.63384 5.72775 1.81167 5.51142C2.46251 4.72125 3.89801 3.25 5.56451 3.25C7.23101 3.25 8.66651 4.72125 9.31734 5.51142Z" stroke="#FFA600" stroke-width="0.916667"/>
+          </svg>
+        </button>
+        </td>
+
+      `;
+      tbody.appendChild(row);
+    });
+
+    updatePagination(employees);
+    attachRowEventListeners();
+  }
+
+  // Update pagination controls
+  function updatePagination(employees) {
+    const pageCount = Math.ceil(employees.length / rowsPerPage);
+    paginationNumbers.innerHTML = '';
+
+    for (let i = 1; i <= pageCount; i++) {
+      const btn = document.createElement('button');
+      btn.textContent = i;
+      btn.className = `px-3 py-1 rounded ${i === currentPage ? 'bg-pink-100 text-gray-900' : 'hover:bg-pink-100'}`;
+      btn.addEventListener('click', () => {
+        currentPage = i;
+        renderTable(currentPage, filteredEmployees);
+        prevPageBtn.disabled = currentPage === 1;
+        nextPageBtn.disabled = currentPage === pageCount;
+      });
+      paginationNumbers.appendChild(btn);
+    }
+
+    prevPageBtn.disabled = currentPage === 1;
+    nextPageBtn.disabled = currentPage === pageCount;
+  }
+
+  // Toggle Select All checkbox
+  function toggleSelectAll(checkbox) {
+    const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+    rowCheckboxes.forEach(cb => (cb.checked = checkbox.checked));
+  }
+
+  // Attach event listeners for Download buttons
+  function attachRowEventListeners() {
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-id');
+        window.location.href = `pay-slip-download-view-slip.html?id=${id}`;
+      });
+    });
+  }
+
+  // Search functionality
+  function handleSearch() {
+    const query = searchInput.value.trim().toLowerCase();
+    filteredEmployees = getEmployees().filter(emp =>
+      emp.fullName.toLowerCase().includes(query)
+    );
+    currentPage = 1;
+    renderTable(currentPage, filteredEmployees);
+  }
+
+  // Month selection (placeholder)
+  function toggleMonthPanel() {
+    // Placeholder for month selection dropdown
+    alert(`Month selection not implemented yet. Current month: ${selectedMonth}`);
+    // Example: Could show a dropdown with months
+  }
+
+  // Filter panel toggle (placeholder)
+  function toggleFilterPanel() {
+    // Placeholder for filter panel implementation
+    alert('Filter panel not implemented yet.');
+  }
+
+  // Profile dropdown toggle
+  document.getElementById('profileButton').addEventListener('click', () => {
+    const dropdown = document.getElementById('profileDropdown');
+    dropdown.classList.toggle('hidden');
+    const isExpanded = !dropdown.classList.contains('hidden');
+    document.getElementById('profileButton').setAttribute('aria-expanded', isExpanded);
+  });
+
+  // Initialize on page load
+  window.addEventListener('load', () => {
+    initializeSampleData();
+    filteredEmployees = getEmployees();
+    renderTable(currentPage, filteredEmployees);
+
+    // Pagination navigation
+    prevPageBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderTable(currentPage, filteredEmployees);
+      }
+    });
+
+    nextPageBtn.addEventListener('click', () => {
+      const pageCount = Math.ceil(filteredEmployees.length / rowsPerPage);
+      if (currentPage < pageCount) {
+        currentPage++;
+        renderTable(currentPage, filteredEmployees);
+      }
+    });
+
+    // Search input
+    searchInput.addEventListener('input', handleSearch);
+
+    // Month button
+    monthBtn.addEventListener('click', toggleMonthPanel);
+
+    // Select All checkbox
+    selectAllCheckbox.addEventListener('change', () => toggleSelectAll(selectAllCheckbox));
+  });
+</script>
+
 </body>
 </html>
 
