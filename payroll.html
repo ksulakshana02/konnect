@@ -340,6 +340,300 @@
   </div>
 </div>
 
+<script>
+  // Utility functions
+  function getEmployees() {
+    try {
+      const stored = localStorage.getItem("employees");
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      console.error("Error parsing employees from localStorage:", e);
+      return [];
+    }
+  }
+
+  function getPayrollRecords() {
+    try {
+      const stored = localStorage.getItem("payrollRecords");
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      console.error("Error parsing payroll records from localStorage:", e);
+      return [];
+    }
+  }
+
+  function savePayrollRecords(records) {
+    try {
+      localStorage.setItem("payrollRecords", JSON.stringify(records));
+    } catch (e) {
+      console.error("Error saving payroll records to localStorage:", e);
+    }
+  }
+
+  // Escape HTML to prevent XSS
+  function escapeHtml(unsafe) {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  // Sample data initialization
+  function initializeSampleData() {
+    const records = getPayrollRecords();
+    if (records.length === 0) {
+      const samplePayrollRecords = [
+        {
+          id: "PAYROLL001",
+          employeeId: "EMP001",
+          epfNo: "026",
+          basicSalary: 120000,
+          allowanceStage1: 1000,
+          allowanceStage2: 2500,
+          allowanceStage3: 0,
+          consolidatedSalary: 123500,
+          noPayDeduction: 1800,
+          status: "Completed"
+        },
+        {
+          id: "PAYROLL002",
+          employeeId: "EMP002",
+          epfNo: "027",
+          basicSalary: 150000,
+          allowanceStage1: 1200,
+          allowanceStage2: 3000,
+          allowanceStage3: 0,
+          consolidatedSalary: 154200,
+          noPayDeduction: 2000,
+          status: "Pending"
+        },
+        {
+          id: "PAYROLL003",
+          employeeId: "EMP003",
+          epfNo: "028",
+          basicSalary: 130000,
+          allowanceStage1: 1500,
+          allowanceStage2: 2000,
+          allowanceStage3: 500,
+          consolidatedSalary: 134000,
+          noPayDeduction: 1500,
+          status: "Completed"
+        },
+        {
+          id: "PAYROLL004",
+          employeeId: "EMP004",
+          epfNo: "029",
+          basicSalary: 140000,
+          allowanceStage1: 1100,
+          allowanceStage2: 2800,
+          allowanceStage3: 0,
+          consolidatedSalary: 143900,
+          noPayDeduction: 1900,
+          status: "Pending"
+        },
+        {
+          id: "PAYROLL005",
+          employeeId: "EMP005",
+          epfNo: "030",
+          basicSalary: 125000,
+          allowanceStage1: 1300,
+          allowanceStage2: 2700,
+          allowanceStage3: 0,
+          consolidatedSalary: 129000,
+          noPayDeduction: 1700,
+          status: "Completed"
+        },
+        {
+          id: "PAYROLL006",
+          employeeId: "EMP006",
+          epfNo: "031",
+          basicSalary: 135000,
+          allowanceStage1: 1400,
+          allowanceStage2: 2600,
+          allowanceStage3: 0,
+          consolidatedSalary: 139000,
+          noPayDeduction: 1600,
+          status: "Pending"
+        },
+        {
+          id: "PAYROLL007",
+          employeeId: "EMP007",
+          epfNo: "032",
+          basicSalary: 145000,
+          allowanceStage1: 1600,
+          allowanceStage2: 2900,
+          allowanceStage3: 1000,
+          consolidatedSalary: 150500,
+          noPayDeduction: 2000,
+          status: "Completed"
+        }
+      ];
+      savePayrollRecords(samplePayrollRecords);
+    }
+  }
+
+  // Pagination variables
+  const rowsPerPage = 5;
+  let currentPage = 1;
+  let filteredRecords = [];
+  let selectedMonth = "June 2025"; // Default month
+
+  // DOM elements
+  const tbody = document.querySelector("tbody");
+  const prevPageBtn = document.getElementById("prev-page");
+  const nextPageBtn = document.getElementById("next-page");
+  const paginationNumbers = document.getElementById("pagination-numbers");
+  const selectAllCheckbox = document.getElementById("select-all");
+  const searchInput = document.getElementById("search");
+  const monthBtn = document.getElementById("month-btn");
+
+  // Format currency in LKR
+  function formatCurrency(amount) {
+    return `${amount.toLocaleString("en-LK", { style: "currency", currency: "LKR" })}`;
+  }
+
+  // Render table
+  function renderTable(page, records) {
+    tbody.innerHTML = "";
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const paginatedRecords = records.slice(start, end);
+
+    paginatedRecords.forEach(record => {
+      const row = document.createElement("tr");
+      row.className = "hover:bg-gray-50 text-xs";
+      row.innerHTML = `
+        <td class="px-6 py-4 text-center">
+          <div class="flex items-center gap-2">
+            <input type="checkbox" class="row-checkbox rounded border border-pink-400 accent-[#FF5A1D33]/20 focus:outline-none focus:ring-2 focus:ring-pink-400" data-id="${record.id}"/>
+            <span>${escapeHtml(record.epfNo)}</span>
+          </div>
+        </td>
+        <td class="px-6 py-4">${formatCurrency(record.basicSalary)}</td>
+        <td class="px-6 py-4">${formatCurrency(record.allowanceStage1)}</td>
+        <td class="px-6 py-4">${formatCurrency(record.allowanceStage2)}</td>
+        <td class="px-6 py-4">${record.allowanceStage3 ? formatCurrency(record.allowanceStage3) : ""}</td>
+        <td class="px-6 py-4">${formatCurrency(record.consolidatedSalary)}</td>
+        <td class="px-6 py-4">${formatCurrency(record.noPayDeduction)}</td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    updatePagination(records);
+    attachRowEventListeners();
+  }
+
+  // Update pagination controls
+  function updatePagination(records) {
+    const pageCount = Math.ceil(records.length / rowsPerPage);
+    paginationNumbers.innerHTML = "";
+
+    for (let i = 1; i <= pageCount; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i;
+      btn.className = `px-3 py-1 rounded ${i === currentPage ? "bg-pink-100 text-gray-900" : "hover:bg-pink-100"}`;
+      btn.addEventListener("click", () => {
+        currentPage = i;
+        renderTable(currentPage, filteredRecords);
+        prevPageBtn.disabled = currentPage === 1;
+        nextPageBtn.disabled = currentPage === pageCount;
+      });
+      paginationNumbers.appendChild(btn);
+    }
+
+    prevPageBtn.disabled = currentPage === 1;
+    nextPageBtn.disabled = currentPage === pageCount;
+  }
+
+  // Toggle Select All checkbox
+  function toggleSelectAll(checkbox) {
+    const rowCheckboxes = document.querySelectorAll(".row-checkbox");
+    rowCheckboxes.forEach(cb => (cb.checked = checkbox.checked));
+  }
+
+  // Attach event listeners for Status dropdowns
+  function attachRowEventListeners() {
+    document.querySelectorAll(".status-select").forEach(select => {
+      select.addEventListener("change", () => {
+        const id = select.getAttribute("data-id");
+        const newStatus = select.value;
+        let records = getPayrollRecords();
+        const recordIndex = records.findIndex(r => r.id === id);
+        if (recordIndex !== -1) {
+          records[recordIndex].status = newStatus;
+          savePayrollRecords(records);
+          filteredRecords = records;
+          renderTable(currentPage, filteredRecords);
+        }
+      });
+    });
+  }
+
+  // Search functionality
+  function handleSearch() {
+    const query = searchInput.value.trim().toLowerCase();
+    filteredRecords = getPayrollRecords().filter(record =>
+      record.epfNo.toLowerCase().includes(query)
+    );
+    currentPage = 1;
+    renderTable(currentPage, filteredRecords);
+  }
+
+  // Month selection (placeholder)
+  function toggleMonthPanel() {
+    // Placeholder for month selection dropdown
+    alert(`Month selection not implemented yet. Current month: ${selectedMonth}`);
+  }
+
+  // Filter panel toggle (placeholder)
+  function toggleFilterPanel() {
+    // Placeholder for filter panel implementation
+    alert("Filter panel not implemented yet.");
+  }
+
+  // Profile dropdown toggle
+  document.getElementById("profileButton").addEventListener("click", () => {
+    const dropdown = document.getElementById("profileDropdown");
+    dropdown.classList.toggle("hidden");
+    const isExpanded = !dropdown.classList.contains("hidden");
+    document.getElementById("profileButton").setAttribute("aria-expanded", isExpanded);
+  });
+
+  // Initialize on page load
+  window.addEventListener("load", () => {
+    initializeSampleData();
+    filteredRecords = getPayrollRecords();
+    renderTable(currentPage, filteredRecords);
+
+    // Pagination navigation
+    prevPageBtn.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderTable(currentPage, filteredRecords);
+      }
+    });
+
+    nextPageBtn.addEventListener("click", () => {
+      const pageCount = Math.ceil(filteredRecords.length / rowsPerPage);
+      if (currentPage < pageCount) {
+        currentPage++;
+        renderTable(currentPage, filteredRecords);
+      }
+    });
+
+    // Search input
+    searchInput.addEventListener("input", handleSearch);
+
+    // Month button
+    monthBtn.addEventListener("click", toggleMonthPanel);
+
+    // Select All checkbox
+    selectAllCheckbox.addEventListener("change", () => toggleSelectAll(selectAllCheckbox));
+  });
+</script>
+
 </body>
 </html>
 
