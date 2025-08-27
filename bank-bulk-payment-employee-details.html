@@ -312,9 +312,9 @@
                 <th scope="col" class="p-3 whitespace-nowrap max-w-xs font-normal">Branch Code</th>
                 <th scope="col" class="p-3 whitespace-nowrap max-w-xs font-normal">Account Type</th>
                 <th scope="col" class="p-3 whitespace-nowrap max-w-xs font-normal">Payment Amount</th>
-                                <th scope="col" class="p-3 whitespace-nowrap max-w-xs font-normal">Remark</th>
+                <th scope="col" class="p-3 whitespace-nowrap max-w-xs font-normal">Remark</th>
                 <!--                <th scope="col" class="p-3 whitespace-nowrap max-w-xs font-normal">Join Date</th>-->
-                <th scope="col" class="p-3 w-28 text-center font-normal">Status</th>
+                <th scope="col" class="p-3 w-28 text-left font-normal">Status</th>
               </tr>
               </thead>
               <tbody id="companies-tbody" class="divide-y divide-gray-200 scrollbar-thin max-h-[52vh] overflow-y-auto"
@@ -339,6 +339,292 @@
     </main>
   </div>
 </div>
+
+<script>
+  function getEmployees() {
+    try {
+      const stored = localStorage.getItem("employees");
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      console.error("Error parsing employees from localStorage:", e);
+      return [];
+    }
+  }
+
+  function getEmployeePayments() {
+    try {
+      const stored = localStorage.getItem("employeePayments");
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      console.error("Error parsing employee payments from localStorage:", e);
+      return [];
+    }
+  }
+
+  function saveEmployeePayments(payments) {
+    try {
+      localStorage.setItem("employeePayments", JSON.stringify(payments));
+    } catch (e) {
+      console.error("Error saving employee payments to localStorage:", e);
+    }
+  }
+
+  // Escape HTML to prevent XSS
+  function escapeHtml(unsafe) {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  // Sample data initialization
+  function initializeSampleData() {
+    const payments = getEmployeePayments();
+    if (payments.length === 0) {
+      const sampleEmployeePayments = [
+        {
+          id: "EMP_PAY001",
+          employeeId: "EMP001",
+          fullName: "John Smith",
+          accountNo: "123456789012",
+          branchCode: "PB123",
+          accountType: "Savings",
+          paymentAmount: 5000.00,
+          remark: "Salary June 2025",
+          status: "Completed"
+        },
+        {
+          id: "EMP_PAY002",
+          employeeId: "EMP002",
+          fullName: "Emma Johnson",
+          accountNo: "987654321098",
+          branchCode: "PB124",
+          accountType: "Checking",
+          paymentAmount: 4500.00,
+          remark: "Salary June 2025",
+          status: "Pending"
+        },
+        {
+          id: "EMP_PAY003",
+          employeeId: "EMP003",
+          fullName: "Michael Brown",
+          accountNo: "456789123456",
+          branchCode: "PB125",
+          accountType: "Savings",
+          paymentAmount: 6000.00,
+          remark: "Salary June 2025",
+          status: "Completed"
+        },
+        {
+          id: "EMP_PAY004",
+          employeeId: "EMP004",
+          fullName: "Sarah Davis",
+          accountNo: "789123456789",
+          branchCode: "PB126",
+          accountType: "Checking",
+          paymentAmount: 7000.00,
+          remark: "Salary + Bonus June 2025",
+          status: "Pending"
+        },
+        {
+          id: "EMP_PAY005",
+          employeeId: "EMP005",
+          fullName: "David Wilson",
+          accountNo: "321654987321",
+          branchCode: "PB127",
+          accountType: "Savings",
+          paymentAmount: 5500.00,
+          remark: "Salary June 2025",
+          status: "Completed"
+        },
+        {
+          id: "EMP_PAY006",
+          employeeId: "EMP006",
+          fullName: "Laura Martinez",
+          accountNo: "654987321654",
+          branchCode: "PB128",
+          accountType: "Checking",
+          paymentAmount: 4800.00,
+          remark: "Salary June 2025",
+          status: "Pending"
+        },
+        {
+          id: "EMP_PAY007",
+          employeeId: "EMP007",
+          fullName: "James Taylor",
+          accountNo: "147258369147",
+          branchCode: "PB129",
+          accountType: "Savings",
+          paymentAmount: 6500.00,
+          remark: "Salary June 2025",
+          status: "Completed"
+        }
+      ];
+      saveEmployeePayments(sampleEmployeePayments);
+    }
+  }
+
+  // Pagination variables
+  const rowsPerPage = 5;
+  let currentPage = 1;
+  let filteredPayments = [];
+  let selectedMonth = "June 2025"; // Default month
+
+  // DOM elements
+  const tbody = document.getElementById("companies-tbody");
+  const prevPageBtn = document.getElementById("prev-page");
+  const nextPageBtn = document.getElementById("next-page");
+  const paginationNumbers = document.getElementById("pagination-numbers");
+  const selectAllCheckbox = document.getElementById("select-all");
+  const searchInput = document.getElementById("search");
+  const monthBtn = document.getElementById("month-btn");
+
+  // Render table
+  function renderTable(page, payments) {
+    tbody.innerHTML = "";
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const paginatedPayments = payments.slice(start, end);
+
+    paginatedPayments.forEach(payment => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td class="p-3">
+          <input type="checkbox" class="row-checkbox rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none" data-id="${payment.id}"/>
+        </td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${escapeHtml(payment.employeeId)}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${escapeHtml(payment.fullName)}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${escapeHtml(payment.accountNo)}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${escapeHtml(payment.branchCode)}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${escapeHtml(payment.accountType)}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${payment.paymentAmount.toFixed(2)}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${escapeHtml(payment.remark)}</td>
+        <td class="p-3 whitespace-nowrap font-normal">
+          <select class="status-select px-3 py-1 rounded-md text-xs w-full focus:outline-none focus:ring-2 focus:ring-pink-400 ${
+        payment.status === "Completed" ? "text-[#00C500] bg-[#E7F7F2]" : "text-[#2922ED] bg-[#E5E6FF]"
+      }" data-id="${payment.id}">
+            <option value="Pending" ${payment.status === "Pending" ? "selected" : ""}>Pending</option>
+            <option value="Completed" ${payment.status === "Completed" ? "selected" : ""}>Completed</option>
+          </select>
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    updatePagination(payments);
+    attachRowEventListeners();
+  }
+
+  // Update pagination controls
+  function updatePagination(payments) {
+    const pageCount = Math.ceil(payments.length / rowsPerPage);
+    paginationNumbers.innerHTML = "";
+
+    for (let i = 1; i <= pageCount; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i;
+      btn.className = `px-3 py-1 rounded ${i === currentPage ? 'bg-[#FF5A1D] text-white' : 'text-[#333333] hover:bg-pink-100'}`;
+      btn.addEventListener("click", () => {
+        currentPage = i;
+        renderTable(currentPage, filteredPayments);
+        prevPageBtn.disabled = currentPage === 1;
+        nextPageBtn.disabled = currentPage === pageCount;
+      });
+      paginationNumbers.appendChild(btn);
+    }
+
+    prevPageBtn.disabled = currentPage === 1;
+    nextPageBtn.disabled = currentPage === pageCount;
+  }
+
+  // Toggle Select All checkbox
+  function toggleSelectAll(checkbox) {
+    const rowCheckboxes = document.querySelectorAll(".row-checkbox");
+    rowCheckboxes.forEach(cb => (cb.checked = checkbox.checked));
+  }
+
+  // Attach event listeners for Status dropdowns
+  function attachRowEventListeners() {
+    document.querySelectorAll(".status-select").forEach(select => {
+      select.addEventListener("change", () => {
+        const id = select.getAttribute("data-id");
+        const newStatus = select.value;
+        let payments = getEmployeePayments();
+        const paymentIndex = payments.findIndex(p => p.id === id);
+        if (paymentIndex !== -1) {
+          payments[paymentIndex].status = newStatus;
+          saveEmployeePayments(payments);
+          filteredPayments = payments;
+          renderTable(currentPage, filteredPayments);
+        }
+      });
+    });
+  }
+
+  // Search functionality
+  function handleSearch() {
+    const query = searchInput.value.trim().toLowerCase();
+    filteredPayments = getEmployeePayments().filter(payment =>
+      payment.fullName.toLowerCase().includes(query)
+    );
+    currentPage = 1;
+    renderTable(currentPage, filteredPayments);
+  }
+
+  // Month selection (placeholder)
+  function toggleMonthPanel() {
+    // Placeholder for month selection dropdown
+    alert(`Month selection not implemented yet. Current month: ${selectedMonth}`);
+  }
+
+  // Filter panel toggle (placeholder)
+  function toggleFilterPanel() {
+    // Placeholder for filter panel implementation
+    alert("Filter panel not implemented yet.");
+  }
+
+  // Profile dropdown toggle
+  document.getElementById("profileButton").addEventListener("click", () => {
+    const dropdown = document.getElementById("profileDropdown");
+    dropdown.classList.toggle("hidden");
+    const isExpanded = !dropdown.classList.contains("hidden");
+    document.getElementById("profileButton").setAttribute("aria-expanded", isExpanded);
+  });
+
+  // Initialize on page load
+  window.addEventListener("load", () => {
+    initializeSampleData();
+    filteredPayments = getEmployeePayments();
+    renderTable(currentPage, filteredPayments);
+
+    // Pagination navigation
+    prevPageBtn.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderTable(currentPage, filteredPayments);
+      }
+    });
+
+    nextPageBtn.addEventListener("click", () => {
+      const pageCount = Math.ceil(filteredPayments.length / rowsPerPage);
+      if (currentPage < pageCount) {
+        currentPage++;
+        renderTable(currentPage, filteredPayments);
+      }
+    });
+
+    // Search input
+    searchInput.addEventListener("input", handleSearch);
+
+    // Month button
+    monthBtn.addEventListener("click", toggleMonthPanel);
+
+    // Select All checkbox
+    selectAllCheckbox.addEventListener("change", () => toggleSelectAll(selectAllCheckbox));
+  });
+</script>
 
 </body>
 </html>
