@@ -340,6 +340,242 @@
   </div>
 </div>
 
+<script>
+  function getBankPayments() {
+    try {
+      const stored = localStorage.getItem('bankPayments');
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      console.error("Error parsing bank payments from localStorage:", e);
+      return [];
+    }
+  }
+
+  function saveBankPayments(payments) {
+    try {
+      localStorage.setItem('bankPayments', JSON.stringify(payments));
+    } catch (e) {
+      console.error("Error saving bank payments to localStorage:", e);
+    }
+  }
+
+  // Escape HTML to prevent XSS
+  function escapeHtml(unsafe) {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  // Sample data initialization
+  function initializeSampleData() {
+    const payments = getBankPayments();
+    if (payments.length === 0) {
+      const sampleBankPayments = [
+        { id: "PAY001", bankName: "Bank of America", bankCode: "BOFA123", empCount: 3, totalPay: 15000.00, paymentDate: "2025-06-01", status: "Completed" },
+        { id: "PAY002", bankName: "Wells Fargo", bankCode: "WF456", empCount: 2, totalPay: 10000.00, paymentDate: "2025-06-02", status: "Pending" },
+        { id: "PAY003", bankName: "Chase Bank", bankCode: "CHASE789", empCount: 1, totalPay: 5000.00, paymentDate: "2025-06-03", status: "Completed" },
+        { id: "PAY004", bankName: "Citibank", bankCode: "CITI101", empCount: 2, totalPay: 12000.00, paymentDate: "2025-06-04", status: "Pending" },
+        { id: "PAY005", bankName: "Bank of America", bankCode: "BOFA124", empCount: 4, totalPay: 20000.00, paymentDate: "2025-06-05", status: "Completed" },
+        { id: "PAY006", bankName: "Wells Fargo", bankCode: "WF457", empCount: 3, totalPay: 18000.00, paymentDate: "2025-06-06", status: "Pending" },
+        { id: "PAY007", bankName: "Chase Bank", bankCode: "CHASE790", empCount: 2, totalPay: 11000.00, paymentDate: "2025-06-07", status: "Completed" }
+      ];
+      saveBankPayments(sampleBankPayments);
+    }
+  }
+
+  // Pagination variables
+  const rowsPerPage = 5;
+  let currentPage = 1;
+  let filteredPayments = [];
+  let selectedMonth = "June 2025"; // Default month
+
+  // DOM elements
+  const tbody = document.getElementById('companies-tbody');
+  const prevPageBtn = document.getElementById('prev-page');
+  const nextPageBtn = document.getElementById('next-page');
+  const paginationNumbers = document.getElementById('pagination-numbers');
+  const selectAllCheckbox = document.getElementById('select-all');
+  const searchInput = document.getElementById('search');
+  const monthBtn = document.getElementById('month-btn');
+
+  // Render table
+  function renderTable(page, payments) {
+    tbody.innerHTML = '';
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const paginatedPayments = payments.slice(start, end);
+
+    paginatedPayments.forEach(payment => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td class="p-3">
+          <input type="checkbox" class="row-checkbox rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none" data-id="${payment.id}"/>
+        </td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635] text-sm">${escapeHtml(payment.bankName)}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635] text-sm">${escapeHtml(payment.bankCode)}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635] text-sm">${payment.empCount}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635] text-sm">${payment.totalPay.toFixed(2)}</td>
+        <td class="p-3 whitespace-nowrap font-normal text-[#172635] text-sm">${payment.paymentDate}</td>
+
+        <td class="p-3 whitespace-nowrap font-normal">
+          <select class="status-select px-3 py-1 rounded-md text-xs focus:outline-none ${
+        payment.status === 'Completed' ? 'text-[#00C500] bg-[#E7F7F2]' : 'text-[#2922ED] bg-[#E5E6FF]'
+      }" data-id="${payment.id}">
+            <option value="Pending" ${payment.status === 'Pending' ? 'selected' : ''}>Pending</option>
+            <option value="Completed" ${payment.status === 'Completed' ? 'selected' : ''}>Completed</option>
+          </select>
+        </td>
+        <td class="p-3 flex justify-center gap-2">
+          <button aria-label="Details of ${escapeHtml(payment.bankCode)}" class="view-btn bg-[#FFA6001A]/10 text-yellow-700 p-1 rounded hover:bg-yellow-200 transition focus:outline-none" data-id="${payment.bankCode}" title="Details">
+            <svg class="w-4 h-4" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.56445 7.375C6.32384 7.375 6.93945 6.75939 6.93945 6C6.93945 5.24061 6.32384 4.625 5.56445 4.625C4.80506 4.625 4.18945 5.24061 4.18945 6C4.18945 6.75939 4.80506 7.375 5.56445 7.375Z" stroke="#FFA600" stroke-width="0.916667"/>
+              <path d="M9.31734 5.51142C9.49517 5.72775 9.58409 5.83546 9.58409 6C9.58409 6.16454 9.49517 6.27225 9.31734 6.48858C8.66651 7.27875 7.23101 8.75 5.56451 8.75C3.89801 8.75 2.46251 7.27875 1.81167 6.48858C1.63384 6.27225 1.54492 6.16454 1.54492 6C1.54492 5.83546 1.63384 5.72775 1.81167 5.51142C2.46251 4.72125 3.89801 3.25 5.56451 3.25C7.23101 3.25 8.66651 4.72125 9.31734 5.51142Z" stroke="#FFA600" stroke-width="0.916667"/>
+            </svg>
+          </button>
+          <button aria-label="Download payment report for ${escapeHtml(payment.bankCode)}" class="download-btn bg-[#FF5A1D1A]/10 text-yellow-700 p-1 rounded hover:bg-yellow-200 transition focus:outline-none" data-id="${payment.id}" title="Download Payment Report">
+            <svg width="12" height="12" class="w-4 h-4" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.99967 7.63846C5.93856 7.63846 5.88127 7.62899 5.8278 7.61005C5.77433 7.5911 5.72467 7.55856 5.67884 7.51242L4.02884 5.86242C3.93717 5.77075 3.89317 5.66381 3.89684 5.54159C3.90051 5.41936 3.94451 5.31242 4.02884 5.22075C4.12051 5.12909 4.22944 5.08142 4.35563 5.07775C4.48183 5.07409 4.59061 5.11793 4.68197 5.2093L5.54134 6.06867V2.79159C5.54134 2.66173 5.58534 2.55295 5.67334 2.46525C5.76134 2.37756 5.87012 2.33356 5.99967 2.33325C6.12923 2.33295 6.23816 2.37695 6.32647 2.46525C6.41477 2.55356 6.45862 2.66234 6.45801 2.79159V6.06867L7.31738 5.2093C7.40905 5.11763 7.51798 5.07363 7.64417 5.0773C7.77037 5.08096 7.87915 5.12878 7.97051 5.22075C8.05454 5.31242 8.09854 5.41936 8.10251 5.54159C8.10648 5.66381 8.06248 5.77075 7.97051 5.86242L6.32051 7.51242C6.27467 7.55825 6.22502 7.5908 6.17155 7.61005C6.11808 7.6293 6.06079 7.63877 5.99967 7.63846ZM3.24967 9.66659C2.99759 9.66659 2.78187 9.57691 2.60251 9.39755C2.42315 9.21818 2.33331 9.00231 2.33301 8.74992V7.83325C2.33301 7.70339 2.37701 7.59461 2.46501 7.50692C2.55301 7.41923 2.66179 7.37523 2.79134 7.37492C2.9209 7.37461 3.02983 7.41861 3.11813 7.50692C3.20644 7.59523 3.25029 7.704 3.24967 7.83325V8.74992H8.74967V7.83325C8.74967 7.70339 8.79367 7.59461 8.88167 7.50692C8.96967 7.41923 9.07845 7.37523 9.20801 7.37492C9.33756 7.37461 9.44649 7.41861 9.5348 7.50692C9.62311 7.59523 9.66695 7.704 9.66634 7.83325V8.74992C9.66634 9.002 9.57666 9.21788 9.3973 9.39755C9.21794 9.57721 9.00206 9.66689 8.74967 9.66659H3.24967Z" fill="#FF5A1D"/>
+            </svg>
+          </button>
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    updatePagination(payments);
+    attachRowEventListeners();
+  }
+
+  // Update pagination controls
+  function updatePagination(payments) {
+    const pageCount = Math.ceil(payments.length / rowsPerPage);
+    paginationNumbers.innerHTML = '';
+
+    for (let i = 1; i <= pageCount; i++) {
+      const btn = document.createElement('button');
+      btn.textContent = i;
+      btn.className = `px-3 py-1 rounded ${i === currentPage ? 'bg-[#FF5A1D] text-white' : 'text-[#333333] hover:bg-pink-100'}`;
+      btn.addEventListener('click', () => {
+        currentPage = i;
+        renderTable(currentPage, filteredPayments);
+        prevPageBtn.disabled = currentPage === 1;
+        nextPageBtn.disabled = currentPage === pageCount;
+      });
+      paginationNumbers.appendChild(btn);
+    }
+
+    prevPageBtn.disabled = currentPage === 1;
+    nextPageBtn.disabled = currentPage === pageCount;
+  }
+
+  // Toggle Select All checkbox
+  function toggleSelectAll(checkbox) {
+    const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+    rowCheckboxes.forEach(cb => (cb.checked = checkbox.checked));
+  }
+
+  // Attach event listeners for Download buttons
+  function attachRowEventListeners() {
+    document.querySelectorAll('.download-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-id');
+        // Placeholder for download functionality
+        alert(`Downloading payment report for payment ${id} for ${selectedMonth}`);
+        // Example: Could trigger CSV/PDF download
+      });
+    });
+
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-id');
+        window.location.href = `bank-bulk-payment-employee-details.html?id=${id}`;
+      });
+    });
+
+    document.querySelectorAll('.status-select').forEach(select => {
+      select.addEventListener('change', () => {
+        const id = select.getAttribute('data-id');
+        const newStatus = select.value;
+        let payments = getBankPayments();
+        const paymentIndex = payments.findIndex(p => p.id === id);
+        if (paymentIndex !== -1) {
+          payments[paymentIndex].status = newStatus;
+          saveBankPayments(payments);
+          filteredPayments = payments;
+          renderTable(currentPage, filteredPayments);
+        }
+      });
+    });
+  }
+
+  // Search functionality
+  function handleSearch() {
+    const query = searchInput.value.trim().toLowerCase();
+    filteredPayments = getBankPayments().filter(payment =>
+      payment.bankName.toLowerCase().includes(query)
+    );
+    currentPage = 1;
+    renderTable(currentPage, filteredPayments);
+  }
+
+  // Month selection (placeholder)
+  function toggleMonthPanel() {
+    // Placeholder for month selection dropdown
+    alert(`Month selection not implemented yet. Current month: ${selectedMonth}`);
+    // Example: Could show a dropdown with months
+  }
+
+  // Filter panel toggle (placeholder)
+  function toggleFilterPanel() {
+    // Placeholder for filter panel implementation
+    alert('Filter panel not implemented yet.');
+    // Example: Could filter by status or bank
+  }
+
+  // Profile dropdown toggle
+  document.getElementById('profileButton').addEventListener('click', () => {
+    const dropdown = document.getElementById('profileDropdown');
+    dropdown.classList.toggle('hidden');
+    const isExpanded = !dropdown.classList.contains('hidden');
+    document.getElementById('profileButton').setAttribute('aria-expanded', isExpanded);
+  });
+
+  // Initialize on page load
+  window.addEventListener('load', () => {
+    initializeSampleData();
+    filteredPayments = getBankPayments();
+    renderTable(currentPage, filteredPayments);
+
+    // Pagination navigation
+    prevPageBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderTable(currentPage, filteredPayments);
+      }
+    });
+
+    nextPageBtn.addEventListener('click', () => {
+      const pageCount = Math.ceil(filteredPayments.length / rowsPerPage);
+      if (currentPage < pageCount) {
+        currentPage++;
+        renderTable(currentPage, filteredPayments);
+      }
+    });
+
+    // Search input
+    searchInput.addEventListener('input', handleSearch);
+
+    // Month button
+    monthBtn.addEventListener('click', toggleMonthPanel);
+
+    // Select All checkbox
+    selectAllCheckbox.addEventListener('change', () => toggleSelectAll(selectAllCheckbox));
+  });
+</script>
+
 </body>
 </html>
 
