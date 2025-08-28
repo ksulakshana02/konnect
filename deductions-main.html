@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Employee Info - Konnect</title>
+  <title>Deductions - Konnect</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
       /* Custom scroll for sidebar if needed */
@@ -33,10 +32,9 @@
       }
   </style>
 </head>
-<body class="bg-[#F6F6F8] font-sans text-gray-900">
+<body class="bg-gray-50 text-gray-700 font-sans antialiased select-none">
 
-<div class="flex min-h-screen">
-
+<div class="flex h-screen">
   <!-- Sidebar -->
   <aside
     class="bg-[#F6F6F8] w-72 flex flex-col shadow-md select-none z-10 border-r-[2px] border-[#E8E9EB]"
@@ -98,13 +96,14 @@
     </nav>
   </aside>
 
-  <main class="flex-1 flex flex-col bg-gray-50">
+  <!-- Main content -->
+  <div class="flex flex-col flex-1 min-w-0 overflow-hidden">
     <!-- Header -->
     <header class="flex justify-between items-center border-b-[2px] border-[#E8E9EB] px-6 py-6 bg-white">
       <div class="w-96">
-        <label for="search-input" class="sr-only">Search</label>
+        <label for="search" class="sr-only">Search</label>
         <div class="relative">
-          <input id="search-input" type="search" placeholder="Search"
+          <input id="search" type="search" placeholder="Search"
                  class="w-full rounded-[8px] bg-[#FF5A1D33]/20 placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
           <svg width="15" height="15" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" viewBox="0 0 15 15"
                fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -169,8 +168,9 @@
       </div>
     </header>
 
-    <main class="flex-1 overflow-y-auto p-8">
-      <div class="max-w-7xl mx-auto space-y-7">
+    <main class="flex-1 overflow-y-auto ">
+      <div class="max-w-7xl mx-auto space-y-7 p-8">
+        <!-- Breadcrumb and Title -->
         <header aria-label="Company Name and breadcrumb" class="mb-4">
           <h1 class="text-[#172635] font-bold text-xl">Tech Innovations Inc.</h1>
           <nav class="mt-1 text-[17px] font-medium text-[#556476] flex flex-wrap items-center gap-1 select-none"
@@ -180,110 +180,156 @@
                  stroke-linecap="round" stroke-linejoin="round">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
-            <span class="text-[#556476]">Employee Info</span>
+            <span class="text-[#172635]">Deductions</span>
           </nav>
           <nav class="mt-6 flex space-x-6 border-b border-[#E8E9EB] pb-2 text-sm text-[#556476]">
-            <button
-              class="hover:text-orange-600 focus:outline-none">
-              Company Info
-            </button>
-            <button class="border-b-2 border-[#FF5A1D] mb-[-10px] pb-1 focus:outline-none">Employee Info</button>
+            <button class="hover:text-orange-600 focus:outline-none">Company Info</button>
+            <button class="hover:text-orange-600 focus:outline-none">Employee Info</button>
             <button class="hover:text-orange-600 focus:outline-none">Earnings</button>
-            <button class="hover:text-orange-600 focus:outline-none">Deductions</button>
+            <button class="border-b-2 border-[#FF5A1D] mb-[-10px] pb-1 focus:outline-none">Deductions</button>
             <button class="hover:text-orange-600 focus:outline-none">Reports</button>
             <button class="hover:text-orange-600 focus:outline-none">Uploads</button>
             <button class="hover:text-orange-600 focus:outline-none">Templates</button>
             <button class="hover:text-orange-600 focus:outline-none">Settings</button>
           </nav>
         </header>
+      </div>
 
-
+      <!-- Main content - Reports grid -->
+      <main class="flex-1 overflow-auto px-10">
         <section aria-label="Manage Companies Panel"
-                 class="bg-white rounded-xl p-6 shadow-md flex flex-col flex-grow max-w-full overflow-hidden">
-          <div class="flex items-center justify-between mb-6">
-            <h3 class="text-[17px] font-bold text-[#172635]">Employee Info</h3>
-            <div class="flex items-center gap-4">
-              <button
-                id="search-btn"
-                aria-label="Search companies"
-                class="flex items-center gap-3 px-4 py-2 text-xs border border-2 border-[#E8E9EB] rounded-md text-[#172635] hover:text-blue-600 transition focus:outline-none"
-                onclick="document.getElementById('search-company').focus()"
-              >
-                <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M10.4606 10.4167L12.7939 12.75M2.29395 6.91667C2.29395 8.15434 2.78561 9.34133 3.66078 10.2165C4.53595 11.0917 5.72293 11.5833 6.96061 11.5833C8.19829 11.5833 9.38527 11.0917 10.2604 10.2165C11.1356 9.34133 11.6273 8.15434 11.6273 6.91667C11.6273 5.67899 11.1356 4.492 10.2604 3.61684C9.38527 2.74167 8.19829 2.25 6.96061 2.25C5.72293 2.25 4.53595 2.74167 3.66078 3.61684C2.78561 4.492 2.29395 5.67899 2.29395 6.91667Z"
-                    stroke="#172635" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                Search
-              </button>
-              <button
-                id="filter-btn"
-                aria-label="Filter companies"
-                class="flex items-center gap-3 px-4 py-2 text-xs border border-2 border-[#E8E9EB] rounded-md text-[#172635] hover:text-blue-600 transition focus:outline-none"
-                onclick="toggleFilterPanel()"
-              >
-                <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.87728 2.25H12.2106C12.3653 2.25 12.5137 2.31146 12.6231 2.42085C12.7325 2.53025 12.7939 2.67862 12.7939 2.83333V3.7585C12.7939 3.9132 12.7324 4.06155 12.623 4.17092L8.88153 7.91242C8.77212 8.02179 8.71064 8.17014 8.71061 8.32483V12.0027C8.71061 12.0914 8.69039 12.1789 8.6515 12.2586C8.6126 12.3383 8.55606 12.4081 8.48615 12.4626C8.41625 12.5172 8.33483 12.5551 8.24808 12.5734C8.16133 12.5918 8.07154 12.5901 7.98553 12.5686L6.81886 12.2769C6.69272 12.2453 6.58075 12.1725 6.50074 12.07C6.42074 11.9674 6.37728 11.8411 6.37728 11.7111V8.32483C6.37725 8.17014 6.31577 8.02179 6.20636 7.91242L2.46486 4.17092C2.35546 4.06155 2.29398 3.9132 2.29395 3.7585V2.83333C2.29395 2.67862 2.3554 2.53025 2.4648 2.42085C2.5742 2.31146 2.72257 2.25 2.87728 2.25Z" stroke="#172635" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Filter
-              </button>
-              <button
-                id="export-btn"
-                aria-label="Filter companies"
-                class="flex items-center gap-3 px-4 py-2 text-xs border border-2 border-[#E8E9EB] rounded-md text-[#172635] hover:text-blue-600 transition focus:outline-none"
-              >
-                <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.91895 2.83333C4.91895 2.51104 5.15403 2.25 5.44394 2.25H12.2689C12.5589 2.25 12.7939 2.51104 12.7939 2.83333V12.1667C12.7939 12.489 12.5589 12.75 12.2689 12.75H5.44394C5.15403 12.75 4.91895 12.489 4.91895 12.1667V10.4167H2.81895C2.52903 10.4167 2.29395 10.1556 2.29395 9.83333V5.16667C2.29395 4.84437 2.52903 4.58333 2.81895 4.58333H4.91895V2.83333ZM8.71061 4.58333V2.83333H5.50228V4.58333H8.71061ZM9.29395 2.83333V4.58333H12.2106V2.83333H9.29395ZM8.71061 5.16667H7.54395V7.20833H8.71061V5.16667ZM9.29395 7.20833V5.16667H12.2106V7.20833H9.29395ZM8.71061 7.79167H7.54395V9.83333H8.71061V7.79167ZM9.29395 9.83333V7.79167H12.2106V9.83333H9.29395ZM8.71061 10.4167H5.50228V12.1667H8.71061V10.4167ZM9.29395 12.1667V10.4167H12.2106V12.1667H9.29395ZM6.96061 5.16667V9.83333H2.81895V5.16667H6.96061ZM3.8182 6.04167H4.4444L4.95278 7.13658L5.48974 6.04167H6.07482L5.26895 7.5L6.09349 8.95833H5.47603L4.92215 7.81208L4.3709 8.95833H3.7444L4.58265 7.49475L3.8182 6.04167Z" fill="black"/>
-                </svg>
-                Import Excel
-              </button>
-              <button
-                id="add-company-btn"
-                class="flex items-center gap-3 px-4 py-2 text-xs border border-2 border-[#E8E9EB] bg-[#FF5A1D] rounded-md text-white hover:bg-orange-600 transition focus:outline-none"
-              >
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8.625 9.375H4.5V8.625H8.625V4.5H9.375V8.625H13.5V9.375H9.375V13.5H8.625V9.375Z"
-                        fill="white" />
-                </svg>
-                Employee
-              </button>
+                 class="bg-white rounded-xl p-6 shadow-md flex flex-col flex-grow max-w-full mb-8 overflow-hidden">
+          <div class="mb-8">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-[17px] font-bold text-[#172635]">Statutory Deductions</h3>
+              <div class="flex items-center gap-4">
+                <button
+                  id="statutory-deductions-search-btn"
+                  aria-label="Search companies"
+                  class="flex items-center gap-3 px-4 py-2 text-xs border border-2 border-[#E8E9EB] rounded-md text-[#172635] hover:text-blue-600 transition focus:outline-none"
+                  onclick="document.getElementById('search-company').focus()"
+                >
+                  <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M10.4606 10.4167L12.7939 12.75M2.29395 6.91667C2.29395 8.15434 2.78561 9.34133 3.66078 10.2165C4.53595 11.0917 5.72293 11.5833 6.96061 11.5833C8.19829 11.5833 9.38527 11.0917 10.2604 10.2165C11.1356 9.34133 11.6273 8.15434 11.6273 6.91667C11.6273 5.67899 11.1356 4.492 10.2604 3.61684C9.38527 2.74167 8.19829 2.25 6.96061 2.25C5.72293 2.25 4.53595 2.74167 3.66078 3.61684C2.78561 4.492 2.29395 5.67899 2.29395 6.91667Z"
+                      stroke="#172635" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Search
+                </button>
+                <button
+                  id="statutory-deductions-btn"
+                  class="flex items-center gap-3 px-4 py-2 text-xs border border-2 border-[#E8E9EB] bg-[#FF5A1D] rounded-md text-white hover:bg-orange-600 transition focus:outline-none"
+                >
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.625 9.375H4.5V8.625H8.625V4.5H9.375V8.625H13.5V9.375H9.375V13.5H8.625V9.375Z"
+                          fill="white" />
+                  </svg>
+                  Statutory Deductions
+                </button>
+              </div>
+            </div>
+
+            <!-- Table container -->
+            <div class="overflow-x-auto border border-gray-200 rounded-lg">
+              <table class="min-w-full text-sm text-left text-gray-700" aria-describedby="companies-table-caption"
+                     role="grid">
+                <caption id="statutory-deductions-table-caption" class="sr-only">List of registered companies with
+                  contact
+                  information and acts
+                </caption>
+                <thead class="bg-[#FF5A1D33]/20 text-[#556476] text-xs font-normal sticky top-0 z-10">
+                <tr>
+                  <th scope="col" class="p-3 w-6">
+                    <input
+                      id="statutory-deductions-select-all"
+                      type="checkbox"
+                      aria-label="Select all companies"
+                      class="rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none"
+                      onclick="toggleSelectAll(this)"
+                    />
+                  </th>
+                  <th scope="col" class="p-3 whitespace-nowrap">Name</th>
+                  <th scope="col" class="p-3 whitespace-nowrap">Status</th>
+                  <th scope="col" class="p-3 whitespace-nowrap">EPF</th>
+                  <th scope="col" class="p-3 whitespace-nowrap">ETF</th>
+                  <th scope="col" class="p-3 whitespace-nowrap">APIT</th>
+                  <th scope="col" class="p-3 w-28 text-left">Actions</th>
+                </tr>
+                </thead>
+                <tbody id="statutory-deductions-tbody"
+                       class="divide-y divide-gray-200 scrollbar-thin max-h-[52vh] overflow-y-auto"
+                       role="rowgroup">
+                <!-- Rows will be populated dynamically -->
+                </tbody>
+              </table>
             </div>
           </div>
 
-          <!-- Table container -->
-          <div class="overflow-x-auto border border-gray-200 rounded-lg">
-            <table class="min-w-full text-sm text-left text-gray-700" aria-describedby="companies-table-caption"
-                   role="grid">
-              <caption id="companies-table-caption" class="sr-only">List of registered companies with contact
-                information and acts
-              </caption>
-              <thead class="bg-[#FF5A1D33]/20 text-[#556476] text-xs font-normal sticky top-0 z-10">
-              <tr>
-                <th scope="col" class="p-3 w-6">
-                  <input
-                    id="select-all"
-                    type="checkbox"
-                    aria-label="Select all companies"
-                    class="rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none"
-                    onclick="toggleSelectAll(this)"
-                  />
-                </th>
-                <th scope="col" class="p-3 whitespace-nowrap">Employee ID</th>
-                <th scope="col" class="p-3 whitespace-nowrap">Full Name</th>
-                <th scope="col" class="p-3 whitespace-nowrap">Gender</th>
-                <th scope="col" class="p-3 whitespace-nowrap">Mobile No.</th>
-                <th scope="col" class="p-3 whitespace-nowrap">Email</th>
-                <th scope="col" class="p-3 whitespace-nowrap">Designation</th>
-                <th scope="col" class="p-3 whitespace-nowrap">Join Date</th>
-                <th scope="col" class="p-3 w-28 text-center">Actions</th>
-              </tr>
-              </thead>
-              <tbody id="companies-tbody" class="divide-y divide-gray-200 scrollbar-thin max-h-[52vh] overflow-y-auto"
-                     role="rowgroup">
-              <!-- Rows will be populated dynamically -->
-              </tbody>
-            </table>
+          <div class="mb-5">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-[17px] font-bold text-[#172635]">Non Statutory Deductions</h3>
+              <div class="flex items-center gap-4">
+                <button
+                  id="non-statutory-deductions-search-btn"
+                  aria-label="Search companies"
+                  class="flex items-center gap-3 px-4 py-2 text-xs border border-2 border-[#E8E9EB] rounded-md text-[#172635] hover:text-blue-600 transition focus:outline-none"
+                  onclick="document.getElementById('search-company').focus()"
+                >
+                  <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M10.4606 10.4167L12.7939 12.75M2.29395 6.91667C2.29395 8.15434 2.78561 9.34133 3.66078 10.2165C4.53595 11.0917 5.72293 11.5833 6.96061 11.5833C8.19829 11.5833 9.38527 11.0917 10.2604 10.2165C11.1356 9.34133 11.6273 8.15434 11.6273 6.91667C11.6273 5.67899 11.1356 4.492 10.2604 3.61684C9.38527 2.74167 8.19829 2.25 6.96061 2.25C5.72293 2.25 4.53595 2.74167 3.66078 3.61684C2.78561 4.492 2.29395 5.67899 2.29395 6.91667Z"
+                      stroke="#172635" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Search
+                </button>
+                <button
+                  id="non-statutory-deductions-btn"
+                  class="flex items-center gap-3 px-4 py-2 text-xs border border-2 border-[#E8E9EB] bg-[#FF5A1D] rounded-md text-white hover:bg-orange-600 transition focus:outline-none"
+                >
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.625 9.375H4.5V8.625H8.625V4.5H9.375V8.625H13.5V9.375H9.375V13.5H8.625V9.375Z"
+                          fill="white" />
+                  </svg>
+                  Non Statutory Deductions
+                </button>
+              </div>
+            </div>
+
+            <!-- Table container -->
+            <div class="overflow-x-auto border border-gray-200 rounded-lg">
+              <table class="min-w-full text-sm text-left text-gray-700" aria-describedby="companies-table-caption"
+                     role="grid">
+                <caption id="non-statutory-table-caption" class="sr-only">List of registered companies with contact
+                  information and acts
+                </caption>
+                <thead class="bg-[#FF5A1D33]/20 text-[#556476] text-xs font-normal sticky top-0 z-10">
+                <tr>
+                  <th scope="col" class="p-3 w-6">
+                    <input
+                      id="non-statutory-deductions-select-all"
+                      type="checkbox"
+                      aria-label="Select all companies"
+                      class="rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none"
+                      onclick="toggleSelectAll(this)"
+                    />
+                  </th>
+                  <th scope="col" class="p-3 whitespace-nowrap">Name</th>
+                  <th scope="col" class="p-3 whitespace-nowrap">Status</th>
+                  <th scope="col" class="p-3 whitespace-nowrap">EPF</th>
+                  <th scope="col" class="p-3 whitespace-nowrap">ETF</th>
+                  <th scope="col" class="p-3 whitespace-nowrap">APIT</th>
+                  <th scope="col" class="p-3 w-28 text-left">Actions</th>
+                </tr>
+                </thead>
+                <tbody id="none-statutory-deductions-tbody"
+                       class="divide-y divide-gray-200 scrollbar-thin max-h-[52vh] overflow-y-auto"
+                       role="rowgroup">
+                <!-- Rows will be populated dynamically -->
+                </tbody>
+              </table>
+            </div>
           </div>
 
           <!-- Pagination -->
@@ -297,242 +343,187 @@
             </button>
           </nav>
         </section>
-
-      </div>
+      </main>
     </main>
-  </main>
+  </div>
 </div>
 
 <script>
+  const statutoryData = [
+    { id: 1, name: "Alpha Corp", status: "Active", epf: "Yes", etf: "Yes", apit: "No" },
+    { id: 2, name: "Beta Inc", status: "Inactive", epf: "No", etf: "Yes", apit: "Yes" },
+    { id: 3, name: "Gamma Ltd", status: "Active", epf: "Yes", etf: "No", apit: "Yes" },
+    { id: 4, name: "Delta Solutions", status: "Active", epf: "Yes", etf: "Yes", apit: "Yes" },
+    { id: 5, name: "Epsilon Tech", status: "Inactive", epf: "No", etf: "No", apit: "No" },
+    { id: 6, name: "Zeta Innovations", status: "Active", epf: "Yes", etf: "Yes", apit: "No" },
+  ];
 
+  const nonStatutoryData = [
+    { id: 1, name: "Omega Group", status: "Active", epf: "No", etf: "No", apit: "Yes" },
+    { id: 2, name: "Sigma Enterprises", status: "Inactive", epf: "Yes", etf: "No", apit: "No" },
+    { id: 3, name: "Theta Corp", status: "Active", epf: "Yes", etf: "Yes", apit: "Yes" },
+    { id: 4, name: "Iota Solutions", status: "Inactive", epf: "No", etf: "Yes", apit: "No" },
+  ];
 
-  function escapeHtml(text) {
-    return text
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
+  const itemsPerPage = 3;
+  let currentStatutoryPage = 1;
+  let currentNonStatutoryPage = 1;
+
+  function getStatusColor(status) {
+    return status === "Active" ? "text-[#00C500] bg-[#E7F7F2]" : "text-[#ED2227] bg-[#FFE9E5]";
   }
 
-
-  function getEmployees() {
-    try {
-      const stored = localStorage.getItem('employees');
-      return stored ? JSON.parse(stored) : [];
-    } catch (e) {
-      console.error("Error parsing employees from localStorage:", e);
-      return [];
-    }
+  function getYesNoColor(value) {
+    return value === "Yes" ? "text-[#00C500]" : "text-[#ED2227]";
   }
 
-  function saveEmployees(employees) {
-    try {
-      localStorage.setItem('employees', JSON.stringify(employees));
-    } catch (e) {
-      console.error("Error saving employees to localStorage:", e);
-    }
-  }
+  function populateTable(tbodyId, data, page) {
+    const tbody = document.getElementById(tbodyId);
+    tbody.innerHTML = "";
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const paginatedData = data.slice(start, end);
 
-  // Sample data initialization
-  function initializeSampleData() {
-    const employees = getEmployees();
-    if (employees.length === 0) {
-      const sampleEmployees = [
-        { id: "EMP001", fullName: "John Smith", gender: "Male", mobile: "+1-555-123-4567", email: "john.smith@techinnovations.com", designation: "Frontend Developer", joinDate: "2023-01-15" },
-        { id: "EMP002", fullName: "Emma Johnson", gender: "Female", mobile: "+1-555-234-5678", email: "emma.johnson@techinnovations.com", designation: "UI UX Designer", joinDate: "2022-06-20" },
-        { id: "EMP003", fullName: "Michael Brown", gender: "Male", mobile: "+1-555-345-6789", email: "michael.brown@techinnovations.com", designation: "Backend Developer", joinDate: "2021-11-10" },
-        { id: "EMP004", fullName: "Sarah Davis", gender: "Female", mobile: "+1-555-456-7890", email: "sarah.davis@techinnovations.com", designation: "Project Manager", joinDate: "2023-03-22" },
-        { id: "EMP005", fullName: "David Wilson", gender: "Male", mobile: "+1-555-567-8901", email: "david.wilson@techinnovations.com", designation: "QA Engineer", joinDate: "2022-09-05" },
-        { id: "EMP006", fullName: "Laura Martinez", gender: "Female", mobile: "+1-555-678-9012", email: "laura.martinez@techinnovations.com", designation: "Business Analyst", joinDate: "2023-07-18" },
-        { id: "EMP007", fullName: "James Taylor", gender: "Male", mobile: "+1-555-789-0123", email: "james.taylor@techinnovations.com", designation: "HR Manager", joinDate: "2021-04-30" },
-        { id: "EMP008", fullName: "Emily Anderson", gender: "Female", mobile: "+1-555-890-1234", email: "emily.anderson@techinnovations.com", designation: "Marketing Specialist", joinDate: "2023-02-14" },
-      ];
-      saveEmployees(sampleEmployees);
-    }
-  }
-
-  // Pagination variables
-  const rowsPerPage = 5;
-  let currentPage = 1;
-  let filteredEmployees = [];
-
-  // DOM elements
-  const tbody = document.getElementById('companies-tbody');
-  const prevPageBtn = document.getElementById('prev-page');
-  const nextPageBtn = document.getElementById('next-page');
-  const paginationNumbers = document.getElementById('pagination-numbers');
-  const selectAllCheckbox = document.getElementById('select-all');
-  const searchInput = document.getElementById('search-input');
-  const addEmployeeBtn = document.getElementById('add-company-btn');
-
-  // Render table
-  function renderTable(page, employees) {
-    tbody.innerHTML = '';
-    const start = (page - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-    const paginatedEmployees = employees.slice(start, end);
-
-    paginatedEmployees.forEach(employee => {
-      const row = document.createElement('tr');
+    paginatedData.forEach(item => {
+      const row = document.createElement("tr");
       row.innerHTML = `
-        <td class="p-3">
-          <input type="checkbox" class="row-checkbox rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none" data-id="${employee.id}"/>
-        </td>
-        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.id}</td>
-        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.fullName}</td>
-        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.gender}</td>
-        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.mobile}</td>
-        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.email}</td>
-        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.designation}</td>
-        <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${employee.joinDate}</td>
-        <td class="p-3 flex justify-center gap-2">
-        <button aria-label="Delete ${escapeHtml(employee.id)}" class="delete-btn bg-[#FFE9E5] text-red-600 p-1 rounded hover:bg-red-200 transition focus:outline-none" data-id="${employee.id}" title="Delete">
+            <td class="p-3">
+                <input type="checkbox" aria-label="Select ${item.name}" class="row-checkbox rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none">
+            </td>
+            <td class="p-3">${item.name}</td>
+            <td class="p-3"><span class=" ${getStatusColor(item.status)} px-3 py-1 rounded-md">${item.status}</span></td>
+            <td class="p-3 ${getYesNoColor(item.epf)}">${item.epf}</td>
+            <td class="p-3 ${getYesNoColor(item.etf)}">${item.etf}</td>
+            <td class="p-3 ${getYesNoColor(item.apit)}">${item.apit}</td>
+            <td class="p-3">
+                <button aria-label="Delete ${item.name}" class="delete-btn bg-[#FFE9E5] text-red-600 p-1 rounded hover:bg-red-200 transition focus:outline-none" data-id="${item.id}" title="Delete">
           <svg class="w-4 h-4" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.9431 8.70157C2.71689 8.70157 2.52331 8.62109 2.36236 8.46014C2.20141 8.29919 2.12079 8.10547 2.12052 7.87899V2.53221H1.70923V1.70963H3.76568V1.29834H6.23342V1.70963H8.28987V2.53221H7.87858V7.87899C7.87858 8.1052 7.79811 8.29891 7.63715 8.46014C7.4762 8.62137 7.28248 8.70184 7.056 8.70157H2.9431ZM7.056 2.53221H2.9431V7.87899H7.056V2.53221ZM3.76568 7.05641H4.58826V3.35479H3.76568V7.05641ZM5.41084 7.05641H6.23342V3.35479H5.41084V7.05641Z" fill="#ED2227"/>
           </svg>
         </button>
-        <button aria-label="Edit ${escapeHtml(employee.id)}" class="edit-btn bg-[#E7E9FD] text-blue-700 p-1 rounded hover:bg-blue-200 transition focus:outline-none" data-id="${employee.id}" title="Edit">
+        <button aria-label="Edit ${item.name}" class="edit-btn bg-[#E7E9FD] text-blue-700 p-1 rounded hover:bg-blue-200 transition focus:outline-none" data-id="${item.id}" title="Edit">
           <svg class="w-4 h-4" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.1206 7.87871H2.70663L6.7266 3.85874L6.14056 3.27271L2.1206 7.29268V7.87871ZM1.70935 8.70121C1.59282 8.70121 1.49522 8.66173 1.41654 8.58277C1.33785 8.50381 1.29837 8.4062 1.2981 8.28996V7.29268C1.2981 7.18301 1.31866 7.07841 1.35978 6.97889C1.40091 6.87937 1.45917 6.79205 1.53456 6.71692L6.7266 1.53517C6.80885 1.45978 6.89973 1.40152 6.99925 1.36039C7.09878 1.31927 7.20323 1.29871 7.31263 1.29871C7.42202 1.29871 7.52826 1.31927 7.63135 1.36039C7.73443 1.40152 7.82354 1.46321 7.89866 1.54546L8.46413 2.12121C8.54638 2.1966 8.60628 2.28571 8.64384 2.38852C8.6814 2.49133 8.70032 2.59414 8.7006 2.69696C8.7006 2.80662 8.68168 2.91122 8.64384 3.01074C8.60601 3.11026 8.5461 3.20101 8.46413 3.28299L3.28238 8.46474C3.20698 8.54013 3.11952 8.59839 3.02 8.63952C2.92048 8.68064 2.81602 8.70121 2.70663 8.70121H1.70935ZM6.42844 3.57086L6.14056 3.27271L6.7266 3.85874L6.42844 3.57086Z" fill="#4A58EC"/>
           </svg>
         </button>
-        <button aria-label="Details of ${escapeHtml(employee.id)}" class="view-btn bg-[#FFA6001A]/10 text-yellow-700 p-1 rounded hover:bg-yellow-200 transition focus:outline-none" data-id="${employee.id}" title="Details">
-          <svg class="w-4 h-4" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5.56445 7.375C6.32384 7.375 6.93945 6.75939 6.93945 6C6.93945 5.24061 6.32384 4.625 5.56445 4.625C4.80506 4.625 4.18945 5.24061 4.18945 6C4.18945 6.75939 4.80506 7.375 5.56445 7.375Z" stroke="#FFA600" stroke-width="0.916667"/>
-            <path d="M9.31734 5.51142C9.49517 5.72775 9.58409 5.83546 9.58409 6C9.58409 6.16454 9.49517 6.27225 9.31734 6.48858C8.66651 7.27875 7.23101 8.75 5.56451 8.75C3.89801 8.75 2.46251 7.27875 1.81167 6.48858C1.63384 6.27225 1.54492 6.16454 1.54492 6C1.54492 5.83546 1.63384 5.72775 1.81167 5.51142C2.46251 4.72125 3.89801 3.25 5.56451 3.25C7.23101 3.25 8.66651 4.72125 9.31734 5.51142Z" stroke="#FFA600" stroke-width="0.916667"/>
-          </svg>
-        </button>
-      </td>
-      `;
+            </td>
+        `;
       tbody.appendChild(row);
     });
-
-    updatePagination(employees);
-    attachRowEventListeners();
   }
 
-  // Update pagination controls
-  function updatePagination(employees) {
-    const pageCount = Math.ceil(employees.length / rowsPerPage);
-    paginationNumbers.innerHTML = '';
-
-    for (let i = 1; i <= pageCount; i++) {
-      const btn = document.createElement('button');
-      btn.textContent = i;
-      btn.className = `px-3 py-1 rounded ${i === currentPage ? 'bg-[#FF5A1D] text-white' : 'text-[#333333] hover:bg-pink-100'}`;
-      btn.addEventListener('click', () => {
-        currentPage = i;
-        renderTable(currentPage, filteredEmployees);
-        prevPageBtn.disabled = currentPage === 1;
-        nextPageBtn.disabled = currentPage === pageCount;
-      });
-      paginationNumbers.appendChild(btn);
+  function updatePagination(data, page, paginationId, prevButtonId, nextButtonId) {
+    const totalPages = Math.ceil(data.length / itemsPerPage);
+    const paginationNumbers = document.getElementById(paginationId);
+    if (!paginationNumbers) {
+      console.error(`Pagination container with ID ${paginationId} not found`);
+      return;
     }
+    paginationNumbers.innerHTML = "";
 
-    prevPageBtn.disabled = currentPage === 1;
-    nextPageBtn.disabled = currentPage === pageCount;
-  }
-
-  // Toggle Select All checkbox
-  function toggleSelectAll(checkbox) {
-    const rowCheckboxes = document.querySelectorAll('.row-checkbox');
-    rowCheckboxes.forEach(cb => (cb.checked = checkbox.checked));
-  }
-
-  // Attach event listeners for Edit and Delete buttons
-  function attachRowEventListeners() {
-    document.querySelectorAll('.edit-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.getAttribute('data-id');
-        // Placeholder for edit functionality (e.g., redirect to edit page)
-        alert(`Edit employee with ID: ${id}`);
-        // Example: window.location.href = `edit-employee.html?id=${id}`;
-      });
-    });
-
-    document.querySelectorAll('.delete-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.getAttribute('data-id');
-        if (confirm(`Are you sure you want to delete employee with ID: ${id}?`)) {
-          let employees = getEmployees();
-          employees = employees.filter(emp => emp.id !== id);
-          saveEmployees(employees);
-          filteredEmployees = employees;
-          currentPage = Math.min(currentPage, Math.ceil(employees.length / rowsPerPage)) || 1;
-          renderTable(currentPage, filteredEmployees);
+    for (let i = 1; i <= totalPages; i++) {
+      const button = document.createElement("button");
+      button.textContent = i;
+      button.className = `px-3 py-1 rounded ${i === page ? 'bg-orange-200 text-orange-800' : 'hover:bg-pink-100'}`;
+      button.addEventListener("click", () => {
+        if (paginationId === "statutory-pagination-numbers") {
+          currentStatutoryPage = i;
+          populateTable("statutory-deductions-tbody", statutoryData, currentStatutoryPage);
+          updatePagination(statutoryData, currentStatutoryPage, "statutory-pagination-numbers", "statutory-prev-page", "statutory-next-page");
+        } else {
+          currentNonStatutoryPage = i;
+          populateTable("non-statutory-deductions-tbody", nonStatutoryData, currentNonStatutoryPage);
+          updatePagination(nonStatutoryData, currentNonStatutoryPage, "non-statutory-pagination-numbers", "non-statutory-prev-page", "non-statutory-next-page");
         }
       });
-    });
+      paginationNumbers.appendChild(button);
+    }
 
-    document.querySelectorAll('.view-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.getAttribute('data-id');
-        window.location.href = `employee-info-inner.html?id=${id}`;
+    const prevButton = document.getElementById(prevButtonId);
+    const nextButton = document.getElementById(nextButtonId);
+    if (prevButton) prevButton.disabled = page === 1;
+    if (nextButton) nextButton.disabled = page === totalPages;
+  }
+
+  function toggleSelectAll(checkbox, tbodyId) {
+    const checkboxes = document.querySelectorAll(`#${tbodyId} .row-checkbox`);
+    checkboxes.forEach(cb => cb.checked = checkbox.checked);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Populate statutory deductions table
+    populateTable("statutory-deductions-tbody", statutoryData, currentStatutoryPage);
+    updatePagination(statutoryData, currentStatutoryPage, "statutory-pagination-numbers", "statutory-prev-page", "statutory-next-page");
+
+    // Populate non-statutory deductions table
+    populateTable("non-statutory-deductions-tbody", nonStatutoryData, currentNonStatutoryPage);
+    updatePagination(nonStatutoryData, currentNonStatutoryPage, "non-statutory-pagination-numbers", "non-statutory-prev-page", "non-statutory-next-page");
+
+    // Statutory table pagination
+    const statutoryPrevButton = document.getElementById("statutory-prev-page");
+    const statutoryNextButton = document.getElementById("statutory-next-page");
+    if (statutoryPrevButton) {
+      statutoryPrevButton.addEventListener("click", () => {
+        if (currentStatutoryPage > 1) {
+          currentStatutoryPage--;
+          populateTable("statutory-deductions-tbody", statutoryData, currentStatutoryPage);
+          updatePagination(statutoryData, currentStatutoryPage, "statutory-pagination-numbers", "statutory-prev-page", "statutory-next-page");
+        }
       });
-    });
-  }
+    }
 
-  // Search functionality
-  function handleSearch() {
-    const query = searchInput.value.trim().toLowerCase();
-    filteredEmployees = getEmployees().filter(emp =>
-      emp.fullName.toLowerCase().includes(query)
-    );
-    currentPage = 1;
-    renderTable(currentPage, filteredEmployees);
-  }
+    if (statutoryNextButton) {
+      statutoryNextButton.addEventListener("click", () => {
+        if (currentStatutoryPage < Math.ceil(statutoryData.length / itemsPerPage)) {
+          currentStatutoryPage++;
+          populateTable("statutory-deductions-tbody", statutoryData, currentStatutoryPage);
+          updatePagination(statutoryData, currentStatutoryPage, "statutory-pagination-numbers", "statutory-prev-page", "statutory-next-page");
+        }
+      });
+    }
 
-  // Filter panel toggle (placeholder)
-  function toggleFilterPanel() {
-    // Placeholder for filter panel implementation
-    alert('Filter panel not implemented yet.');
-    // Example: Could show a modal with designation filters
-  }
+    // Non-statutory table pagination
+    const nonStatutoryPrevButton = document.getElementById("non-statutory-prev-page");
+    const nonStatutoryNextButton = document.getElementById("non-statutory-next-page");
+    if (nonStatutoryPrevButton) {
+      nonStatutoryPrevButton.addEventListener("click", () => {
+        if (currentNonStatutoryPage > 1) {
+          currentNonStatutoryPage--;
+          populateTable("non-statutory-deductions-tbody", nonStatutoryData, currentNonStatutoryPage);
+          updatePagination(nonStatutoryData, currentNonStatutoryPage, "non-statutory-pagination-numbers", "non-statutory-prev-page", "non-statutory-next-page");
+        }
+      });
+    }
 
-  // Profile dropdown toggle
-  document.getElementById('profileButton').addEventListener('click', () => {
-    const dropdown = document.getElementById('profileDropdown');
-    dropdown.classList.toggle('hidden');
-    const isExpanded = !dropdown.classList.contains('hidden');
-    document.getElementById('profileButton').setAttribute('aria-expanded', isExpanded);
-  });
+    if (nonStatutoryNextButton) {
+      nonStatutoryNextButton.addEventListener("click", () => {
+        if (currentNonStatutoryPage < Math.ceil(nonStatutoryData.length / itemsPerPage)) {
+          currentNonStatutoryPage++;
+          populateTable("non-statutory-deductions-tbody", nonStatutoryData, currentNonStatutoryPage);
+          updatePagination(nonStatutoryData, currentNonStatutoryPage, "non-statutory-pagination-numbers", "non-statutory-prev-page", "non-statutory-next-page");
+        }
+      });
+    }
 
-  // Initialize on page load
-  window.addEventListener('load', () => {
-    initializeSampleData();
-    filteredEmployees = getEmployees();
-    renderTable(currentPage, filteredEmployees);
+    // Profile dropdown toggle
+    const profileButton = document.getElementById("profileButton");
+    const profileDropdown = document.getElementById("profileDropdown");
+    const profileDropdownRoot = document.getElementById("profileDropdownRoot");
+    if (profileButton && profileDropdown && profileDropdownRoot) {
+      profileButton.addEventListener("click", () => {
+        profileDropdown.classList.toggle("hidden");
+        profileButton.setAttribute("aria-expanded", profileDropdown.classList.contains("hidden") ? "false" : "true");
+      });
 
-    // Pagination navigation
-    prevPageBtn.addEventListener('click', () => {
-      if (currentPage > 1) {
-        currentPage--;
-        renderTable(currentPage, filteredEmployees);
-      }
-    });
-
-    nextPageBtn.addEventListener('click', () => {
-      const pageCount = Math.ceil(filteredEmployees.length / rowsPerPage);
-      if (currentPage < pageCount) {
-        currentPage++;
-        renderTable(currentPage, filteredEmployees);
-      }
-    });
-
-    // Search input
-    searchInput.addEventListener('input', handleSearch);
-
-    // Add Employee button
-    addEmployeeBtn.addEventListener('click', () => {
-      window.location.href = 'add-employee.html';
-    });
-
-    // Select All checkbox
-    selectAllCheckbox.addEventListener('change', () => toggleSelectAll(selectAllCheckbox));
+      document.addEventListener("click", (event) => {
+        if (!profileDropdownRoot.contains(event.target)) {
+          profileDropdown.classList.add("hidden");
+          profileButton.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
   });
 </script>
-
 
 </body>
 </html>

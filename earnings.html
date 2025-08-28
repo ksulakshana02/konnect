@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Employee Info Inner - Konnect</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+      /* Custom scroll for sidebar if needed */
+      /* Remove focus outline on elements except keyboard */
+      :focus:not(:focus-visible) {
+          outline: none;
+      }
+
+      /* Custom orange border for active nav item */
+      .active-nav {
+          border-right: 5px solid #FFA600;
+      }
+
+      /* Navbar bottom border for active tab */
+      .active-tab {
+          border-bottom-width: 2px;
+          border-bottom-color: #FF5C00;
+          color: #374151;
+          font-weight: 600;
+      }
+
+      /* subtle icon scaling on hover */
+      .icon-hover:hover {
+          transform: scale(1.05);
+          transition: transform 0.15s ease-in-out;
+      }
+  </style>
+</head>
+<body class="bg-[#F6F6F8] text-slate-800 font-sans relative min-h-screen flex flex-col">
+
+<!-- MAIN WRAPPER -->
+<div class="flex flex-1 min-h-[100svh]">
+
+  <aside
+    class="bg-[#F6F6F8] w-72 flex flex-col shadow-md select-none z-10 border-r-[2px] border-[#E8E9EB]"
+    aria-label="Sidebar Navigation"
+  >
+    <div class="px-16 py-8 flex items-center gap-2">
+      <img src="./logo.png" alt="logo" class="" />
+    </div>
+    <nav class="flex flex-col flex-grow py-4 pl-4 space-y-2 text-gray-700">
+      <button
+        class="active-nav flex items-center gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
+        aria-current="page"
+      >
+        <svg class="w-5 h-5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M2.33602 1.78427H9.64088C10.0698 1.78427 10.418 2.13242 10.418 2.56139V8.00118C10.418 8.16606 10.4835 8.32419 10.6001 8.44078C10.7167 8.55737 10.8748 8.62287 11.0397 8.62287H13.371C13.8 8.62287 14.1481 8.97102 14.1481 9.39998V16.7048H12.2831V14.5289C12.2831 14.2816 12.1848 14.0444 12.0099 13.8695C11.835 13.6946 11.5979 13.5964 11.3505 13.5964H4.51194C4.26461 13.5964 4.02742 13.6946 3.85253 13.8695C3.67765 14.0444 3.5794 14.2816 3.5794 14.5289V16.7048H1.71433V2.40596C1.71433 2.24108 1.77983 2.08295 1.89642 1.96636C2.01301 1.84977 2.17114 1.78427 2.33602 1.78427ZM11.0397 16.7048H8.55292V14.8398H11.0397V16.7048ZM7.30954 16.7048H4.82278V14.8398H7.30954V16.7048ZM14.7698 17.9482C14.9347 17.9482 15.0928 17.8827 15.2094 17.7661C15.326 17.6495 15.3915 17.4914 15.3915 17.3265V9.39998C15.3915 9.13465 15.3393 8.87191 15.2377 8.62677C15.1362 8.38164 14.9873 8.1589 14.7997 7.97128C14.6121 7.78366 14.3894 7.63483 14.1442 7.53329C13.8991 7.43175 13.6364 7.37949 13.371 7.37949H11.6614V2.56139C11.6614 2.29605 11.6091 2.03332 11.5076 1.78818C11.406 1.54304 11.2572 1.3203 11.0696 1.13268C10.882 0.945062 10.6592 0.796234 10.4141 0.694694C10.169 0.593155 9.90622 0.540894 9.64088 0.540894H2.33602C1.84137 0.540894 1.36698 0.737392 1.01721 1.08716C0.667445 1.43693 0.470947 1.91132 0.470947 2.40596V17.3265C0.470947 17.4914 0.536447 17.6495 0.653036 17.7661C0.769626 17.8827 0.927755 17.9482 1.09264 17.9482H14.7698ZM4.51194 5.51442C4.75926 5.51442 4.99645 5.41617 5.17134 5.24128C5.34622 5.0664 5.44447 4.82921 5.44447 4.58188C5.44447 4.33456 5.34622 4.09736 5.17134 3.92248C4.99645 3.74759 4.75926 3.64935 4.51194 3.64935C4.26461 3.64935 4.02742 3.74759 3.85253 3.92248C3.67765 4.09736 3.5794 4.33456 3.5794 4.58188C3.5794 4.82921 3.67765 5.0664 3.85253 5.24128C4.02742 5.41617 4.26461 5.51442 4.51194 5.51442ZM4.51194 8.62287C4.75926 8.62287 4.99645 8.52462 5.17134 8.34974C5.34622 8.17485 5.44447 7.93766 5.44447 7.69033C5.44447 7.44301 5.34622 7.20582 5.17134 7.03093C4.99645 6.85605 4.75926 6.7578 4.51194 6.7578C4.26461 6.7578 4.02742 6.85605 3.85253 7.03093C3.67765 7.20582 3.5794 7.44301 3.5794 7.69033C3.5794 7.93766 3.67765 8.17485 3.85253 8.34974C4.02742 8.52462 4.26461 8.62287 4.51194 8.62287ZM5.44447 10.7988C5.44447 11.0461 5.34622 11.2833 5.17134 11.4582C4.99645 11.6331 4.75926 11.7313 4.51194 11.7313C4.26461 11.7313 4.02742 11.6331 3.85253 11.4582C3.67765 11.2833 3.5794 11.0461 3.5794 10.7988C3.5794 10.5515 3.67765 10.3143 3.85253 10.1394C4.02742 9.9645 4.26461 9.86625 4.51194 9.86625C4.75926 9.86625 4.99645 9.9645 5.17134 10.1394C5.34622 10.3143 5.44447 10.5515 5.44447 10.7988ZM7.62039 5.51442C7.86771 5.51442 8.10491 5.41617 8.27979 5.24128C8.45467 5.0664 8.55292 4.82921 8.55292 4.58188C8.55292 4.33456 8.45467 4.09736 8.27979 3.92248C8.10491 3.74759 7.86771 3.64935 7.62039 3.64935C7.37306 3.64935 7.13587 3.74759 6.96099 3.92248C6.7861 4.09736 6.68785 4.33456 6.68785 4.58188C6.68785 4.82921 6.7861 5.0664 6.96099 5.24128C7.13587 5.41617 7.37306 5.51442 7.62039 5.51442ZM8.55292 7.69033C8.55292 7.93766 8.45467 8.17485 8.27979 8.34974C8.10491 8.52462 7.86771 8.62287 7.62039 8.62287C7.37306 8.62287 7.13587 8.52462 6.96099 8.34974C6.7861 8.17485 6.68785 7.93766 6.68785 7.69033C6.68785 7.44301 6.7861 7.20582 6.96099 7.03093C7.13587 6.85605 7.37306 6.7578 7.62039 6.7578C7.86771 6.7578 8.10491 6.85605 8.27979 7.03093C8.45467 7.20582 8.55292 7.44301 8.55292 7.69033ZM7.62039 11.7313C7.86771 11.7313 8.10491 11.6331 8.27979 11.4582C8.45467 11.2833 8.55292 11.0461 8.55292 10.7988C8.55292 10.5515 8.45467 10.3143 8.27979 10.1394C8.10491 9.9645 7.86771 9.86625 7.62039 9.86625C7.37306 9.86625 7.13587 9.9645 6.96099 10.1394C6.7861 10.3143 6.68785 10.5515 6.68785 10.7988C6.68785 11.0461 6.7861 11.2833 6.96099 11.4582C7.13587 11.6331 7.37306 11.7313 7.62039 11.7313ZM11.6614 10.7988C11.6614 11.0461 11.5631 11.2833 11.3882 11.4582C11.2134 11.6331 10.9762 11.7313 10.7288 11.7313C10.4815 11.7313 10.2443 11.6331 10.0694 11.4582C9.89455 11.2833 9.7963 11.0461 9.7963 10.7988C9.7963 10.5515 9.89455 10.3143 10.0694 10.1394C10.2443 9.9645 10.4815 9.86625 10.7288 9.86625C10.9762 9.86625 11.2134 9.9645 11.3882 10.1394C11.5631 10.3143 11.6614 10.5515 11.6614 10.7988Z"
+            fill="white" />
+        </svg>
+        Companies
+      </button>
+      <button
+        class="flex items-center gap-3 text-[#556476] px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+      >
+        <svg class="w-5 h-5 text-[#556476]" width="21" height="20" viewBox="0 0 21 20" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_293_1885)">
+            <path
+              d="M1.60583 19.3317H20.2565M15.8475 19.3317H6.01486L4.73667 13.5549C4.70859 13.4297 4.70631 13.3001 4.72997 13.174C4.75363 13.0478 4.80273 12.9278 4.87427 12.8213C4.93916 12.7216 5.02747 12.6392 5.13149 12.5814C5.23552 12.5236 5.35211 12.4921 5.47109 12.4897H16.3913C16.5103 12.4921 16.6269 12.5236 16.7309 12.5814C16.8349 12.6392 16.9232 12.7216 16.9881 12.8213C17.0597 12.9278 17.1088 13.0478 17.1324 13.174C17.1561 13.3001 17.1538 13.4297 17.1257 13.5549L15.8475 19.3317Z"
+              stroke="#556476" stroke-width="1.24338" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M7.98438 2.36365C8.51395 2.91279 9.14875 3.34959 9.85088 3.64796C10.553 3.94633 11.3081 4.10015 12.071 4.10024C12.8443 4.10024 13.6094 3.94274 14.3198 3.6377M9.68781 15.6015C9.68781 15.9313 9.81881 16.2475 10.052 16.4807C10.2852 16.7139 10.6014 16.8449 10.9312 16.8449C11.261 16.8449 11.5772 16.7139 11.8104 16.4807C12.0436 16.2475 12.1746 15.9313 12.1746 15.6015C12.1746 15.2717 12.0436 14.9555 11.8104 14.7223C11.5772 14.4891 11.261 14.3581 10.9312 14.3581C10.6014 14.3581 10.2852 14.4891 10.052 14.7223C9.81881 14.9555 9.68781 15.2717 9.68781 15.6015Z"
+              stroke="#556476" stroke-width="1.24338" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M15.0758 10.628C14.5566 10.0409 13.9187 9.57088 13.2042 9.24895C12.4897 8.92702 11.7149 8.76054 10.9312 8.76054C10.1475 8.76054 9.37279 8.92702 8.65829 9.24895C7.94378 9.57088 7.30581 10.0409 6.78662 10.628M7.51193 4.10021C7.51193 5.00706 7.87217 5.87677 8.51342 6.51801C9.15466 7.15926 10.0244 7.5195 10.9312 7.5195C11.8381 7.5195 12.7078 7.15926 13.349 6.51801C13.9903 5.87677 14.3505 5.00706 14.3505 4.10021C14.3505 3.19335 13.9903 2.32364 13.349 1.6824C12.7078 1.04115 11.8381 0.680908 10.9312 0.680908C10.0244 0.680908 9.15466 1.04115 8.51342 1.6824C7.87217 2.32364 7.51193 3.19335 7.51193 4.10021Z"
+              stroke="#556476" stroke-width="1.24338" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <defs>
+            <clipPath id="clip0_293_1885">
+              <rect width="19.8941" height="19.8941" fill="white" transform="translate(0.984131 0.0592041)" />
+            </clipPath>
+          </defs>
+        </svg>
+
+        All Employees
+      </button>
+      <button
+        class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+      >
+        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M17.4689 11.2082L18.5929 12.2091C18.8005 12.3823 18.9392 12.6241 18.9839 12.8907C19.0286 13.1574 18.9764 13.4312 18.8366 13.6626L17.4814 15.9778C17.3762 16.155 17.2261 16.3013 17.0462 16.4018C16.8642 16.5025 16.6598 16.5559 16.4518 16.5572C16.3228 16.558 16.1944 16.5387 16.0714 16.5L14.6328 16.025C14.3808 16.1867 14.1188 16.3313 13.847 16.459L13.5448 17.9175C13.4889 18.1858 13.3395 18.4255 13.1233 18.5939C12.9044 18.7653 12.6329 18.8558 12.3549 18.85H9.54858C9.27058 18.8558 8.99912 18.7653 8.78017 18.5939C8.56442 18.4253 8.4155 18.1856 8.35991 17.9175L8.05653 16.459C7.7882 16.3296 7.52787 16.1843 7.27693 16.0238L5.83336 16.5C5.71027 16.5387 5.58191 16.558 5.45289 16.5572C5.24531 16.5557 5.04142 16.5023 4.85979 16.4018C4.68005 16.3016 4.52993 16.1558 4.42461 15.979L3.02083 13.6626C2.8749 13.4291 2.81913 13.1504 2.864 12.8787C2.90886 12.607 3.05127 12.3609 3.26454 12.1867L4.38731 10.768V10.3279L3.26329 9.32695C3.05573 9.15374 2.91704 8.91193 2.87233 8.64531C2.82763 8.37869 2.87987 8.10487 3.01959 7.87343L4.42337 5.55826C4.52851 5.38104 4.67865 5.23476 4.85855 5.13427C5.04017 5.03376 5.24407 4.98033 5.45164 4.97884C5.5795 4.97078 5.70784 4.98252 5.83212 5.01366L7.24709 5.51101C7.49991 5.34937 7.76184 5.20472 8.0329 5.07707L8.33629 3.61859C8.39187 3.35047 8.5408 3.11078 8.75655 2.94219C8.9755 2.77078 9.24695 2.6803 9.52496 2.68605H12.3076C12.5856 2.6803 12.8571 2.77078 13.0761 2.94219C13.2936 3.11253 13.4429 3.3525 13.4963 3.61859L13.7997 5.07707C14.0691 5.20555 14.329 5.35061 14.5793 5.51225L16.0241 5.03728C16.1845 4.98512 16.3539 4.9668 16.5217 4.9835C16.6895 5.00019 16.852 5.05153 16.9989 5.13427C17.1792 5.23622 17.3284 5.38294 17.4341 5.55702L18.8366 7.87343C18.9845 8.10498 19.0431 8.38243 19.0015 8.65401C18.9599 8.92559 18.8208 9.17273 18.6103 9.34933L17.4689 10.3217V11.2082Z"
+            stroke="#556476" stroke-width="1.24338" />
+          <path
+            d="M14.0397 10.768C14.0397 11.5924 13.7122 12.3831 13.1292 12.966C12.5463 13.549 11.7556 13.8765 10.9312 13.8765C10.1068 13.8765 9.31615 13.549 8.7332 12.966C8.15025 12.3831 7.82275 11.5924 7.82275 10.768C7.82275 9.94359 8.15025 9.15294 8.7332 8.56999C9.31615 7.98704 10.1068 7.65955 10.9312 7.65955C11.7556 7.65955 12.5463 7.98704 13.1292 8.56999C13.7122 9.15294 14.0397 9.94359 14.0397 10.768Z"
+            stroke="#556476" stroke-width="1.24338" />
+        </svg>
+        Settings
+      </button>
+    </nav>
+  </aside>
+
+  <!-- PAGE CONTENT -->
+  <main class="flex flex-col flex-1 min-h-screen bg-[#F6F6F8] rounded-lg overflow-hidden">
+
+    <header class="flex justify-between items-center border-b-[2px] border-[#E8E9EB] px-6 py-6 bg-white">
+      <div class="w-96">
+        <label for="search" class="sr-only">Search</label>
+        <div class="relative">
+          <input id="search" type="search" placeholder="Search"
+                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
+          <svg width="15" height="15" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" viewBox="0 0 15 15"
+               fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10.2779 10.2078L11.9728 11.9027M11.4374 7.22504C11.4374 8.31969 11.0025 9.3695 10.2285 10.1435C9.45447 10.9176 8.40465 11.3524 7.31 11.3524C6.21535 11.3524 5.16553 10.9176 4.3915 10.1435C3.61747 9.3695 3.18262 8.31969 3.18262 7.22504C3.18262 6.13039 3.61747 5.08057 4.3915 4.30654C5.16553 3.5325 6.21535 3.09766 7.31 3.09766C8.40465 3.09766 9.45447 3.5325 10.2285 4.30654C11.0025 5.08057 11.4374 6.13039 11.4374 7.22504Z"
+              stroke="#556476" stroke-width="1.32076" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <!-- Notification bell -->
+        <button aria-label="Notifications" class="relative">
+          <svg class="h-6 w-6 text-gray-600 hover:text-orange-500 transition-colors" width="22" height="22"
+               viewBox="0 0 22 22" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M5.65921 17.1039V9.17929C5.65921 7.77814 6.21582 6.43437 7.20658 5.44361C8.19734 4.45285 9.54111 3.89624 10.9423 3.89624C12.3434 3.89624 13.6872 4.45285 14.6779 5.44361C15.6687 6.43437 16.2253 7.77814 16.2253 9.17929V17.1039M5.65921 17.1039H16.2253M5.65921 17.1039H3.89819M16.2253 17.1039H17.9863M10.0618 19.7454H11.8228"
+              stroke="#556476" stroke-width="0.880508" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M10.9423 3.89621C11.4286 3.89621 11.8228 3.50199 11.8228 3.0157C11.8228 2.52941 11.4286 2.13519 10.9423 2.13519C10.456 2.13519 10.0618 2.52941 10.0618 3.0157C10.0618 3.50199 10.456 3.89621 10.9423 3.89621Z"
+              stroke="#556476" stroke-width="0.880508" />
+          </svg>
+          <span class="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-orange-400"></span>
+        </button>
+
+        <!-- Profile dropdown -->
+        <div class="relative" id="profileDropdownRoot">
+          <button
+            id="profileButton" aria-haspopup="true" aria-expanded="false"
+            class="flex items-center gap-2 bg-[#FF5A1D33] hover:bg-orange-200 rounded-full px-3 py-1 text-[#556476] font-normal focus:outline-none focus:ring-2 focus:ring-orange-300"
+            aria-label="User menu David Johnson"
+          >
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/53b9f3e6-dff9-48bb-a8a3-01614eca485a.png"
+              alt="Profile photo of David Johnson with curly dark hair and friendly smile"
+              class="w-8 h-8 rounded-full object-cover"
+              onerror="this.onerror=null; this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fc3ddb6e-d228-4871-8bd1-eea86e0be643.png';"
+            />
+            <span class="text-sm">David Johnson</span>
+            <svg
+              class="w-3 h-3 text-orange-700"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div id="profileDropdown"
+               class="hidden absolute right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Profile</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Settings</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PAGE INNER -->
+    <!--    <div class="flex flex-col flex-1 p-6 overflow-auto max-h-[calc(100vh-79px)]">-->
+    <div class="flex-1 overflow-y-auto ">
+      <!-- Breadcrumb -->
+      <div class="max-w-7xl mx-auto space-y-7 p-8">
+        <!-- Breadcrumb and Title -->
+        <header aria-label="Company Name and breadcrumb" class="mb-4">
+          <h1 class="text-[#172635] font-bold text-xl">Tech Innovations Inc.</h1>
+          <nav class="mt-1 text-[17px] font-medium text-[#556476] flex flex-wrap items-center gap-1 select-none"
+               aria-label="Breadcrumb">
+            <span>Companies</span>
+            <svg class="w-3 h-3 inline mx-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <span>Earnings</span>
+            <svg class="w-3 h-3 inline mx-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <span class="text-[#172635]">Add Earnings</span>
+          </nav>
+          <nav class="mt-6 flex space-x-6 border-b border-[#E8E9EB] pb-2 text-sm text-[#556476]">
+            <button class="hover:text-orange-600 focus:outline-none">Company Info</button>
+            <button class="hover:text-orange-600 focus:outline-none">Employee Info</button>
+            <button class="border-b-2 border-[#FF5A1D] mb-[-10px] pb-1 focus:outline-none">Earnings</button>
+            <button class="hover:text-orange-600 focus:outline-none">Deductions</button>
+            <button class="hover:text-orange-600 focus:outline-none">Reports</button>
+            <button class="hover:text-orange-600 focus:outline-none">Uploads</button>
+            <button class="hover:text-orange-600 focus:outline-none">Templates</button>
+            <button class="hover:text-orange-600 focus:outline-none">Settings</button>
+          </nav>
+        </header>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <!--      <nav aria-label="Sub navigation" class="mb-8 border-b border-gray-300 text-sm font-medium text-gray-600 select-none">-->
+      <!--        <ul role="tablist" class="flex space-x-6">-->
+      <!--          <li role="presentation"><button role="tab" aria-selected="false" tabindex="-1" class="pb-3 border-b-2 border-transparent hover:border-orange-500 hover:text-orange-600 transition">Company Info</button></li>-->
+      <!--          <li role="presentation"><button role="tab" aria-selected="false" tabindex="-1" class="pb-3 border-b-2 border-transparent hover:border-orange-500 hover:text-orange-600 transition">Employee Info</button></li>-->
+      <!--          <li role="presentation"><button role="tab" aria-selected="true" tabindex="0" class="pb-3 border-b-2 border-orange-500 text-orange-600 transition">Earnings</button></li>-->
+      <!--          <li role="presentation"><button role="tab" aria-selected="false" tabindex="-1" class="pb-3 border-b-2 border-transparent hover:border-orange-500 hover:text-orange-600 transition">Deductions</button></li>-->
+      <!--          <li role="presentation"><button role="tab" aria-selected="false" tabindex="-1" class="pb-3 border-b-2 border-transparent hover:border-orange-500 hover:text-orange-600 transition">Reports</button></li>-->
+      <!--          <li role="presentation"><button role="tab" aria-selected="false" tabindex="-1" class="pb-3 border-b-2 border-transparent hover:border-orange-500 hover:text-orange-600 transition">Uploads</button></li>-->
+      <!--          <li role="presentation"><button role="tab" aria-selected="false" tabindex="-1" class="pb-3 border-b-2 border-transparent hover:border-orange-500 hover:text-orange-600 transition">Templates</button></li>-->
+      <!--          <li role="presentation"><button role="tab" aria-selected="false" tabindex="-1" class="pb-3 border-b-2 border-transparent hover:border-orange-500 hover:text-orange-600 transition">Settings</button></li>-->
+      <!--        </ul>-->
+      <!--      </nav>-->
+
+      <!-- Pages Container -->
+      <section class="flex flex-col space-y-8 flex-1 px-10" id="pageContainer">
+        <!-- Page 1: Add Earning Basic Information -->
+        <article id="page1" class="hidden">
+          <form id="basicInfoForm" class="bg-white rounded-lg p-6 shadow min-w-full max-w-4xl">
+            <h2 class="text-[#FF5A1D] font-bold text-base mb-6">Basic Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="flex flex-col">
+                <label for="earningName" class="block text-sm text-[#556476] font-medium mb-3 select-none">Name</label>
+                <input type="text" id="earningName" name="earningName" placeholder="Name"
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+              <div class="flex flex-col md:col-span-1">
+                <label for="earningStatus"
+                       class="block text-sm text-[#556476] font-medium mb-3 select-none">Status</label>
+                <select id="earningStatus" name="earningStatus"
+                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+                  <option>Active</option>
+                  <option>Inactive</option>
+                </select>
+              </div>
+              <!--              <div class="flex flex-col md:col-span-1">-->
+              <!--                <label class="text-sm text-gray-600 mb-1 select-none">Effective From</label>-->
+              <!--                <input id="earningEffective" name="earningEffective" type="date" class="rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-orange-400" />-->
+              <!--              </div>-->
+            </div>
+            <fieldset class="mt-5">
+              <legend class="block text-sm text-[#556476] font-medium mb-3 select-none">Include</legend>
+              <div class="flex gap-10">
+                <label class="inline-flex items-center gap-3 cursor-pointer select-none">
+                  <input type="checkbox" name="include" value="EPF"
+                         class="form-checkbox rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none" />
+                  <span class="text-[#172635] text-[15px] font-medium select-none">EPF</span>
+                </label>
+                <label class="inline-flex items-center gap-3 cursor-pointer select-none">
+                  <input type="checkbox" name="include" value="ETF"
+                         class="form-checkbox rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none" />
+                  <span class="text-[#172635] text-[15px] font-medium select-none">ETF</span>
+                </label>
+                <label class="inline-flex items-center gap-3 cursor-pointer select-none">
+                  <input type="checkbox" name="include" value="APIT"
+                         class="form-checkbox rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none" />
+                  <span class="text-[#172635] text-[15px] font-medium select-none">APIT</span>
+                </label>
+              </div>
+            </fieldset>
+          </form>
+        </article>
+
+        <!-- Page 2: Values Table -->
+        <article id="page2" class="hidden max-w-full">
+          <div class="bg-white rounded-lg p-6 shadow min-w-full max-w-4xl">
+            <div class="flex justify-between items-center mb-4">
+              <h2 class="text-[#FF5A1D] font-bold text-base mb-6">Values</h2>
+              <div class="flex gap-3 items-center">
+                <button
+                  id="search-btn"
+                  aria-label="Search companies"
+                  class="flex items-center gap-3 px-4 py-2 text-xs border border-2 border-[#E8E9EB] rounded-md text-[#172635] hover:text-blue-600 transition focus:outline-none"
+                >
+                  <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M10.4606 10.4167L12.7939 12.75M2.29395 6.91667C2.29395 8.15434 2.78561 9.34133 3.66078 10.2165C4.53595 11.0917 5.72293 11.5833 6.96061 11.5833C8.19829 11.5833 9.38527 11.0917 10.2604 10.2165C11.1356 9.34133 11.6273 8.15434 11.6273 6.91667C11.6273 5.67899 11.1356 4.492 10.2604 3.61684C9.38527 2.74167 8.19829 2.25 6.96061 2.25C5.72293 2.25 4.53595 2.74167 3.66078 3.61684C2.78561 4.492 2.29395 5.67899 2.29395 6.91667Z"
+                      stroke="#172635" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Search
+                </button>
+                <!--                <button id="btnAddValue" class="inline-flex items-center rounded-md bg-orange-500 px-4 py-1.5 text-white text-sm font-semibold hover:bg-orange-600 transition select-none" type="button" aria-label="Add new value">-->
+                <!--                  + Value-->
+                <!--                </button>-->
+                <button
+                  id="btnAddValue"
+                  hidden
+                  class="flex items-center gap-3 px-4 py-2 text-xs border border-2 border-[#E8E9EB] bg-[#FF5A1D] rounded-md text-white hover:bg-orange-600 transition focus:outline-none"
+                >
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.625 9.375H4.5V8.625H8.625V4.5H9.375V8.625H13.5V9.375H9.375V13.5H8.625V9.375Z"
+                          fill="white" />
+                  </svg>
+                  Value
+                </button>
+              </div>
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto border border-[#E8E9EB] rounded-lg">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead
+                  class="bg-[#FF5A1D33]/20 text-[#556476] text-xs font-normal sticky top-0 z-10 font-normal select-none">
+                <tr class="bg-[#FBCBC1] text-[#556476]">
+                  <th scope="col" rowspan="2" class="px-3 py-3 bg-[#FF5A1D33]/20 font-normal text-left">
+                    <input type="checkbox"
+                           class="rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none"
+                           aria-label="Select all values" disabled />
+                  </th>
+                  <th scope="col" rowspan="2" class="px-6 py-3 text-left bg-[#FF5A1D33]/20 font-normal">Value Name</th>
+                  <th scope="col" rowspan="2" class="px-6 py-3 text-left bg-[#FF5A1D33]/20 font-normal">Status</th>
+                  <th scope="col" rowspan="2" class="px-6 py-3 text-left bg-[#FF1D1D33]/20 font-normal">Formula/Value
+                  </th>
+                  <th scope="col" colspan="3" class="px-6 py-3 text-center text-[#556476] bg-[#FFA6001A]/10 font-bold">
+                    Allocation
+                  </th>
+                  <th scope="col" rowspan="2" class="px-6 py-3 text-left bg-[#FF5A1D33]/20 font-normal">Action</th>
+                </tr>
+                <tr class="bg-[#FFE5DB] text-[#556476] select-none">
+                  <!--                  <th aria-hidden="true"></th>-->
+                  <!--                  <th aria-hidden="true"></th>-->
+                  <!--                  <th aria-hidden="true"></th>-->
+                  <!--                  <th aria-hidden="true"></th>-->
+                  <th class="px-5 py-3 text-left bg-[#F59E0B33]/20 font-normal">Grade</th>
+                  <th class="px-5 py-3 text-left bg-[#F59E0B33]/20 font-normal">Designation</th>
+                  <th class="px-5 py-3 text-left bg-[#F59E0B33]/20 font-normal">Individual</th>
+                  <!--                  <th aria-hidden="true"></th>-->
+                </tr>
+                </thead>
+                <tbody id="valuesTableBody" class="bg-white">
+                <!-- Rows to be generated dynamically -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Pagination" class="mt-6 flex justify-center space-x-2 select-none">
+              <button id="prevPageBtn" disabled class="px-3 py-1 text-gray-400 cursor-not-allowed">Prev</button>
+              <div id="paginationNumbers" class="flex gap-1"></div>
+              <button id="nextPageBtn" class="px-3 py-1 text-gray-500 hover:text-orange-500 cursor-pointer transition">
+                Next
+              </button>
+            </nav>
+          </div>
+        </article>
+
+        <!-- Page 3: Add Value -->
+        <article id="page3" class="hidden max-w-full">
+          <form id="addValueForm" class="min-w-full max-w-4xl grid gap-6">
+
+            <!-- Breadcrumb addendum -->
+            <script>
+              // JS will update breadcrumb "Add Value" text when navigating here
+            </script>
+
+            <section aria-labelledby="sectionAddValueTitle" class="space-y-4 bg-white rounded-lg p-6 border border-[#E8E9EB]">
+              <h2 id="sectionAddValueTitle" class="text-[#FF5A1D] font-bold text-base mb-6 select-none">Value
+                Allocation</h2>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <label for="valueNameInput" class="block text-sm text-[#556476] font-medium mb-3 select-none">Value
+                    Name</label>
+                  <input type="text" id="valueNameInput" name="valueName" placeholder="Value Name"
+                         class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                </div>
+                <div>
+                  <label for="valueStatusSelect" class="block text-sm text-[#556476] font-medium mb-3 select-none">Status</label>
+                  <select id="valueStatusSelect" name="valueStatus"
+                          class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+                    <option>Active</option>
+                    <option>Inactive</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="variableNameInput" class="block text-sm text-[#556476] font-medium mb-3 select-none">Variable
+                    Name</label>
+                  <input type="text" id="variableNameInput" name="variableName" placeholder="Variable Name"
+                         class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                </div>
+                <div>
+                  <label for="gradeInput"
+                         class="block text-sm text-[#556476] font-medium mb-3 select-none">Grade</label>
+                  <div class="relative">
+                    <input type="text" id="gradeInput" name="grade" placeholder="Grade"
+                           class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                    <!--                    <svg width="15" height="15" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" viewBox="0 0 15 15"-->
+                    <!--                         fill="none" xmlns="http://www.w3.org/2000/svg">-->
+                    <!--                      <path-->
+                    <!--                        d="M10.2779 10.2078L11.9728 11.9027M11.4374 7.22504C11.4374 8.31969 11.0025 9.3695 10.2285 10.1435C9.45447 10.9176 8.40465 11.3524 7.31 11.3524C6.21535 11.3524 5.16553 10.9176 4.3915 10.1435C3.61747 9.3695 3.18262 8.31969 3.18262 7.22504C3.18262 6.13039 3.61747 5.08057 4.3915 4.30654C5.16553 3.5325 6.21535 3.09766 7.31 3.09766C8.40465 3.09766 9.45447 3.5325 10.2285 4.30654C11.0025 5.08057 11.4374 6.13039 11.4374 7.22504Z"-->
+                    <!--                        stroke="#556476" stroke-width="1.32076" stroke-linecap="round" stroke-linejoin="round" />-->
+                    <!--                    </svg>-->
+                  </div>
+                </div>
+                <div>
+                  <label for="designationInput" class="block text-sm text-[#556476] font-medium mb-3 select-none">Designation</label>
+                  <input type="text" id="designationInput" name="designation" placeholder="Designation"
+                         class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                </div>
+                <div>
+                  <label for="individualInput" class="block text-sm text-[#556476] font-medium mb-3 select-none">Individual</label>
+                  <input type="text" id="individualInput" name="individual" placeholder="Individual"
+                         class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                </div>
+              </div>
+              <div>
+                <div class="flex flex-row items-center justify-between mb-2">
+                  <label for="btnSearchCategories" class="block text-sm text-[#556476] font-medium mb-3 select-none">Individual</label>
+                  <button
+                    id="btnSearchCategories"
+                    aria-label="Search companies"
+                    class="flex items-center gap-3 px-2 py-1.5 text-xs border border-2 border-[#E8E9EB] rounded-md text-[#172635] hover:text-blue-600 transition focus:outline-none"
+                    onclick="document.getElementById('search-company').focus()"
+                  >
+                    <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M10.4606 10.4167L12.7939 12.75M2.29395 6.91667C2.29395 8.15434 2.78561 9.34133 3.66078 10.2165C4.53595 11.0917 5.72293 11.5833 6.96061 11.5833C8.19829 11.5833 9.38527 11.0917 10.2604 10.2165C11.1356 9.34133 11.6273 8.15434 11.6273 6.91667C11.6273 5.67899 11.1356 4.492 10.2604 3.61684C9.38527 2.74167 8.19829 2.25 6.96061 2.25C5.72293 2.25 4.53595 2.74167 3.66078 3.61684C2.78561 4.492 2.29395 5.67899 2.29395 6.91667Z"
+                        stroke="#172635" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Search
+                  </button>
+                </div>
+                <div class="border border-[2px] border-[#E8E9EB] rounded-md p-3 min-h-[60px] flex items-center space-x-2 flex-wrap"
+                     aria-live="polite" aria-label="Added Categories and Individuals">
+                  <p class="text-gray-500 select-none">No categories or individuals added.</p>
+                  <!-- Dynamic added tags appear here -->
+                </div>
+              </div>
+<!--              <div class="w-full flex justify-end mt-1">-->
+<!--                <button type="button" id="btnSearchCategories"-->
+<!--                        class="flex items-center text-gray-600 bg-[#FFE5DB] px-3 py-1 rounded-md text-sm gap-1 focus:outline-none focus:ring-2 focus:ring-orange-400"-->
+<!--                        aria-label="Search Categories and Individuals">-->
+<!--                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"-->
+<!--                       aria-hidden="true" xmlns="http://www.w3.org/2000/svg">-->
+<!--                    <circle cx="11" cy="11" r="7"></circle>-->
+<!--                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>-->
+<!--                  </svg>-->
+<!--                  Search-->
+<!--                </button>-->
+<!--              </div>-->
+            </section>
+
+            <!-- Note Section -->
+            <section aria-labelledby="sectionNoteTitle"
+                     class="border border-[#FF8C8C] rounded-lg p-4 bg-white text-sm text-gray-800 select-none bg-white rounded-lg p-6 shadow">
+              <h3 id="sectionNoteTitle" class="text-[#FF5A1D] font-bold text-base mb-2">Note</h3>
+              <p class="text-[#556476] font-medium text-sm">
+                Select how you'd like to assign this value, either use a formula or fix value for all users or enter
+                individual values manually.
+              </p>
+              <div class="mt-3 flex gap-8">
+                <label class="inline-flex items-center cursor-pointer">
+                  <input type="radio" name="assignmentMethod" value="formula" checked
+                         class="form-radio text-orange-500 accent-[#FF5A1D]" />
+                  <span class="ml-3 text-black font-medium">Formula</span>
+                </label>
+                <label class="inline-flex items-center cursor-pointer">
+                  <input type="radio" name="assignmentMethod" value="individual" class="form-radio text-orange-500 accent-[#FF5A1D]" />
+                  <span class="ml-3 text-black font-medium">Individual Values</span>
+                </label>
+              </div>
+            </section>
+
+            <!-- Formula Section -->
+            <section aria-labelledby="sectionFormulaTitle" class="space-y-3 bg-white rounded-lg p-6 border border-[#E8E9EB] mb-3">
+              <h3 id="sectionFormulaTitle" class="text-[#FF5A1D] font-bold text-base mb-2">Formula</h3>
+              <div class="flex flex-row justify-between items-center">
+              <label class="inline-flex items-center gap-3 cursor-pointer select-none">
+                <input type="checkbox" id="fixValueCheckbox"
+                       class="form-checkbox rounded border-gray-300 accent-[#FF5A1D] text-orange-500 focus:ring-orange-400" />
+                <span class="text-[15px] text-black font-medium">Fix Value</span>
+              </label>
+
+              <div class="flex items-center gap-2 text-[15px] text-[#172635] select-none font-semibold">
+                <button type="button" data-op="x"
+                        class="w-7 h-7 rounded-md bg-[#FF5A1D33]/20 hover:bg-[#fac4ab] transition focus:outline-none focus:ring-2 focus:ring-orange-400">
+                  x
+                </button>
+                <button type="button" data-op="/"
+                        class="w-7 h-7 rounded-md bg-[#FF5A1D33]/20 hover:bg-[#fac4ab] transition focus:outline-none focus:ring-2 focus:ring-orange-400">
+                  ÷
+                </button>
+                <button type="button" data-op="+"
+                        class="w-7 h-7 rounded-md bg-[#FF5A1D33]/20 hover:bg-[#fac4ab] transition focus:outline-none focus:ring-2 focus:ring-orange-400">
+                  +
+                </button>
+                <button type="button" data-op="-"
+                        class="w-7 h-7 rounded-md bg-[#FF5A1D33]/20 hover:bg-[#fac4ab] transition focus:outline-none focus:ring-2 focus:ring-orange-400">
+                  -
+                </button>
+                <button type="button" data-op="%"
+                        class="w-7 h-7 rounded-md bg-[#FF5A1D33]/20 hover:bg-[#fac4ab] transition focus:outline-none focus:ring-2 focus:ring-orange-400">
+                  %
+                </button>
+                <button type="button" data-op="("
+                        class="w-7 h-7 rounded-md bg-[#FF5A1D33]/20 hover:bg-[#fac4ab] transition focus:outline-none focus:ring-2 focus:ring-orange-400">
+                  (
+                </button>
+                <button type="button" data-op=")"
+                        class="w-7 h-7 rounded-md bg-[#FF5A1D33]/20 hover:bg-[#fac4ab] transition focus:outline-none focus:ring-2 focus:ring-orange-400">
+                  )
+                </button>
+              </div>
+              </div>
+
+              <div class="relative rounded-md border border-gray-300 p-1 min-h-[80px] bg-white overflow-hidden">
+                <div id="formulaTags" class="flex flex-wrap gap-1 px-1 py-2 overflow-x-auto max-w-full scrollbar-thin"
+                     tabindex="0" aria-label="Formula value expressions" role="textbox" contenteditable="true"
+                     spellcheck="false" aria-multiline="true"></div>
+                <input type="hidden" id="formulaInputHidden" name="formulaInput" />
+              </div>
+            </section>
+
+          </form>
+        </article>
+      </section>
+    </div> <!-- PAGE INNER END -->
+
+    <!-- FOOTER ACTIONS -->
+    <footer class="bg-white border-t border-gray-200 py-4 px-6 flex justify-between items-center">
+      <button id="btnClearAll"
+              class="text-[#FF5A1D] border border-[#FF5A1D] text-sm rounded-md px-4 py-2 hover:bg-orange-50 transition font-semibold select-none"
+              type="button">Clear all
+      </button>
+      <div class="flex gap-3">
+        <button id="btnCancel"
+                class="text-[#556476] bg-white border border-[#556476] text-sm rounded-md px-5 py-2 hover:bg-gray-50 transition select-none"
+                type="button">Cancel
+        </button>
+        <button id="btnNextSave"
+                class="bg-[#FF5A1D] text-white rounded-md px-5 py-2 border border-[#FF5A1D] hover:bg-orange-600 text-sm transition font-normal select-none"
+                type="button">Next
+        </button>
+      </div>
+    </footer>
+
+  </main>
+</div> <!-- MAIN WRAPPER END -->
+
+<script>
+  (() => {
+    // Page management
+    const page1 = document.getElementById("page1");
+    const page2 = document.getElementById("page2");
+    const page3 = document.getElementById("page3");
+    const allPages = [page1, page2, page3];
+    const additionalBreadcrumb = document.getElementById("additionalBreadcrumb");
+
+    // Footer buttons
+    const btnClearAll = document.getElementById("btnClearAll");
+    const btnCancel = document.getElementById("btnCancel");
+    const btnNextSave = document.getElementById("btnNextSave");
+    const btnAddValue = document.getElementById("btnAddValue");
+
+    // Values for the Values Table
+    let values = [
+      {
+        id: 1,
+        selected: false,
+        valueName: "Name1",
+        status: "Active",
+        formulaValue: "(Basic Salary x 1.5) / OT",
+        grade: "Grade I",
+        designation: "Graphic Designer, Software Tester",
+        individual: "Floyd Miles, Fiona Blue"
+      },
+      {
+        id: 2,
+        selected: false,
+        valueName: "Name2",
+        status: "Active",
+        formulaValue: "20,000 LKR",
+        grade: "Grade II",
+        designation: "UI UX Designer, Software Engineer",
+        individual: "Albert Flores, Amelia"
+      },
+      {
+        id: 3,
+        selected: false,
+        valueName: "Name3",
+        status: "Active",
+        formulaValue: "12,000 LKR",
+        grade: "-",
+        designation: "Lead Developer, BA",
+        individual: "Ralph Edwards, Rachel"
+      },
+      {
+        id: 4,
+        selected: false,
+        valueName: "Name4",
+        status: "Inactive",
+        formulaValue: "10,000 LKR",
+        grade: "Grade V",
+        designation: "Creative Designer, Quality Control Analyst",
+        individual: "Jacob Jones, Jenna Smith"
+      },
+      {
+        id: 5,
+        selected: false,
+        valueName: "Name5",
+        status: "Active",
+        formulaValue: "45,000 LKR",
+        grade: "Grade VI",
+        designation: "Art Director, Software Quality Engineer",
+        individual: "Devon Lane, Daisy Lee"
+      },
+      {
+        id: 6,
+        selected: false,
+        valueName: "Name6",
+        status: "Inactive",
+        formulaValue: "200,000 LKR",
+        grade: "Grade II",
+        designation: "Multimedia Artist, Testing Specialist",
+        individual: "Esther Howard, Emily"
+      },
+      {
+        id: 7,
+        selected: false,
+        valueName: "Name7",
+        status: "Active",
+        formulaValue: "250,000 LKR",
+        grade: "Grade II, IV",
+        designation: "Graphic Artist, Quality Assurance Analyst",
+        individual: "Theresa Webb, Tessa"
+      },
+      {
+        id: 8,
+        selected: false,
+        valueName: "Name7",
+        status: "Active",
+        formulaValue: "250,000 LKR",
+        grade: "Grade II, IV",
+        designation: "Graphic Artist, Quality Assurance Analyst",
+        individual: "Theresa Webb, Tessa"
+      }
+    ];
+
+    // Pagination variables
+    const rowsPerPage = 5;
+    let currentPage = 1;
+    const valuesTableBody = document.getElementById("valuesTableBody");
+    const paginationNumbers = document.getElementById("paginationNumbers");
+    const prevPageBtn = document.getElementById("prevPageBtn");
+    const nextPageBtn = document.getElementById("nextPageBtn");
+
+    function renderValuesTable() {
+      valuesTableBody.innerHTML = "";
+      const start = (currentPage - 1) * rowsPerPage;
+      const end = start + rowsPerPage;
+      const currentRows = values.slice(start, end);
+
+      if (currentRows.length === 0) {
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.colSpan = 8;
+        td.className = "text-center py-10 text-gray-400 select-none";
+        td.textContent = "No values to display.";
+        tr.appendChild(td);
+        valuesTableBody.appendChild(tr);
+        return;
+      }
+
+      currentRows.forEach(row => {
+        let tr = document.createElement("tr");
+        tr.className = "hover:bg-gray-50";
+
+        // Select checkbox
+        let tdSelect = document.createElement("td");
+        tdSelect.className = "text-center";
+        let inputSelect = document.createElement("input");
+        inputSelect.type = "checkbox";
+        inputSelect.checked = row.selected;
+        inputSelect.setAttribute("aria-label", `Select ${row.valueName}`);
+        inputSelect.className = "rounded border-gray-300 focus:ring-orange-400 cursor-pointer";
+        inputSelect.addEventListener("change", e => {
+          row.selected = e.target.checked;
+        });
+        tdSelect.appendChild(inputSelect);
+        tr.appendChild(tdSelect);
+
+        // Value Name
+        let tdValueName = document.createElement("td");
+        tdValueName.className = "px-2 py-3 truncate text-[#172635] text-xs font-normal";
+        tdValueName.textContent = row.valueName;
+        tr.appendChild(tdValueName);
+
+        // Status with colored pill
+        let tdStatus = document.createElement("td");
+        tdStatus.className = "px-2 py-3";
+        let spanStatus = document.createElement("span");
+        spanStatus.className =
+          `inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold select-none ${
+            row.status === "Active" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+          }`;
+        spanStatus.textContent = row.status;
+        tdStatus.appendChild(spanStatus);
+        tr.appendChild(tdStatus);
+
+        // Formula/Value
+        let tdFormula = document.createElement("td");
+        tdFormula.className = "px-2 py-3 truncate text-[#172635] text-xs font-normal";
+        tdFormula.textContent = row.formulaValue;
+        tr.appendChild(tdFormula);
+
+        // Grade
+        let tdGrade = document.createElement("td");
+        tdGrade.className = "px-2 py-3 truncate text-center text-[#172635] text-xs font-normal";
+        tdGrade.textContent = row.grade;
+        tr.appendChild(tdGrade);
+
+        // Designation
+        let tdDesignation = document.createElement("td");
+        tdDesignation.className = "px-2 py-3 truncate text-[#172635] text-xs font-normal";
+        tdDesignation.textContent = row.designation;
+        tr.appendChild(tdDesignation);
+
+        // Individual
+        let tdIndividual = document.createElement("td");
+        tdIndividual.className = "px-2 py-3 truncate text-[#172635] text-xs font-normal";
+        tdIndividual.textContent = row.individual;
+        tr.appendChild(tdIndividual);
+
+        // Action buttons
+        let tdAction = document.createElement("td");
+        tdAction.className = "text-center space-x-2 py-3 pr-2 flex justify-center items-center text-[#172635] text-xs font-normal";
+
+        // Delete button
+        let btnDelete = document.createElement("button");
+        btnDelete.setAttribute("aria-label", `Delete ${row.valueName}`);
+        btnDelete.className = "text-red-500 hover:text-red-700 cursor-pointer text-lg";
+        btnDelete.innerHTML = `
+        <button aria-label="Delete ${row.valueName}" class="delete-btn bg-[#FFE9E5] text-red-600 p-1 rounded hover:bg-red-200 transition focus:outline-none" data-id="${row.id}" title="Delete">
+          <svg class="w-4 h-4" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.9431 8.70157C2.71689 8.70157 2.52331 8.62109 2.36236 8.46014C2.20141 8.29919 2.12079 8.10547 2.12052 7.87899V2.53221H1.70923V1.70963H3.76568V1.29834H6.23342V1.70963H8.28987V2.53221H7.87858V7.87899C7.87858 8.1052 7.79811 8.29891 7.63715 8.46014C7.4762 8.62137 7.28248 8.70184 7.056 8.70157H2.9431ZM7.056 2.53221H2.9431V7.87899H7.056V2.53221ZM3.76568 7.05641H4.58826V3.35479H3.76568V7.05641ZM5.41084 7.05641H6.23342V3.35479H5.41084V7.05641Z" fill="#ED2227"/>
+          </svg>
+        </button>
+        `;
+        btnDelete.addEventListener("click", () => {
+          values = values.filter(v => v.id !== row.id);
+          if ((currentPage - 1) * rowsPerPage >= values.length && currentPage > 1) {
+            currentPage--;
+          }
+          renderValuesTable();
+          renderPagination();
+        });
+
+        // Edit button
+        let btnEdit = document.createElement("button");
+        btnEdit.setAttribute("aria-label", `Edit ${row.valueName}`);
+        btnEdit.className = "text-blue-600 hover:text-blue-800 cursor-pointer text-lg";
+        btnEdit.innerHTML = `
+                <button aria-label="Edit ${row.valueName}" class="edit-btn bg-[#E7E9FD] text-blue-700 p-1 rounded hover:bg-blue-200 transition focus:outline-none" data-id="${row.id}" title="Edit">
+          <svg class="w-4 h-4" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.1206 7.87871H2.70663L6.7266 3.85874L6.14056 3.27271L2.1206 7.29268V7.87871ZM1.70935 8.70121C1.59282 8.70121 1.49522 8.66173 1.41654 8.58277C1.33785 8.50381 1.29837 8.4062 1.2981 8.28996V7.29268C1.2981 7.18301 1.31866 7.07841 1.35978 6.97889C1.40091 6.87937 1.45917 6.79205 1.53456 6.71692L6.7266 1.53517C6.80885 1.45978 6.89973 1.40152 6.99925 1.36039C7.09878 1.31927 7.20323 1.29871 7.31263 1.29871C7.42202 1.29871 7.52826 1.31927 7.63135 1.36039C7.73443 1.40152 7.82354 1.46321 7.89866 1.54546L8.46413 2.12121C8.54638 2.1966 8.60628 2.28571 8.64384 2.38852C8.6814 2.49133 8.70032 2.59414 8.7006 2.69696C8.7006 2.80662 8.68168 2.91122 8.64384 3.01074C8.60601 3.11026 8.5461 3.20101 8.46413 3.28299L3.28238 8.46474C3.20698 8.54013 3.11952 8.59839 3.02 8.63952C2.92048 8.68064 2.81602 8.70121 2.70663 8.70121H1.70935ZM6.42844 3.57086L6.14056 3.27271L6.7266 3.85874L6.42844 3.57086Z" fill="#4A58EC"/>
+          </svg>
+        </button>
+        `;
+        btnEdit.addEventListener("click", () => {
+          // Prefill page 3 form for editing
+          openAddValuePage(row);
+        });
+
+        tdAction.append(btnDelete, btnEdit);
+        tr.appendChild(tdAction);
+
+        valuesTableBody.appendChild(tr);
+      });
+    }
+
+    function renderPagination() {
+      paginationNumbers.innerHTML = "";
+      const pageCount = Math.ceil(values.length / rowsPerPage);
+
+      function createPageBtn(num) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = num;
+        btn.className = num === currentPage ?
+          "bg-orange-500 text-white px-3 py-1 rounded-md select-none cursor-default" :
+          "text-gray-600 hover:text-orange-500 px-3 py-1 rounded-md select-none cursor-pointer";
+        btn.addEventListener("click", () => {
+          currentPage = num;
+          renderValuesTable();
+          renderPagination();
+        });
+        return btn;
+      }
+
+      // Always show first page
+      if (pageCount <= 7) {
+        for (let i = 1; i <= pageCount; i++) {
+          paginationNumbers.appendChild(createPageBtn(i));
+        }
+      } else {
+        // Show first 3, last 2, current, and ...
+        if (currentPage <= 4) {
+          for (let i = 1; i <= 5; i++) {
+            paginationNumbers.appendChild(createPageBtn(i));
+          }
+          const dots = document.createElement("span");
+          dots.textContent = "...";
+          dots.className = "px-1 py-1 text-gray-400 select-none";
+          paginationNumbers.appendChild(dots);
+          paginationNumbers.appendChild(createPageBtn(pageCount));
+        } else if (currentPage > pageCount - 4) {
+          paginationNumbers.appendChild(createPageBtn(1));
+          const dots = document.createElement("span");
+          dots.textContent = "...";
+          dots.className = "px-1 py-1 text-gray-400 select-none";
+          paginationNumbers.appendChild(dots);
+          for (let i = pageCount - 4; i <= pageCount; i++) {
+            paginationNumbers.appendChild(createPageBtn(i));
+          }
+        } else {
+          paginationNumbers.appendChild(createPageBtn(1));
+          const dots1 = document.createElement("span");
+          dots1.textContent = "...";
+          dots1.className = "px-1 py-1 text-gray-400 select-none";
+          paginationNumbers.appendChild(dots1);
+          paginationNumbers.appendChild(createPageBtn(currentPage - 1));
+          paginationNumbers.appendChild(createPageBtn(currentPage));
+          paginationNumbers.appendChild(createPageBtn(currentPage + 1));
+          const dots2 = document.createElement("span");
+          dots2.textContent = "...";
+          dots2.className = "px-1 py-1 text-gray-400 select-none";
+          paginationNumbers.appendChild(dots2);
+          paginationNumbers.appendChild(createPageBtn(pageCount));
+        }
+      }
+
+      prevPageBtn.disabled = currentPage === 1;
+      nextPageBtn.disabled = currentPage === pageCount;
+      prevPageBtn.classList.toggle("cursor-not-allowed", prevPageBtn.disabled);
+      nextPageBtn.classList.toggle("cursor-not-allowed", nextPageBtn.disabled);
+      prevPageBtn.classList.toggle("text-gray-400", prevPageBtn.disabled);
+      nextPageBtn.classList.toggle("text-gray-400", nextPageBtn.disabled);
+    }
+
+    // Navigation between pages by footer buttons
+    let currentStep = 1;
+
+    function showPage(step) {
+      allPages.forEach(p => p.classList.add("hidden"));
+      if (step === 1) {
+        page1.classList.remove("hidden");
+        additionalBreadcrumb.textContent = "";
+        btnNextSave.textContent = "Next";
+      } else if (step === 2) {
+        page2.classList.remove("hidden");
+        additionalBreadcrumb.textContent = "";
+        btnNextSave.textContent = "Next";
+      } else if (step === 3) {
+        page3.classList.remove("hidden");
+        additionalBreadcrumb.textContent = " › Add Value";
+        btnNextSave.textContent = "Save";
+      }
+      currentStep = step;
+      updateFooterButtons();
+    }
+
+    function updateFooterButtons() {
+      btnClearAll.disabled = false;
+      // Cancel and Clear all enabled always
+      if (currentStep === 3) {
+        btnClearAll.disabled = false;
+      }
+    }
+
+    btnNextSave.addEventListener("click", () => {
+      if (currentStep === 1) {
+        // Validate Basic Info mandatory (just Name for demo)
+        const earningName = document.getElementById("earningName").value.trim();
+        if (!earningName) {
+          alert("Please enter a Name.");
+          return;
+        }
+        // Move to next page
+        showPage(2);
+      } else if (currentStep === 2) {
+        // Move to Add Value page
+        showPage(3);
+        clearAddValueForm();
+      } else if (currentStep === 3) {
+        // Save new or edited value and go back to page 2
+        saveValueFromForm();
+      }
+    });
+
+    btnCancel.addEventListener("click", () => {
+      if (currentStep === 3) {
+        // Cancel editing / adding value, back to Values list
+        showPage(2);
+      } else if (currentStep === 2) {
+        // Cancel on values page leads back to basic info page
+        showPage(1);
+      }
+    });
+
+    btnClearAll.addEventListener("click", () => {
+      if (currentStep === 1) {
+        // Clear all inputs in Basic Info form
+        document.getElementById("basicInfoForm").reset();
+      } else if (currentStep === 2) {
+        // Clear all selections on values table
+        values.forEach(v => v.selected = false);
+        renderValuesTable();
+      } else if (currentStep === 3) {
+        clearAddValueForm();
+      }
+    });
+
+    // Pagination buttons
+    prevPageBtn.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderValuesTable();
+        renderPagination();
+      }
+    });
+    nextPageBtn.addEventListener("click", () => {
+      const maxPage = Math.ceil(values.length / rowsPerPage);
+      if (currentPage < maxPage) {
+        currentPage++;
+        renderValuesTable();
+        renderPagination();
+      }
+    });
+
+    // Add Value Button on Page 2
+    btnAddValue.addEventListener("click", () => {
+      showPage(3);
+      clearAddValueForm();
+    });
+
+    // Add Value Form Elements
+    const addValueForm = document.getElementById("addValueForm");
+    const formulaTags = document.getElementById("formulaTags");
+    const fixValueCheckbox = document.getElementById("fixValueCheckbox");
+    const btnClearFormula = document.createElement("button");
+    let editingValueId = null;
+
+    // When click operator buttons in formula
+    addValueForm.querySelectorAll("button[data-op]").forEach(button => {
+      button.type = "button";
+      button.addEventListener("click", () => {
+        insertFormulaOperator(button.dataset.op);
+      });
+    });
+
+    // Insert operator or variable tag in formula editable div
+    function insertFormulaOperator(op) {
+      const sel = window.getSelection();
+      if (!sel.focusNode) {
+        formulaTags.focus();
+        return;
+      }
+      // Insert text or tag at caret
+      if (op.length === 1 && /^[x÷+\-%()]$/.test(op)) {
+        // Insert operator literal text
+        insertTextAtCursor(op);
+      }
+    }
+
+    // Insert text at cursor position inside contenteditable div
+    function insertTextAtCursor(text) {
+      const sel = window.getSelection();
+      if (!sel.rangeCount) return;
+      const range = sel.getRangeAt(0);
+      range.deleteContents();
+      const textNode = document.createTextNode(text);
+      range.insertNode(textNode);
+      // Move caret after inserted text node
+      range.setStartAfter(textNode);
+      range.setEndAfter(textNode);
+      sel.removeAllRanges();
+      sel.addRange(range);
+      formulaTags.focus();
+    }
+
+    // Clear Add Value form fields and formula area
+    function clearAddValueForm() {
+      addValueForm.reset();
+      formulaTags.innerHTML = "";
+      editingValueId = null;
+    }
+
+    // Save value from Add Value Form to values array and back to page 2 list
+    function saveValueFromForm() {
+      const valueName = addValueForm.valueName.value.trim();
+      const valueStatus = addValueForm.valueStatus.value;
+      const variableName = addValueForm.variableName.value.trim();
+      const grade = addValueForm.grade.value.trim();
+      const designation = addValueForm.designation.value.trim();
+      const individual = addValueForm.individual.value.trim();
+      const formula = formulaTags.textContent.trim();
+      if (!valueName) {
+        alert("Value Name is required");
+        return;
+      }
+      // Compose formula-value text for display
+      let formulaValueText = formula || "";
+
+      const existingIndex = values.findIndex(v => v.id === editingValueId);
+      let idToUse = editingValueId || Math.max(values.length ? values.map(v => v.id).reduce((a, b) => a > b ? a : b) : 0) + 1;
+
+      if (formulaValueText === "" && !variableName) {
+        formulaValueText = "-";
+      } else if (variableName) {
+        formulaValueText = variableName;
+      }
+
+      const newVal = {
+        id: idToUse,
+        selected: false,
+        valueName,
+        status: valueStatus,
+        formulaValue: formulaValueText,
+        grade,
+        designation,
+        individual
+      };
+
+      if (existingIndex !== -1) {
+        values[existingIndex] = newVal;
+      } else {
+        values.push(newVal);
+      }
+
+      currentPage = 2;
+      renderValuesTable();
+      renderPagination();
+      showPage(2);
+      clearAddValueForm();
+    }
+
+    // Prefill Add Value form when editing existing value
+    function openAddValuePage(valueObj) {
+      showPage(3);
+      editingValueId = valueObj.id;
+      addValueForm.valueName.value = valueObj.valueName;
+      addValueForm.valueStatus.value = valueObj.status;
+      addValueForm.variableName.value = ""; // Reset
+      addValueForm.grade.value = valueObj.grade;
+      addValueForm.designation.value = valueObj.designation;
+      addValueForm.individual.value = valueObj.individual;
+      formulaTags.textContent = valueObj.formulaValue || "";
+      fixValueCheckbox.checked = false;
+      btnNextSave.textContent = "Save";
+    }
+
+    // Init the first page
+    showPage(1);
+    renderValuesTable();
+    renderPagination();
+  })();
+</script>
+
+</body>
+</html>
+
