@@ -6,25 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Settings - Konnect</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
   <style>
-      /* Custom scrollbar for table body */
-      .scrollbar-thin::-webkit-scrollbar {
-          height: 6px;
-      }
-
-      .scrollbar-thin::-webkit-scrollbar-track {
-          background: transparent;
-      }
-
-      .scrollbar-thin::-webkit-scrollbar-thumb {
-          background-color: rgba(251 113 133 / 0.75);
-          border-radius: 10px;
-      }
-
-      /* Override Tailwind custom focus for checkbox to have ring-2 with pink-300 */
-      input[type="checkbox"]:focus {
+      /* Custom scroll for sidebar if needed */
+      /* Remove focus outline on elements except keyboard */
+      :focus:not(:focus-visible) {
           outline: none;
-          box-shadow: 0 0 0 3px rgb(251 113 133 / 0.6);
+      }
+
+      /* Custom orange border for active nav item */
+      .active-nav {
+          border-right: 5px solid #FFA600;
+      }
+
+      /* Navbar bottom border for active tab */
+      .active-tab {
+          border-bottom-width: 2px;
+          border-bottom-color: #FF5C00;
+          color: #374151;
+          font-weight: 600;
+      }
+
+      /* subtle icon scaling on hover */
+      .icon-hover:hover {
+          transform: scale(1.05);
+          transition: transform 0.15s ease-in-out;
       }
   </style>
 </head>
@@ -32,20 +38,16 @@
 
 <div class="flex min-h-screen">
 
-  <!-- Sidebar -->
   <aside
-    class="bg-[#F6F6F8] w-72 flex flex-col shadow-md select-none z-10"
+    class="bg-[#F6F6F8] w-72 flex flex-col shadow-md select-none z-10 border-r-[2px] border-[#E8E9EB]"
     aria-label="Sidebar Navigation"
   >
-    <div class="px-16 py-8 flex items-center gap-2 border-b border-gray-200">
-      <!-- <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 flex items-center gap-1">
-        <span class="text-pink-600">K</span>onnect
-      </h1> -->
+    <div class="px-16 py-8 flex items-center gap-2">
       <img src="./logo.png" alt="logo" class="" />
     </div>
-    <nav class="flex flex-col flex-grow p-4 space-y-2 text-gray-700">
+    <nav class="flex flex-col flex-grow py-4 pl-4 space-y-2 text-gray-700">
       <button
-        class="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-pink-700 focus:outline-none"
+        class="active-nav nunito flex items-center text-white gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
         aria-current="page"
       >
         <svg class="w-5 h-5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +58,7 @@
         Companies
       </button>
       <button
-        class="flex items-center gap-3 text-[#556476] px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+        class="flex items-center nunito gap-3 text-[#556476] px-4 py-3 font-semibold rounded-lg hover:bg-pink-100 transition focus:outline-none"
       >
         <svg class="w-5 h-5 text-[#556476]" width="21" height="20" viewBox="0 0 21 20" fill="none"
              xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +83,7 @@
         All Employees
       </button>
       <button
-        class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+        class="flex items-center nunito font-semibold text-[#556476] gap-3 px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
       >
         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -96,30 +98,27 @@
     </nav>
   </aside>
 
-  <main class="flex-1 flex flex-col bg-gray-50">
+  <main class="flex-1 flex nunito flex-col bg-[#F6F6F8]">
     <!-- Header -->
-    <header class="flex justify-between items-center border-b border-gray-200 px-6 py-4 bg-white">
+    <header class="flex justify-between items-center border-b-[2px] border-[#E8E9EB] px-6 py-6 bg-white">
       <div class="w-96">
-        <label for="search" class="sr-only">Search</label>
-        <div class="relative">
-          <input id="search" type="search" placeholder="Search"
-                 class="w-full rounded-md bg-orange-50 placeholder-orange-400 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
-          <svg xmlns="http://www.w3.org/2000/svg" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" fill="none"
-               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M21 21l-5.197-5.197M15.803 15.803A7.5 7.5 0 1110.5 3a7.5 7.5 0 015.303 12.803z" />
+        <label for="search-input" class="sr-only">Search</label>
+        <div class="relative items-center">
+          <input id="search-input" type="search" placeholder="Search"
+                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 nunito-sans placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
+          <svg width="15" height="15" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" viewBox="0 0 15 15"
+               fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10.2779 10.2078L11.9728 11.9027M11.4374 7.22504C11.4374 8.31969 11.0025 9.3695 10.2285 10.1435C9.45447 10.9176 8.40465 11.3524 7.31 11.3524C6.21535 11.3524 5.16553 10.9176 4.3915 10.1435C3.61747 9.3695 3.18262 8.31969 3.18262 7.22504C3.18262 6.13039 3.61747 5.08057 4.3915 4.30654C5.16553 3.5325 6.21535 3.09766 7.31 3.09766C8.40465 3.09766 9.45447 3.5325 10.2285 4.30654C11.0025 5.08057 11.4374 6.13039 11.4374 7.22504Z"
+              stroke="#556476" stroke-width="1.32076" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
+
         </div>
       </div>
 
       <div class="flex items-center gap-6">
         <!-- Notification bell -->
         <button aria-label="Notifications" class="relative">
-          <!--                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 hover:text-orange-500 transition-colors"-->
-          <!--                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">-->
-          <!--                      <path stroke-linecap="round" stroke-linejoin="round"-->
-          <!--                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-5-5.916V4a1 1 0 00-2 0v1.084A6 6 0 006 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />-->
-          <!--                    </svg>-->
           <svg class="h-6 w-6 text-gray-600 hover:text-orange-500 transition-colors" width="22" height="22"
                viewBox="0 0 22 22" fill="none"
                xmlns="http://www.w3.org/2000/svg">
@@ -146,7 +145,7 @@
               class="w-8 h-8 rounded-full object-cover"
               onerror="this.onerror=null; this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fc3ddb6e-d228-4871-8bd1-eea86e0be643.png';"
             />
-            <span class="text-sm">David Johnson</span>
+            <span class="text-sm nunito-sans">David Johnson</span>
             <svg
               class="w-3 h-3 text-orange-700"
               fill="none"
@@ -161,7 +160,7 @@
             </svg>
           </button>
           <div id="profileDropdown"
-               class="hidden absolute right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
+               class="hidden absolute nunito-sans right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Profile</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Settings</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Logout</a>
@@ -172,31 +171,26 @@
 
     <!-- Main content -->
     <section class="flex-1 overflow-auto px-8 py-8">
-      <h1 class="text-xl font-bold text-[#172635] mb-6">Settings</h1>
+      <h1 class="text-xl font-[800] text-[#172635] mb-6">Settings</h1>
 
       <form id="add-company-form" class="space-y-6 max-w-6xl">
         <!-- Basic Information -->
-        <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="basic-info-heading">
-          <h3 id="basic-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block">Create Login</h3>
+        <fieldset class="bg-white border border-[#E8E9EB] rounded-lg p-6" aria-labelledby="basic-info-heading">
+          <h3 id="basic-info-heading" class="text-[#FF5A1D] font-bold nunito-sans text-base mb-4 block">Create Login</h3>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <label for="user-name" class="block text-sm text-[#556476] font-medium mb-3">User Name</label>
               <input type="text" id="user-name" name="userName" placeholder="User Name"
-                     class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                     class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
             </div>
             <div class="flex flex-col w-full relative">
               <label for="password" class="block text-sm text-[#556476] font-medium mb-3">Password</label>
               <input type="password" id="password" name="password" placeholder="Password"
-                     class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                     class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
               <button type="button" class="absolute top-[45px] right-3 text-gray-400 hover:text-orange-400"
                       aria-label="Toggle password visibility" onclick="togglePasswordVisibility('password', this)">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor" stroke-width="2">
-                  <path id="eye-open" stroke-linecap="round" stroke-linejoin="round"
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path id="eye-open" stroke-linecap="round" stroke-linejoin="round"
-                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  <path id="eye-closed" class="hidden" stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18" />
+                <svg width="12" height="12" class="h-5 w-5" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.97389 6.659C1.92913 6.78121 1.83848 6.88115 1.7212 6.93758C1.60392 6.99401 1.46926 7.00249 1.34583 6.96122C1.2224 6.91995 1.11993 6.83217 1.06019 6.71654C1.00044 6.60092 0.98814 6.46655 1.02589 6.342C1.0442 6.28713 1.06489 6.23208 1.08789 6.179C1.12789 6.084 1.18689 5.953 1.26789 5.798C1.43289 5.488 1.68989 5.075 2.06889 4.662C2.83389 3.827 4.08689 3 5.99989 3C7.91289 3 9.16589 3.827 9.93089 4.662C10.3389 5.11021 10.67 5.62279 10.9109 6.179L10.9569 6.292C10.9599 6.3 10.9699 6.352 10.9799 6.402L10.9999 6.5C10.9999 6.5 11.0839 6.833 10.6579 6.974C10.5324 7.0159 10.3955 7.00638 10.277 6.94753C10.1586 6.88867 10.0683 6.78529 10.0259 6.66V6.657L10.0199 6.641L9.98889 6.563C9.79245 6.11375 9.52391 5.69963 9.19389 5.337C8.58389 4.674 7.58689 4 5.99989 4C4.41289 4 3.41589 4.673 2.80589 5.338C2.47596 5.70032 2.20742 6.1141 2.01089 6.563L1.98089 6.641L1.97389 6.659ZM5.99989 5C5.46946 5 4.96075 5.21071 4.58568 5.58579C4.2106 5.96086 3.99989 6.46957 3.99989 7C3.99989 7.53043 4.2106 8.03914 4.58568 8.41421C4.96075 8.78929 5.46946 9 5.99989 9C6.53032 9 7.03903 8.78929 7.4141 8.41421C7.78918 8.03914 7.99989 7.53043 7.99989 7C7.99989 6.46957 7.78918 5.96086 7.4141 5.58579C7.03903 5.21071 6.53032 5 5.99989 5ZM4.99989 7C4.99989 6.73478 5.10525 6.48043 5.29278 6.29289C5.48032 6.10536 5.73467 6 5.99989 6C6.26511 6 6.51946 6.10536 6.707 6.29289C6.89453 6.48043 6.99989 6.73478 6.99989 7C6.99989 7.26522 6.89453 7.51957 6.707 7.70711C6.51946 7.89464 6.26511 8 5.99989 8C5.73467 8 5.48032 7.89464 5.29278 7.70711C5.10525 7.51957 4.99989 7.26522 4.99989 7Z" fill="black"/>
                 </svg>
               </button>
             </div>
@@ -204,25 +198,29 @@
               <label for="confirmPassword" class="block text-sm text-[#556476] font-medium mb-3">Confirm
                 Password</label>
               <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"
-                     class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                     class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
               <button type="button" class="absolute top-[45px] right-3 text-gray-400 hover:text-orange-400"
                       aria-label="Toggle password visibility"
                       onclick="togglePasswordVisibility('confirmPassword', this)">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor" stroke-width="2">
-                  <path id="eye-open" stroke-linecap="round" stroke-linejoin="round"
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path id="eye-open" stroke-linecap="round" stroke-linejoin="round"
-                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  <path id="eye-closed" class="hidden" stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18" />
+<!--                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"-->
+<!--                     stroke="currentColor" stroke-width="2">-->
+<!--                  <path id="eye-open" stroke-linecap="round" stroke-linejoin="round"-->
+<!--                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />-->
+<!--                  <path id="eye-open" stroke-linecap="round" stroke-linejoin="round"-->
+<!--                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />-->
+<!--                  <path id="eye-closed" class="hidden" stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18" />-->
+<!--                </svg>-->
+                <svg width="12" height="12" class="h-5 w-5" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.97389 6.659C1.92913 6.78121 1.83848 6.88115 1.7212 6.93758C1.60392 6.99401 1.46926 7.00249 1.34583 6.96122C1.2224 6.91995 1.11993 6.83217 1.06019 6.71654C1.00044 6.60092 0.98814 6.46655 1.02589 6.342C1.0442 6.28713 1.06489 6.23208 1.08789 6.179C1.12789 6.084 1.18689 5.953 1.26789 5.798C1.43289 5.488 1.68989 5.075 2.06889 4.662C2.83389 3.827 4.08689 3 5.99989 3C7.91289 3 9.16589 3.827 9.93089 4.662C10.3389 5.11021 10.67 5.62279 10.9109 6.179L10.9569 6.292C10.9599 6.3 10.9699 6.352 10.9799 6.402L10.9999 6.5C10.9999 6.5 11.0839 6.833 10.6579 6.974C10.5324 7.0159 10.3955 7.00638 10.277 6.94753C10.1586 6.88867 10.0683 6.78529 10.0259 6.66V6.657L10.0199 6.641L9.98889 6.563C9.79245 6.11375 9.52391 5.69963 9.19389 5.337C8.58389 4.674 7.58689 4 5.99989 4C4.41289 4 3.41589 4.673 2.80589 5.338C2.47596 5.70032 2.20742 6.1141 2.01089 6.563L1.98089 6.641L1.97389 6.659ZM5.99989 5C5.46946 5 4.96075 5.21071 4.58568 5.58579C4.2106 5.96086 3.99989 6.46957 3.99989 7C3.99989 7.53043 4.2106 8.03914 4.58568 8.41421C4.96075 8.78929 5.46946 9 5.99989 9C6.53032 9 7.03903 8.78929 7.4141 8.41421C7.78918 8.03914 7.99989 7.53043 7.99989 7C7.99989 6.46957 7.78918 5.96086 7.4141 5.58579C7.03903 5.21071 6.53032 5 5.99989 5ZM4.99989 7C4.99989 6.73478 5.10525 6.48043 5.29278 6.29289C5.48032 6.10536 5.73467 6 5.99989 6C6.26511 6 6.51946 6.10536 6.707 6.29289C6.89453 6.48043 6.99989 6.73478 6.99989 7C6.99989 7.26522 6.89453 7.51957 6.707 7.70711C6.51946 7.89464 6.26511 8 5.99989 8C5.73467 8 5.48032 7.89464 5.29278 7.70711C5.10525 7.51957 4.99989 7.26522 4.99989 7Z" fill="black"/>
                 </svg>
+
               </button>
             </div>
 
             <div>
               <label for="user-role" class="block text-sm text-[#556476] font-medium mb-3">User Role</label>
               <select id="user-role" name="userRole"
-                      class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+                      class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
                 <option disabled selected>User Role</option>
                 <option>Admin</option>
                 <option>Payroll Administrator</option>
@@ -235,9 +233,9 @@
         </fieldset>
       </form>
 
-      <section aria-label="Manage Companies Panel" class="bg-white rounded-xl mt-6 p-6 shadow-md flex flex-col flex-grow max-w-full overflow-hidden">
+      <section aria-label="Manage Companies Panel" class="bg-white rounded-xl max-w-6xl nunito-sans mt-6 p-6 border border-[#E8E9EB] flex flex-col flex-grow overflow-hidden">
         <div class="flex items-center justify-between mb-6">
-          <h3 class="text-lg font-semibold text-gray-900">Manage Companies</h3>
+          <h3 class="text-base font-bold text-[#FF5A1D]">Created Loggings</h3>
         </div>
 
         <!-- Table container -->
@@ -263,7 +261,7 @@
               <th scope="col" class="p-3 w-28 text-center">Actions</th>
             </tr>
             </thead>
-            <tbody id="companies-tbody" class="divide-y divide-gray-200 scrollbar-thin max-h-[52vh] overflow-y-auto" role="rowgroup">
+            <tbody id="settings-tbody" class="divide-y divide-gray-200 scrollbar-thin max-h-[52vh] overflow-y-auto" role="rowgroup">
             <!-- Rows will be populated dynamically -->
             </tbody>
           </table>
@@ -278,71 +276,245 @@
       </section>
 
       <!-- Footer Buttons -->
-      <div class="flex items-center justify-between mt-8 pb-4">
-        <button id="clearAllBtn"
-                class="px-4 py-2 text-orange-500 border border-orange-400 rounded hover:bg-orange-50 transition">
-          Clear all
-        </button>
-        <div class="flex gap-4">
-          <button id="cancelBtn"
-                  class="px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-100 transition">
-            Cancel
-          </button>
-          <button id="saveBtn" class="px-6 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 transition">
-            Save
-          </button>
-        </div>
-      </div>
+<!--      <div class="flex items-center justify-between mt-8 pb-4">-->
+<!--        <button id="clearAllBtn"-->
+<!--                class="px-4 py-2 text-orange-500 border border-orange-400 rounded hover:bg-orange-50 transition">-->
+<!--          Clear all-->
+<!--        </button>-->
+<!--        <div class="flex gap-4">-->
+<!--          <button id="cancelBtn"-->
+<!--                  class="px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-100 transition">-->
+<!--            Cancel-->
+<!--          </button>-->
+<!--          <button id="saveBtn" class="px-6 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 transition">-->
+<!--            Save-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
     </section>
+    <footer class="bg-white border-t nunito py-4 px-6 flex justify-between items-center">
+      <button id="btnClearAll" class="text-[#FF5A1D] border border-[#FF5A1D] text-sm rounded-md px-4 py-2 hover:bg-orange-50 transition font-semibold select-none" type="button">Clear all</button>
+      <div class="flex gap-3">
+        <button id="btnCancel" class="text-[#556476] bg-white border border-[#556476] text-sm rounded-md px-5 py-2 hover:bg-gray-50 transition select-none" type="button">Cancel</button>
+        <button id="btnSave" class="bg-[#FF5A1D] text-white rounded-md px-5 py-2 border border-[#FF5A1D] hover:bg-orange-600 text-sm transition font-normal select-none" type="button">Save</button>
+      </div>
+    </footer>
   </main>
+
 </div>
 
 <script>
   // Toggle password visibility function
-  function togglePasswordVisibility(inputId, button) {
-    const input = document.getElementById(inputId);
-    const svg = button.querySelector("svg");
-    if (input.type === "password") {
-      input.type = "text";
-      // Switch icon to eye closed
-      svg.querySelectorAll("#eye-open").forEach(e => e.classList.add("hidden"));
-      svg.querySelectorAll("#eye-closed").forEach(e => e.classList.remove("hidden"));
-    } else {
-      input.type = "password";
-      // Switch icon to eye open
-      svg.querySelectorAll("#eye-open").forEach(e => e.classList.remove("hidden"));
-      svg.querySelectorAll("#eye-closed").forEach(e => e.classList.add("hidden"));
+  // function togglePasswordVisibility(inputId, button) {
+  //   const input = document.getElementById(inputId);
+  //   const svg = button.querySelector("svg");
+  //   if (input.type === "password") {
+  //     input.type = "text";
+  //     // Switch icon to eye closed
+  //     svg.querySelectorAll("#eye-open").forEach(e => e.classList.add("hidden"));
+  //     svg.querySelectorAll("#eye-closed").forEach(e => e.classList.remove("hidden"));
+  //   } else {
+  //     input.type = "password";
+  //     // Switch icon to eye open
+  //     svg.querySelectorAll("#eye-open").forEach(e => e.classList.remove("hidden"));
+  //     svg.querySelectorAll("#eye-closed").forEach(e => e.classList.add("hidden"));
+  //   }
+  // }
+  //
+  // // Profile Dropdown toggle
+  // const profileButton = document.getElementById("profileButton");
+  // const profileDropdown = document.getElementById("profileDropdown");
+  // profileButton.addEventListener("click", () => {
+  //   const expanded = profileButton.getAttribute("aria-expanded") === "true";
+  //   profileButton.setAttribute("aria-expanded", (!expanded).toString());
+  //   profileDropdown.classList.toggle("hidden");
+  // });
+  //
+  // // Click outside profile dropdown closes it
+  // document.addEventListener("click", (event) => {
+  //   if (!profileButton.contains(event.target) && !profileDropdown.contains(event.target)) {
+  //     profileDropdown.classList.add("hidden");
+  //     profileButton.setAttribute("aria-expanded", "false");
+  //   }
+  // });
+  //
+  // // Clear all checkboxes
+  // document.getElementById("clearAllBtn").addEventListener("click", () => {
+  //   const checkboxes = document.querySelectorAll(".rowCheckbox");
+  //   checkboxes.forEach(cb => cb.checked = false);
+  //   document.getElementById("selectAll").checked = false;
+  // });
+  // // Select/Deselect all checkboxes
+  // document.getElementById("selectAll").addEventListener("change", (e) => {
+  //   const checked = e.target.checked;
+  //   const checkboxes = document.querySelectorAll(".rowCheckbox");
+  //   checkboxes.forEach(cb => cb.checked = checked);
+  // });
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Sample data for the table
+    const usersData = [
+      { id: 1, userName: 'john.doe', userRole: 'Admin' },
+      { id: 2, userName: 'jane.smith', userRole: 'HR Manager' },
+      { id: 3, userName: 'alice.brown', userRole: 'Payroll Administrator' },
+      { id: 4, userName: 'bob.wilson', userRole: 'Finance' },
+    ];
+
+    // Function to populate table
+    function populateTable() {
+      const tbody = document.getElementById('settings-tbody');
+      tbody.innerHTML = ''; // Clear existing content
+
+      usersData.forEach(user => {
+        const row = document.createElement('tr');
+        row.setAttribute('role', 'row');
+        row.innerHTML = `
+                <td class="p-3">
+                    <input type="checkbox" aria-label="Select ${user.userName}" class="row-checkbox rounded border border-pink-400 accent-[#FF5A1D33]/20 focus:outline-none focus:ring-2 focus:ring-pink-400">
+                </td>
+                <td class="p-3">${user.userName}</td>
+                <td class="p-3">${user.userRole}</td>
+                <td class="p-3 flex justify-center gap-2">
+                  <button aria-label="Delete ${user.id}" class="delete-btn bg-[#FFE9E5] text-red-600 p-1 rounded hover:bg-red-200 transition focus:outline-none" data-id="${user.id}" title="Delete">
+                    <svg class="w-4 h-4" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.9431 8.70157C2.71689 8.70157 2.52331 8.62109 2.36236 8.46014C2.20141 8.29919 2.12079 8.10547 2.12052 7.87899V2.53221H1.70923V1.70963H3.76568V1.29834H6.23342V1.70963H8.28987V2.53221H7.87858V7.87899C7.87858 8.1052 7.79811 8.29891 7.63715 8.46014C7.4762 8.62137 7.28248 8.70184 7.056 8.70157H2.9431ZM7.056 2.53221H2.9431V7.87899H7.056V2.53221ZM3.76568 7.05641H4.58826V3.35479H3.76568V7.05641ZM5.41084 7.05641H6.23342V3.35479H5.41084V7.05641Z" fill="#ED2227"/>
+                    </svg>
+                  </button>
+                  <button aria-label="Edit ${user.id}" class="edit-btn bg-[#E7E9FD] text-blue-700 p-1 rounded hover:bg-blue-200 transition focus:outline-none" data-id="${user.id}" title="Edit">
+                    <svg class="w-4 h-4" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.1206 7.87871H2.70663L6.7266 3.85874L6.14056 3.27271L2.1206 7.29268V7.87871ZM1.70935 8.70121C1.59282 8.70121 1.49522 8.66173 1.41654 8.58277C1.33785 8.50381 1.29837 8.4062 1.2981 8.28996V7.29268C1.2981 7.18301 1.31866 7.07841 1.35978 6.97889C1.40091 6.87937 1.45917 6.79205 1.53456 6.71692L6.7266 1.53517C6.80885 1.45978 6.89973 1.40152 6.99925 1.36039C7.09878 1.31927 7.20323 1.29871 7.31263 1.29871C7.42202 1.29871 7.52826 1.31927 7.63135 1.36039C7.73443 1.40152 7.82354 1.46321 7.89866 1.54546L8.46413 2.12121C8.54638 2.1966 8.60628 2.28571 8.64384 2.38852C8.6814 2.49133 8.70032 2.59414 8.7006 2.69696C8.7006 2.80662 8.68168 2.91122 8.64384 3.01074C8.60601 3.11026 8.5461 3.20101 8.46413 3.28299L3.28238 8.46474C3.20698 8.54013 3.11952 8.59839 3.02 8.63952C2.92048 8.68064 2.81602 8.70121 2.70663 8.70121H1.70935ZM6.42844 3.57086L6.14056 3.27271L6.7266 3.85874L6.42844 3.57086Z" fill="#4A58EC"/>
+                    </svg>
+                  </button>
+                </td>
+            `;
+        tbody.appendChild(row);
+      });
     }
-  }
 
-  // Profile Dropdown toggle
-  const profileButton = document.getElementById("profileButton");
-  const profileDropdown = document.getElementById("profileDropdown");
-  profileButton.addEventListener("click", () => {
-    const expanded = profileButton.getAttribute("aria-expanded") === "true";
-    profileButton.setAttribute("aria-expanded", (!expanded).toString());
-    profileDropdown.classList.toggle("hidden");
-  });
-
-  // Click outside profile dropdown closes it
-  document.addEventListener("click", (event) => {
-    if (!profileButton.contains(event.target) && !profileDropdown.contains(event.target)) {
-      profileDropdown.classList.add("hidden");
-      profileButton.setAttribute("aria-expanded", "false");
+    // Function to toggle select all checkboxes
+    function toggleSelectAll(selectAllCheckbox) {
+      const checkboxes = document.querySelectorAll('.row-checkbox');
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = selectAllCheckbox.checked;
+      });
     }
-  });
 
-  // Clear all checkboxes
-  document.getElementById("clearAllBtn").addEventListener("click", () => {
-    const checkboxes = document.querySelectorAll(".rowCheckbox");
-    checkboxes.forEach(cb => cb.checked = false);
-    document.getElementById("selectAll").checked = false;
-  });
-  // Select/Deselect all checkboxes
-  document.getElementById("selectAll").addEventListener("change", (e) => {
-    const checked = e.target.checked;
-    const checkboxes = document.querySelectorAll(".rowCheckbox");
-    checkboxes.forEach(cb => cb.checked = checked);
+    // Toggle password visibility
+    function togglePasswordVisibility(inputId, button) {
+      const input = document.getElementById(inputId);
+      const svg = button.querySelector('svg');
+      if (input.type === 'password') {
+        input.type = 'text';
+        svg.querySelectorAll('#eye-open').forEach(e => e.classList.add('hidden'));
+        svg.querySelectorAll('#eye-closed').forEach(e => e.classList.remove('hidden'));
+      } else {
+        input.type = 'password';
+        svg.querySelectorAll('#eye-open').forEach(e => e.classList.remove('hidden'));
+        svg.querySelectorAll('#eye-closed').forEach(e => e.classList.add('hidden'));
+      }
+    }
+
+    // Function to clear form
+    function clearForm() {
+      document.getElementById('add-company-form').reset();
+      document.getElementById('user-name').removeAttribute('data-id'); // Clear any edit ID
+    }
+
+    // Function to handle form submission
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const userName = form.userName.value.trim();
+      const password = form.password.value.trim();
+      const confirmPassword = form.confirmPassword.value.trim();
+      const userRole = form.userRole.value;
+
+      // Basic validation
+      if (!userName || !password || !confirmPassword || !userRole || userRole === 'User Role') {
+        alert('Please fill in all fields.');
+        return;
+      }
+      if (password !== confirmPassword) {
+        alert('Passwords do not match.');
+        return;
+      }
+
+      const editId = form.userName.dataset.id;
+      if (editId) {
+        // Update existing user
+        const userIndex = usersData.findIndex(user => user.id === parseInt(editId));
+        if (userIndex !== -1) {
+          usersData[userIndex] = { id: parseInt(editId), userName, userRole };
+          alert(`User ${userName} updated successfully.`);
+        }
+      } else {
+        // Add new user
+        const newId = usersData.length ? Math.max(...usersData.map(u => u.id)) + 1 : 1;
+        usersData.push({ id: newId, userName, userRole });
+        alert(`User ${userName} added successfully.`);
+      }
+
+      clearForm();
+      populateTable();
+    }
+
+    // Function to edit user
+    function editUser(id) {
+      const user = usersData.find(u => u.id === id);
+      if (user) {
+        document.getElementById('user-name').value = user.userName;
+        document.getElementById('user-name').dataset.id = id;
+        document.getElementById('password').value = ''; // Passwords are not pre-filled for security
+        document.getElementById('confirmPassword').value = '';
+        document.getElementById('user-role').value = user.userRole;
+      }
+    }
+
+    // Function to delete user
+    function deleteUser(id) {
+      if (confirm(`Are you sure you want to delete user ID: ${id}?`)) {
+        const index = usersData.findIndex(user => user.id === id);
+        if (index !== -1) {
+          const userName = usersData[index].userName;
+          usersData.splice(index, 1);
+          alert(`User ${userName} deleted successfully.`);
+          populateTable();
+          clearForm();
+        }
+      }
+    }
+
+    // Expose toggleSelectAll to global scope
+    window.toggleSelectAll = toggleSelectAll;
+
+    // Event listeners
+    // document.getElementById('add-company-form').addEventListener('submit', handleFormSubmit);
+    // document.getElementById('clear-all-btn').addEventListener('click', () => {
+    //   document.getElementById('select-all').checked = false;
+    //   toggleSelectAll(document.getElementById('select-all'));
+    // });
+    // document.getElementById('cancel-btn').addEventListener('click', clearForm);
+
+    // Profile dropdown toggle
+    const profileButton = document.getElementById('profileButton');
+    const profileDropdown = document.getElementById('profileDropdown');
+    profileButton.addEventListener('click', () => {
+      const expanded = profileButton.getAttribute('aria-expanded') === 'true';
+      profileButton.setAttribute('aria-expanded', (!expanded).toString());
+      profileDropdown.classList.toggle('hidden');
+    });
+
+    // Click outside profile dropdown closes it
+    document.addEventListener('click', (event) => {
+      if (!profileButton.contains(event.target) && !profileDropdown.contains(event.target)) {
+        profileDropdown.classList.add('hidden');
+        profileButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Populate table on page load
+    populateTable();
   });
 
 </script>

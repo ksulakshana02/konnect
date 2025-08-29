@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Add Levels - Konnect</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
   <style>
       /* Custom scroll for sidebar if needed */
       /* Remove focus outline on elements except keyboard */
@@ -48,7 +49,7 @@
     </div>
     <nav class="flex flex-col flex-grow py-4 pl-4 space-y-2 text-gray-700">
       <button
-        class="active-nav flex items-center gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
+        class="active-nav nunito flex items-center text-white gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
         aria-current="page"
       >
         <svg class="w-5 h-5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +60,7 @@
         Companies
       </button>
       <button
-        class="flex items-center gap-3 text-[#556476] px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+        class="flex items-center nunito gap-3 text-[#556476] px-4 py-3 font-semibold rounded-lg hover:bg-pink-100 transition focus:outline-none"
       >
         <svg class="w-5 h-5 text-[#556476]" width="21" height="20" viewBox="0 0 21 20" fill="none"
              xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +85,7 @@
         All Employees
       </button>
       <button
-        class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+        class="flex items-center nunito font-semibold text-[#556476] gap-3 px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
       >
         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -100,14 +101,14 @@
   </aside>
 
   <!-- Main Content -->
-  <main class="flex-grow flex flex-col">
+  <main class="flex-grow nunito flex flex-col">
     <!-- Header -->
     <header class="flex justify-between items-center border-b-[2px] border-[#E8E9EB] px-6 py-6 bg-white">
       <div class="w-96">
         <label for="search-input" class="sr-only">Search</label>
-        <div class="relative">
+        <div class="relative items-center">
           <input id="search-input" type="search" placeholder="Search"
-                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
+                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 nunito-sans placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
           <svg width="15" height="15" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" viewBox="0 0 15 15"
                fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -147,7 +148,7 @@
               class="w-8 h-8 rounded-full object-cover"
               onerror="this.onerror=null; this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fc3ddb6e-d228-4871-8bd1-eea86e0be643.png';"
             />
-            <span class="text-sm">David Johnson</span>
+            <span class="text-sm nunito-sans">David Johnson</span>
             <svg
               class="w-3 h-3 text-orange-700"
               fill="none"
@@ -162,7 +163,7 @@
             </svg>
           </button>
           <div id="profileDropdown"
-               class="hidden absolute right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
+               class="hidden absolute nunito-sans right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Profile</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Settings</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Logout</a>
@@ -173,24 +174,24 @@
 
     <!-- Content -->
     <section class="flex-grow bg-[#F6F6F8] overflow-y-auto p-6">
-      <h1 class="text-2xl text-xl font-bold mb-1 text-[#172635]">Add Company</h1>
-      <nav class="mb-6 text-[#556476] text-[17px] flex gap-2 items-center select-none" aria-label="Breadcrumb">
-        <span>Companies</span>
-        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M9 5l7 7-7 7"></path>
-        </svg>
-        <span class="font-semibold text-[17px] text-[#172635]">Add Company</span>
-      </nav>
+      <h1 class="text-2xl text-xl font-[800] mb-1 text-[#172635] mb-6">Add Levels</h1>
+<!--      <nav class="mb-6 text-[#556476] text-[17px] flex gap-2 items-center select-none" aria-label="Breadcrumb">-->
+<!--        <span>Companies</span>-->
+<!--        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"-->
+<!--             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">-->
+<!--          <path d="M9 5l7 7-7 7"></path>-->
+<!--        </svg>-->
+<!--        <span class="font-semibold text-[17px] text-[#172635]">Add Company</span>-->
+<!--      </nav>-->
 
       <form id="add-company-form" class="space-y-6 max-w-6xl">
 
         <!-- Levels -->
         <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="levels-info-heading">
-          <h3 id="levels-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block">Levels</h3>
+          <h3 id="levels-info-heading" class="text-[#FF5A1D] font-bold text-base nunito-sans block">Levels</h3>
 
           <div id="levels-container" class="space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-6 gap-4 items-center">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
 <!--              <div class="md:col-span-1">-->
 <!--                <label class="block text-sm text-[#556476] font-medium mb-3" for="level-name-1">Name</label>-->
 <!--                <input type="text" id="level-name-1" name="levelName[]" placeholder="Name"-->
@@ -237,7 +238,7 @@
             </div>
           </div>
 
-          <button type="button" id="add-level" class="text-sm font-bold text-[#FF5A1D] mt-2 hover:underline">+ Add
+          <button type="button" id="add-level" class="text-sm nunito-sans font-bold text-[#FF5A1D] mt-2 hover:underline">+ Add
             More
           </button>
         </fieldset>
@@ -335,21 +336,21 @@
   addLevelBtn.addEventListener("click", () => {
     const count = levelsContainer.children.length + 1;
     const div = document.createElement("div");
-    div.classList.add("grid", "grid-cols-1", "md:grid-cols-5", "gap-4", "items-center");
+    div.classList.add("grid", "grid-cols-1", "md:grid-cols-3", "gap-4", "items-center");
     div.innerHTML = `
       <div class="md:col-span-1">
         <label class="block text-sm text-[#556476] font-medium mb-3" for="level-name-${count}">Name</label>
         <input type="text" id="level-name-${count}" name="levelName[]" placeholder="Name"
-          class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
+          class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
       </div>
 
-      <div class="md:col-span-2 relative">
+      <div class="md:col-span-1 relative">
         <label class="block text-sm text-[#556476] font-medium mb-3" for="level-designations-${count}">Designations</label>
         <div class="relative">
-          <input type="text" id="level-designations-${count}" class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-10 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+          <input type="text" id="level-designations-${count}" class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-10 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
             placeholder="Designations" autocomplete="off" />
           <div id="level-designations-dropdown-${count}"
-            class="absolute z-20 w-full bg-white border border-gray-300 rounded-md shadow-md mt-1 max-h-56 overflow-auto hidden">
+            class="absolute z-20 w-full bg-white border border-gray-300 rounded-lg shadow-md mt-1 max-h-56 overflow-auto hidden">
           </div>
           <svg width="19" height="18" viewBox="0 0 19 18" class="h-5 w-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M13.5096 12.69L15.8196 15M15.0898 8.625C15.0898 10.1168 14.4972 11.5476 13.4423 12.6025C12.3874 13.6574 10.9567 14.25 9.46484 14.25C7.973 14.25 6.54226 13.6574 5.48737 12.6025C4.43248 11.5476 3.83984 10.1168 3.83984 8.625C3.83984 7.13316 4.43248 5.70242 5.48737 4.64752C6.54226 3.59263 7.973 3 9.46484 3C10.9567 3 12.3874 3.59263 13.4423 4.64752C14.4972 5.70242 15.0898 7.13316 15.0898 8.625Z" stroke="#172635" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -357,9 +358,14 @@
         </div>
       </div>
 
-      <div class="flex flex-wrap gap-2 md:col-span-2" aria-live="polite" aria-relevant="additions removals"
-        id="added-designations-${count}">
+      <div class="md:col-span-1">
+        <label class="block text-sm text-[#556476] font-medium mb-3" for="added-designations-${count}">Added Designations</label>
+        <div id="added-designations-${count}"
+          class="w-full h-[45px] border border-[2px] flex flex-wrap gap-2 border-[#E8E9EB] rounded-md py-2 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+         </div>
       </div>
+
+
     `;
 
     levelsContainer.appendChild(div);
@@ -383,7 +389,7 @@
       addedContainer.innerHTML = "";
       selectedDesignations.forEach(name => {
         const span = document.createElement("span");
-        span.className = "flex items-center gap-1 bg-orange-100 text-orange-700 rounded-full py-1 px-3 text-sm cursor-default select-none";
+        span.className = "flex items-center gap-1 border border-[#FF5A1D] bg-white text-black rounded-full py-1 px-3 text-sm cursor-default select-none";
         span.setAttribute("tabindex", "-1");
         span.textContent = name;
 
@@ -391,7 +397,7 @@
         btn.type = "button";
         btn.setAttribute("aria-label", `Remove ${name}`);
         btn.setAttribute("data-name", name);
-        btn.className = "text-orange-700 hover:text-orange-900 focus:outline-none";
+        btn.className = "text-black hover:text-orange-900 focus:outline-none";
         btn.textContent = "×";
         btn.addEventListener("click", () => {
           selectedDesignations = selectedDesignations.filter(d => d !== name);
@@ -477,7 +483,7 @@
       temp.levels.forEach((level, idx) => {
         const count = idx + 1;
         const div = document.createElement("div");
-        div.classList.add("grid", "grid-cols-1", "md:grid-cols-5", "gap-4", "items-center");
+        div.classList.add("grid", "grid-cols-1", "md:grid-cols-3", "gap-4", "items-center");
         div.innerHTML = `
           <div class="md:col-span-1">
             <label class="block text-sm text-[#556476] font-medium mb-3" for="level-name-${count}">Name</label>
@@ -485,7 +491,7 @@
               class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
           </div>
 
-          <div class="md:col-span-2 relative">
+          <div class="md:col-span-1 relative">
             <label class="block text-sm text-[#556476] font-medium mb-3" for="level-designations-${count}">Designations</label>
             <div class="relative">
               <input type="text" id="level-designations-${count}" class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-10 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
@@ -512,7 +518,7 @@
         const addedContainer = document.getElementById(`added-designations-${count}`);
         level.designations.forEach(des => {
           const span = document.createElement("span");
-          span.className = "flex items-center gap-1 bg-orange-100 text-orange-700 rounded-full py-1 px-3 text-sm cursor-default select-none";
+          span.className = "flex items-center gap-1 bg-white border border-[#FF5A1D] text-black rounded-full py-1 px-3 text-sm cursor-default select-none";
           span.textContent = des;
 
           const btn = document.createElement("button");

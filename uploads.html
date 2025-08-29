@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Uploads - Konnect</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
   <style>
       /* Custom scroll for sidebar if needed */
       /* Remove focus outline on elements except keyboard */
@@ -34,7 +35,7 @@
 </head>
 <body class="bg-gray-50 text-gray-700 font-sans antialiased select-none">
 
-<div class="flex h-screen">
+<div class="flex min-h-screen nunito-sans">
   <!-- Sidebar -->
   <aside
     class="bg-[#F6F6F8] w-72 flex flex-col shadow-md select-none z-10 border-r-[2px] border-[#E8E9EB]"
@@ -45,7 +46,7 @@
     </div>
     <nav class="flex flex-col flex-grow py-4 pl-4 space-y-2 text-gray-700">
       <button
-        class="active-nav flex items-center gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
+        class="active-nav nunito flex items-center text-white gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
         aria-current="page"
       >
         <svg class="w-5 h-5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +57,7 @@
         Companies
       </button>
       <button
-        class="flex items-center gap-3 text-[#556476] px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+        class="flex items-center nunito gap-3 text-[#556476] px-4 py-3 font-semibold rounded-lg hover:bg-pink-100 transition focus:outline-none"
       >
         <svg class="w-5 h-5 text-[#556476]" width="21" height="20" viewBox="0 0 21 20" fill="none"
              xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +82,7 @@
         All Employees
       </button>
       <button
-        class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+        class="flex items-center nunito font-semibold text-[#556476] gap-3 px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
       >
         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -101,10 +102,10 @@
     <!-- Header -->
     <header class="flex justify-between items-center border-b-[2px] border-[#E8E9EB] px-6 py-6 bg-white">
       <div class="w-96">
-        <label for="search" class="sr-only">Search</label>
-        <div class="relative">
-          <input id="search" type="search" placeholder="Search"
-                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
+        <label for="search-input" class="sr-only">Search</label>
+        <div class="relative items-center">
+          <input id="search-input" type="search" placeholder="Search"
+                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 nunito-sans placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
           <svg width="15" height="15" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" viewBox="0 0 15 15"
                fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -144,7 +145,7 @@
               class="w-8 h-8 rounded-full object-cover"
               onerror="this.onerror=null; this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fc3ddb6e-d228-4871-8bd1-eea86e0be643.png';"
             />
-            <span class="text-sm">David Johnson</span>
+            <span class="text-sm nunito-sans">David Johnson</span>
             <svg
               class="w-3 h-3 text-orange-700"
               fill="none"
@@ -159,7 +160,7 @@
             </svg>
           </button>
           <div id="profileDropdown"
-               class="hidden absolute right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
+               class="hidden absolute nunito-sans right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Profile</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Settings</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Logout</a>
@@ -172,8 +173,8 @@
       <div class="max-w-7xl mx-auto space-y-7 p-8">
         <!-- Breadcrumb and Title -->
         <header aria-label="Company Name and breadcrumb" class="mb-4">
-          <h1 class="text-[#172635] font-bold text-xl">Tech Innovations Inc.</h1>
-          <nav class="mt-1 text-[17px] font-medium text-[#556476] flex flex-wrap items-center gap-1 select-none"
+          <h1 class="text-[#172635] font-[800] nunito text-xl">Tech Innovations Inc.</h1>
+          <nav class="mt-1 text-[17px] font-medium nunito text-[#556476] flex flex-wrap items-center gap-1 select-none"
                aria-label="Breadcrumb">
             <span>Companies</span>
             <svg class="w-3 h-3 inline mx-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
@@ -196,7 +197,7 @@
       </div>
 
       <!-- Main content - Reports grid -->
-      <main class="flex-1 px-10 overflow-auto space-y-8">
+      <main class="flex-1 px-10 overflow-auto mb-10 space-y-8">
         <section aria-label="Manage Companies Panel"
                  class="bg-white rounded-xl p-6 border border-[#E8E9EB] flex flex-col flex-grow max-w-full overflow-hidden">
           <div class="">
@@ -549,6 +550,171 @@
     </main>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Sample data for each table
+    const employeesData = [
+      { id: 1, document: 'Employee_Records_Jan2025.pdf', uploadedDate: '2025-01-15', month: '2025-01' },
+      { id: 2, document: 'Employee_Records_Feb2025.pdf', uploadedDate: '2025-02-10', month: '2025-02' },
+      { id: 3, document: 'Employee_Records_Mar2025.pdf', uploadedDate: '2025-03-12', month: '2025-03' },
+    ];
+
+    const attendanceData = [
+      { id: 1, document: 'Attendance_Jan2025.xlsx', uploadedDate: '2025-01-20', month: '2025-01' },
+      { id: 2, document: 'Attendance_Feb2025.xlsx', uploadedDate: '2025-02-15', month: '2025-02' },
+    ];
+
+    const earningsData = [
+      { id: 1, document: 'Earnings_Jan2025.csv', uploadedDate: '2025-01-25', month: '2025-01' },
+      { id: 2, document: 'Earnings_Feb2025.csv', uploadedDate: '2025-02-20', month: '2025-02' },
+    ];
+
+    const deductionsData = [
+      { id: 1, document: 'Deductions_Jan2025.pdf', uploadedDate: '2025-01-22', month: '2025-01' },
+      { id: 2, document: 'Deductions_Feb2025.pdf', uploadedDate: '2025-02-18', month: '2025-02' },
+    ];
+
+    const otData = [
+      { id: 1, document: 'Overtime_Jan2025.xlsx', uploadedDate: '2025-01-18', month: '2025-01' },
+      { id: 2, document: 'Overtime_Feb2025.xlsx', uploadedDate: '2025-02-12', month: '2025-02' },
+    ];
+
+    // Data mapping for easy access
+    const dataMap = {
+      'employees-tbody': employeesData,
+      'attendance-tbody': attendanceData,
+      'earnings-tbody': earningsData,
+      'deductions-tbody': deductionsData,
+      'ot-tbody': otData
+    };
+
+    // Function to populate table
+    function populateTable(tbodyId, data, selectedMonth = 'all') {
+      const tbody = document.getElementById(tbodyId);
+      tbody.innerHTML = ''; // Clear existing content
+
+      const filteredData = selectedMonth === 'all' ? data : data.filter(item => item.month === selectedMonth);
+
+      if (filteredData.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td colspan="4" class="p-3 text-center text-gray-500">No data available for selected month</td>`;
+        tbody.appendChild(row);
+        return;
+      }
+
+      filteredData.forEach(item => {
+        const row = document.createElement('tr');
+        row.setAttribute('role', 'row');
+        row.innerHTML = `
+                <td class="p-3">
+                    <input type="checkbox" aria-label="Select ${item.document}" class="row-checkbox rounded border border-pink-400 accent-[#FF5A1D33]/20 focus:outline-none focus:ring-2 focus:ring-pink-400">
+                </td>
+                <td class="p-3 text-[#3E69D5] underline">${item.document}</td>
+                <td class="p-3">${item.uploadedDate}</td>
+                <td class="p-3">${item.month}</td>
+                <td class="p-3 flex justify-left gap-2">
+                   <button aria-label="Edit ${item.document}" class="download-btn bg-[#1D3BFF1A]/10 text-blue-700 p-1 rounded hover:bg-blue-200 transition focus:outline-none" data-id="${item.document}" title="Edit">
+                    <svg width="12" height="12" class="w-4 h-4" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.83659 7.5867C5.77548 7.5867 5.71819 7.57723 5.66471 7.55829C5.61124 7.53934 5.56159 7.5068 5.51576 7.46066L3.86576 5.81066C3.77409 5.719 3.73009 5.61205 3.73376 5.48983C3.73742 5.36761 3.78142 5.26066 3.86576 5.169C3.95742 5.07733 4.06635 5.02966 4.19255 5.026C4.31874 5.02233 4.42752 5.06618 4.51888 5.15754L5.37826 6.01691V2.73983C5.37826 2.60997 5.42226 2.50119 5.51026 2.4135C5.59826 2.3258 5.70703 2.2818 5.83659 2.2815C5.96614 2.28119 6.07507 2.32519 6.16338 2.4135C6.25169 2.5018 6.29553 2.61058 6.29492 2.73983V6.01691L7.1543 5.15754C7.24596 5.06587 7.35489 5.02187 7.48109 5.02554C7.60728 5.0292 7.71606 5.07702 7.80742 5.169C7.89145 5.26066 7.93545 5.36761 7.93942 5.48983C7.94339 5.61205 7.89939 5.719 7.80742 5.81066L6.15742 7.46066C6.11159 7.5065 6.06194 7.53904 6.00846 7.55829C5.95499 7.57754 5.8977 7.58701 5.83659 7.5867ZM3.08659 9.61483C2.83451 9.61483 2.61878 9.52515 2.43942 9.34579C2.26006 9.16643 2.17023 8.95055 2.16992 8.69816V7.7815C2.16992 7.65163 2.21392 7.54286 2.30192 7.45516C2.38992 7.36747 2.4987 7.32347 2.62826 7.32316C2.75781 7.32286 2.86674 7.36686 2.95505 7.45516C3.04335 7.54347 3.0872 7.65225 3.08659 7.7815V8.69816H8.58659V7.7815C8.58659 7.65163 8.63059 7.54286 8.71859 7.45516C8.80659 7.36747 8.91537 7.32347 9.04492 7.32316C9.17448 7.32286 9.28341 7.36686 9.37171 7.45516C9.46002 7.54347 9.50387 7.65225 9.50326 7.7815V8.69816C9.50326 8.95025 9.41357 9.16612 9.23421 9.34579C9.05485 9.52545 8.83898 9.61513 8.58659 9.61483H3.08659Z" fill="#461DFF"/>
+                    </svg>
+                  </button>
+                  <button aria-label="Details of ${item.document}" class="view-btn bg-[#FFA6001A]/10 text-yellow-700 p-1 rounded hover:bg-yellow-200 transition focus:outline-none" data-id="${item.document}" title="Details">
+                    <svg class="w-4 h-4" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.56445 7.375C6.32384 7.375 6.93945 6.75939 6.93945 6C6.93945 5.24061 6.32384 4.625 5.56445 4.625C4.80506 4.625 4.18945 5.24061 4.18945 6C4.18945 6.75939 4.80506 7.375 5.56445 7.375Z" stroke="#FFA600" stroke-width="0.916667"/>
+                      <path d="M9.31734 5.51142C9.49517 5.72775 9.58409 5.83546 9.58409 6C9.58409 6.16454 9.49517 6.27225 9.31734 6.48858C8.66651 7.27875 7.23101 8.75 5.56451 8.75C3.89801 8.75 2.46251 7.27875 1.81167 6.48858C1.63384 6.27225 1.54492 6.16454 1.54492 6C1.54492 5.83546 1.63384 5.72775 1.81167 5.51142C2.46251 4.72125 3.89801 3.25 5.56451 3.25C7.23101 3.25 8.66651 4.72125 9.31734 5.51142Z" stroke="#FFA600" stroke-width="0.916667"/>
+                    </svg>
+                  </button>
+                  <button aria-label="Delete ${item.id}" class="delete-btn bg-[#FFE9E5] text-red-600 p-1 rounded hover:bg-red-200 transition focus:outline-none" data-id="${item.id}" title="Delete">
+                    <svg class="w-4 h-4" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.9431 8.70157C2.71689 8.70157 2.52331 8.62109 2.36236 8.46014C2.20141 8.29919 2.12079 8.10547 2.12052 7.87899V2.53221H1.70923V1.70963H3.76568V1.29834H6.23342V1.70963H8.28987V2.53221H7.87858V7.87899C7.87858 8.1052 7.79811 8.29891 7.63715 8.46014C7.4762 8.62137 7.28248 8.70184 7.056 8.70157H2.9431ZM7.056 2.53221H2.9431V7.87899H7.056V2.53221ZM3.76568 7.05641H4.58826V3.35479H3.76568V7.05641ZM5.41084 7.05641H6.23342V3.35479H5.41084V7.05641Z" fill="#ED2227"/>
+                    </svg>
+                  </button>
+      </td>
+            `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // Function to toggle select all checkboxes
+    function toggleSelectAll(selectAllCheckbox) {
+      const tbody = selectAllCheckbox.closest('table').querySelector('tbody');
+      const checkboxes = tbody.querySelectorAll('.row-checkbox');
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = selectAllCheckbox.checked;
+      });
+    }
+
+    // Action functions
+    function viewDocument(documentName) {
+      alert(`Viewing document: ${documentName}`);
+      // In a real application, this could open a modal or new window to view the document
+    }
+
+    function downloadDocument(documentName) {
+      alert(`Downloading document: ${documentName}`);
+      // In a real application, this would trigger a file download
+      const link = document.createElement('a');
+      link.href = `#`; // Replace with actual file URL in production
+      link.download = documentName;
+      link.click();
+    }
+
+    function deleteDocument(id, tbodyId) {
+      if (confirm(`Are you sure you want to delete document ID: ${id}?`)) {
+        alert(`Deleted document ID: ${id}`);
+        dataMap[tbodyId] = dataMap[tbodyId].filter(item => item.id !== id);
+        const select = document.getElementById(`${tbodyId.replace('-tbody', '')}-month-filter`);
+        populateTable(tbodyId, dataMap[tbodyId], select ? select.value : 'all');
+      }
+    }
+
+    // Expose toggleSelectAll to global scope for onclick
+    window.toggleSelectAll = toggleSelectAll;
+
+    // Function to setup month filter for a table
+    function setupMonthFilter(tbodyId, filterId) {
+      const select = document.getElementById(filterId);
+      if (select) {
+        select.addEventListener('change', () => {
+          populateTable(tbodyId, dataMap[tbodyId], select.value);
+        });
+      }
+    }
+
+    // Populate all tables and setup month filters on page load
+    populateTable('employees-tbody', employeesData);
+    populateTable('attendance-tbody', attendanceData);
+    populateTable('earnings-tbody', earningsData);
+    populateTable('deductions-tbody', deductionsData);
+    populateTable('ot-tbody', otData);
+
+    setupMonthFilter('employees-tbody', 'employees-month-filter');
+    setupMonthFilter('attendance-tbody', 'attendance-month-filter');
+    setupMonthFilter('earnings-tbody', 'earnings-month-filter');
+    setupMonthFilter('deductions-tbody', 'deductions-month-filter');
+    setupMonthFilter('ot-tbody', 'ot-month-filter');
+
+    // Profile dropdown toggle
+    const profileButton = document.getElementById('profileButton');
+    const profileDropdown = document.getElementById('profileDropdown');
+
+    profileButton.addEventListener('click', () => {
+      profileDropdown.classList.toggle('hidden');
+      const isExpanded = !profileDropdown.classList.contains('hidden');
+      profileButton.setAttribute('aria-expanded', isExpanded);
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+      const profileDropdownRoot = document.getElementById('profileDropdownRoot');
+      if (!profileDropdownRoot.contains(event.target)) {
+        profileDropdown.classList.add('hidden');
+        profileButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>
 
 </body>
 </html>

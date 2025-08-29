@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Add Company - Konnect</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
   <style>
       /* Custom scroll for sidebar if needed */
       /* Remove focus outline on elements except keyboard */
@@ -48,7 +49,7 @@
     </div>
     <nav class="flex flex-col flex-grow py-4 pl-4 space-y-2 text-gray-700">
       <button
-        class="active-nav flex items-center gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
+        class="active-nav nunito flex items-center text-white gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
         aria-current="page"
       >
         <svg class="w-5 h-5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +60,7 @@
         Companies
       </button>
       <button
-        class="flex items-center gap-3 text-[#556476] px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+        class="flex items-center nunito gap-3 text-[#556476] px-4 py-3 font-semibold rounded-lg hover:bg-pink-100 transition focus:outline-none"
       >
         <svg class="w-5 h-5 text-[#556476]" width="21" height="20" viewBox="0 0 21 20" fill="none"
              xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +85,7 @@
         All Employees
       </button>
       <button
-        class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+        class="flex items-center nunito font-semibold text-[#556476] gap-3 px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
       >
         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -105,9 +106,9 @@
     <header class="flex justify-between items-center border-b-[2px] border-[#E8E9EB] px-6 py-6 bg-white">
       <div class="w-96">
         <label for="search-input" class="sr-only">Search</label>
-        <div class="relative">
+        <div class="relative items-center">
           <input id="search-input" type="search" placeholder="Search"
-                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
+                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 nunito-sans placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
           <svg width="15" height="15" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" viewBox="0 0 15 15"
                fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -147,7 +148,7 @@
               class="w-8 h-8 rounded-full object-cover"
               onerror="this.onerror=null; this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fc3ddb6e-d228-4871-8bd1-eea86e0be643.png';"
             />
-            <span class="text-sm">David Johnson</span>
+            <span class="text-sm nunito-sans">David Johnson</span>
             <svg
               class="w-3 h-3 text-orange-700"
               fill="none"
@@ -162,7 +163,7 @@
             </svg>
           </button>
           <div id="profileDropdown"
-               class="hidden absolute right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
+               class="hidden absolute nunito-sans right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Profile</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Settings</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Logout</a>
@@ -173,8 +174,8 @@
 
     <!-- Content -->
     <section class="flex-grow bg-[#F6F6F8] overflow-y-auto p-6">
-      <h1 class="text-2xl text-xl font-bold mb-1 text-[#172635]">Add Company</h1>
-      <nav class="mb-6 text-[#556476] text-[17px] flex gap-2 items-center select-none" aria-label="Breadcrumb">
+      <h1 class="text-2xl text-xl nunito font-[800] mb-1 text-[#172635]">Add Company</h1>
+      <nav class="mb-6 text-[#556476] nunito text-[17px] flex gap-2 items-center select-none" aria-label="Breadcrumb">
         <span>Companies</span>
         <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -183,31 +184,31 @@
         <span class="font-semibold text-[17px] text-[#172635]">Add Company</span>
       </nav>
 
-      <form id="add-company-form" class="space-y-6 max-w-6xl">
+      <form id="add-company-form" class="space-y-6 max-w-6xl nunito">
         <!-- Basic Information -->
         <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="basic-info-heading">
-          <h3 id="basic-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block">Basic Information</h3>
+          <h3 id="basic-info-heading" class="text-[#FF5A1D] nunito-sans font-bold text-base mb-4 block">Basic Information</h3>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <label for="company-name" class="block text-sm text-[#556476] font-medium mb-3">Company Name</label>
               <input type="text" id="company-name" name="companyName" placeholder="Company Name"
-                     class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                     class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
             </div>
             <div>
               <label for="contact-no" class="block text-sm text-[#556476] font-medium mb-3">Contact No.</label>
               <input type="text" id="contact-no" name="contactNo" placeholder="Contact No."
-                     class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                     class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
             </div>
             <div>
               <label for="address" class="block text-sm text-[#556476] font-medium mb-3">Address</label>
               <input type="text" id="address" name="address" placeholder="Address"
-                     class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                     class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
             </div>
 
             <div>
               <label for="select-act" class="block text-sm text-[#556476] font-medium mb-3">Select Act</label>
               <select id="select-act" name="selectAct"
-                      class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
+                      class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
                 <option disabled selected>Select Act</option>
                 <option>Act 1</option>
                 <option>Act 2</option>
@@ -217,7 +218,7 @@
             <div>
               <label for="working-days" class="block text-sm text-[#556476] font-medium mb-3">Working Days</label>
               <input type="text" id="working-days" name="workingDays" placeholder="Working Days"
-                     class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                     class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
             </div>
           </div>
         </fieldset>
@@ -225,55 +226,82 @@
         <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="company-desc-heading">
           <h3 id="company-desc-heading" class="block text-sm text-[#556476] font-medium mb-3">Company Description</h3>
           <textarea id="company-description" name="companyDescription" rows="5" placeholder="Company Description"
-                    class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"></textarea>
+                    class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"></textarea>
+        </fieldset>
+
+
+        <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="department-info-heading">
+          <h3 id="department-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block nunito-sans">Departments</h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+            <div>
+              <label for="department-name" class="block text-sm text-[#556476] font-medium mb-3">Department Name</label>
+              <input type="text" id="department-name" name="epfRate" placeholder="Department Name"
+                     class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+            </div>
+            <div>
+              <label for="department-description" class="block text-sm text-[#556476] font-medium mb-3">Description</label>
+              <input type="text" id="department-description" name="etfRate" placeholder="Description"
+                     class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+            </div>
+          </div>
+          <button type="button" id="add-department" class="text-sm font-bold text-[#FF5A1D] nunito-sans mt-2 hover:underline">+ Add
+            More
+          </button>
         </fieldset>
 
 
         <!-- Statutory Contribution Details -->
         <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="statutory-info-heading">
-          <h3 id="statutory-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block">Statutory Contribution
+          <h3 id="statutory-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block nunito-sans">Statutory Contribution
             Details</h3>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
             <div>
               <label for="epf-rate" class="block text-sm text-[#556476] font-medium mb-3">EPF Rate</label>
               <input type="text" id="epf-rate" name="epfRate" placeholder="EPF Rate"
-                     class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                     class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
             </div>
             <div>
               <label for="etf-rate" class="block text-sm text-[#556476] font-medium mb-3">ETF Rate</label>
               <input type="text" id="etf-rate" name="etfRate" placeholder="ETF Rate"
-                     class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                     class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
             </div>
           </div>
 
-          <p class="text-[#FF5A1D] font-bold text-sm mb-3">APIT Rates</p>
+          <p class="text-[#FF5A1D] font-bold text-sm mb-3 nunito-sans">APIT Rates</p>
 
           <div id="apit-rates-container" class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+            <div class="flex flex-row gap-2 items-center">
               <div>
                 <label for="starting-amount" class="block text-sm text-[#556476] font-medium mb-3">Starting
                   Amount</label>
                 <input type="text" id="starting-amount" name="apit_starting_amount[]" placeholder="Starting Amount"
-                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                       class="w-[350px] border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+              <div>
+                <label class="mb-3"></label>
+                <p class="w-2 pt-6"><</p>
               </div>
 
               <div>
                 <label for="ending-amount" class="block text-sm text-[#556476] font-medium mb-3">Ending Amount</label>
                 <input type="text" id="ending-amount" name="apit_ending_amount[]" placeholder="Ending Amount"
-                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                       class="w-[350px] border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
               </div>
-
-
+              <div>
+                <label class="mb-3"></label>
+                <p class="w-2 pt-6">=</p>
+              </div>
               <div>
                 <label for="precentage" class="block text-sm text-[#556476] font-medium mb-3">Percentage</label>
                 <input type="text" id="precentage" name="apit_percentage[]" placeholder="Percentage"
-                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                       class="w-[350px] border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
               </div>
             </div>
 
           </div>
-          <button type="button" id="add-apit-rate" class="text-sm font-bold text-[#FF5A1D] mt-2 hover:underline">+ Add
+          <button type="button" id="add-apit-rate" class="text-sm font-bold text-[#FF5A1D] mt-2 hover:underline nunito-sans">+ Add
             More
           </button>
         </fieldset>
@@ -287,13 +315,32 @@
               <div>
                 <label class="block text-sm text-[#556476] font-medium mb-3" for="designation-name-1">Name</label>
                 <input type="text" id="designation-name-1" name="designationName[]" placeholder="Name"
-                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
               </div>
               <div>
                 <label class="block text-sm text-[#556476] font-medium mb-3" for="designation-date-1">Effective
                   Date</label>
-                <input type="date" id="designation-date-1" name="designationDate[]" placeholder="Effective Date"
-                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                <div class="relative w-full">
+                  <input type="date" id="designation-date-1" name="designationDate[]" placeholder="Effective Date"
+                         class="w-full hidden border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                  <label for="calender"></label><input
+                  id="calender"
+                  type="text"
+                  placeholder="Effective Date"
+                  readonly
+                  class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                />
+                  <button
+                    data-date-input="designation-date-1"
+                    class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-500 hover:text-gray-700 transition"
+                  >
+                    <svg width="19" height="19" class="h-5 w-5" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.72909 11.0834C6.99154 11.0834 7.24324 10.9792 7.42883 10.7936C7.61441 10.608 7.71867 10.3563 7.71867 10.0938C7.71867 9.83138 7.61441 9.57967 7.42883 9.39409C7.24324 9.20851 6.99154 9.10425 6.72909 9.10425C6.46663 9.10425 6.21493 9.20851 6.02934 9.39409C5.84376 9.57967 5.7395 9.83138 5.7395 10.0938C5.7395 10.3563 5.84376 10.608 6.02934 10.7936C6.21493 10.9792 6.46663 11.0834 6.72909 11.0834ZM6.72909 13.8542C6.99154 13.8542 7.24324 13.75 7.42883 13.5644C7.61441 13.3788 7.71867 13.1271 7.71867 12.8647C7.71867 12.6022 7.61441 12.3505 7.42883 12.1649C7.24324 11.9793 6.99154 11.8751 6.72909 11.8751C6.46663 11.8751 6.21493 11.9793 6.02934 12.1649C5.84376 12.3505 5.7395 12.6022 5.7395 12.8647C5.7395 13.1271 5.84376 13.3788 6.02934 13.5644C6.21493 13.75 6.46663 13.8542 6.72909 13.8542ZM10.4895 10.0938C10.4895 10.3563 10.3852 10.608 10.1997 10.7936C10.0141 10.9792 9.76237 11.0834 9.49992 11.0834C9.23747 11.0834 8.98576 10.9792 8.80018 10.7936C8.61459 10.608 8.51034 10.3563 8.51034 10.0938C8.51034 9.83138 8.61459 9.57967 8.80018 9.39409C8.98576 9.20851 9.23747 9.10425 9.49992 9.10425C9.76237 9.10425 10.0141 9.20851 10.1997 9.39409C10.3852 9.57967 10.4895 9.83138 10.4895 10.0938ZM9.49992 13.8542C9.76237 13.8542 10.0141 13.75 10.1997 13.5644C10.3852 13.3788 10.4895 13.1271 10.4895 12.8647C10.4895 12.6022 10.3852 12.3505 10.1997 12.1649C10.0141 11.9793 9.76237 11.8751 9.49992 11.8751C9.23747 11.8751 8.98576 11.9793 8.80018 12.1649C8.61459 12.3505 8.51034 12.6022 8.51034 12.8647C8.51034 13.1271 8.61459 13.3788 8.80018 13.5644C8.98576 13.75 9.23747 13.8542 9.49992 13.8542ZM13.2603 10.0938C13.2603 10.3563 13.1561 10.608 12.9705 10.7936C12.7849 10.9792 12.5332 11.0834 12.2708 11.0834C12.0083 11.0834 11.7566 10.9792 11.571 10.7936C11.3854 10.608 11.2812 10.3563 11.2812 10.0938C11.2812 9.83138 11.3854 9.57967 11.571 9.39409C11.7566 9.20851 12.0083 9.10425 12.2708 9.10425C12.5332 9.10425 12.7849 9.20851 12.9705 9.39409C13.1561 9.57967 13.2603 9.83138 13.2603 10.0938Z" fill="black"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M6.33325 2.573C6.49073 2.573 6.64175 2.63555 6.7531 2.7469C6.86445 2.85825 6.927 3.00928 6.927 3.16675V3.7605H12.0728V3.16675C12.0728 3.00928 12.1354 2.85825 12.2467 2.7469C12.3581 2.63555 12.5091 2.573 12.6666 2.573C12.8241 2.573 12.9751 2.63555 13.0864 2.7469C13.1978 2.85825 13.2603 3.00928 13.2603 3.16675V3.76683C13.3807 3.77 13.4928 3.7758 13.5968 3.78425C13.8976 3.808 14.1795 3.86183 14.4463 3.998C14.856 4.20674 15.1891 4.53985 15.3978 4.94958C15.534 5.21637 15.5878 5.49821 15.6116 5.79904C15.6353 6.088 15.6353 6.44029 15.6353 6.86383V12.928C15.6353 13.3515 15.6353 13.7038 15.6116 13.9928C15.5878 14.2936 15.534 14.5755 15.3978 14.8423C15.1893 15.2519 14.8565 15.585 14.4471 15.7938C14.1795 15.93 13.8976 15.9838 13.5968 16.0076C13.3078 16.0313 12.9555 16.0313 12.5328 16.0313H6.46784C6.0443 16.0313 5.692 16.0313 5.40304 16.0076C5.10221 15.9838 4.82038 15.93 4.55359 15.7938C4.1441 15.5855 3.81101 15.253 3.602 14.8438C3.46584 14.5763 3.412 14.2944 3.38825 13.9936C3.3645 13.7046 3.3645 13.3523 3.3645 12.9296V6.86383C3.3645 6.44029 3.3645 6.088 3.38825 5.79904C3.412 5.49821 3.46584 5.21637 3.602 4.94958C3.81074 4.53985 4.14386 4.20674 4.55359 3.998C4.82038 3.86183 5.10221 3.808 5.40304 3.78425C5.50702 3.7758 5.61917 3.77 5.7395 3.76683V3.16675C5.7395 3.08878 5.75486 3.01157 5.7847 2.93953C5.81454 2.86749 5.85827 2.80204 5.91341 2.7469C5.96854 2.69177 6.034 2.64803 6.10604 2.61819C6.17807 2.58836 6.25528 2.573 6.33325 2.573ZM5.7395 5.14592V4.95433C5.65944 4.9568 5.57946 4.96128 5.49963 4.96779C5.27242 4.986 5.16396 5.01925 5.09271 5.05567C4.90621 5.15059 4.7546 5.3022 4.65967 5.48871C4.62325 5.55996 4.59 5.66842 4.57179 5.89562C4.55279 6.12996 4.552 6.43396 4.552 6.88758V7.323H14.4478V6.88758C14.4478 6.43475 14.4478 6.12996 14.4281 5.89562C14.4098 5.66842 14.3766 5.55996 14.3402 5.48871C14.2452 5.3022 14.0936 5.15059 13.9071 5.05567C13.8359 5.01925 13.7274 4.986 13.4994 4.96779C13.4199 4.9613 13.3401 4.95681 13.2603 4.95433V5.14592C13.2603 5.30339 13.1978 5.45441 13.0864 5.56576C12.9751 5.67711 12.8241 5.73967 12.6666 5.73967C12.5091 5.73967 12.3581 5.67711 12.2467 5.56576C12.1354 5.45441 12.0728 5.30339 12.0728 5.14592V4.948H6.927V5.14592C6.927 5.30339 6.86445 5.45441 6.7531 5.56576C6.64175 5.67711 6.49073 5.73967 6.33325 5.73967C6.17578 5.73967 6.02476 5.67711 5.91341 5.56576C5.80206 5.45441 5.7395 5.30339 5.7395 5.14592ZM14.4478 8.11467H4.552V12.9043C4.552 13.3571 4.552 13.6619 4.57179 13.8954C4.59 14.1234 4.62325 14.2319 4.65967 14.3031C4.75467 14.49 4.90588 14.6412 5.09271 14.7362C5.16396 14.7726 5.27242 14.8058 5.49963 14.824C5.73396 14.843 6.03796 14.8438 6.49159 14.8438H12.5083C12.9611 14.8438 13.2659 14.8438 13.4994 14.824C13.7274 14.8058 13.8359 14.7726 13.9071 14.7362C14.0936 14.6412 14.2452 14.4896 14.3402 14.3031C14.3766 14.2319 14.4098 14.1234 14.4281 13.8954C14.4471 13.6619 14.4478 13.3571 14.4478 12.9043V8.11467Z" fill="black"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M7.71875 6.1355C7.71875 5.97803 7.78131 5.827 7.89266 5.71565C8.00401 5.6043 8.15503 5.54175 8.3125 5.54175H10.6875C10.845 5.54175 10.996 5.6043 11.1073 5.71565C11.2187 5.827 11.2812 5.97803 11.2812 6.1355C11.2812 6.29297 11.2187 6.44399 11.1073 6.55534C10.996 6.66669 10.845 6.72925 10.6875 6.72925H8.3125C8.15503 6.72925 8.00401 6.66669 7.89266 6.55534C7.78131 6.44399 7.71875 6.29297 7.71875 6.1355Z" fill="black"/>
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -303,18 +350,18 @@
         </fieldset>
       </form>
     </section>
-    <footer class="bg-white border-t py-4 px-6 flex justify-between items-center">
+    <footer class="bg-white border-t py-4 px-6 flex nunito justify-between items-center">
       <button id="btnClearAll"
-              class="text-[#FF5A1D] border border-[#FF5A1D] text-sm rounded-md px-4 py-2 hover:bg-orange-50 transition font-semibold select-none"
+              class="text-[#FF5A1D] border border-[#FF5A1D] text-sm rounded-lg px-4 py-2 hover:bg-orange-50 transition font-semibold select-none"
               type="button">Clear all
       </button>
       <div class="flex gap-3">
         <button id="btnCancel"
-                class="text-[#556476] bg-white border border-[#556476] text-sm rounded-md px-5 py-2 hover:bg-gray-50 transition select-none"
+                class="text-[#556476] bg-white border border-[#556476] text-sm rounded-lg px-5 py-2 hover:bg-gray-50 transition select-none"
                 type="button">Cancel
         </button>
         <button id="btnNextSave"
-                class="bg-[#FF5A1D] text-white rounded-md px-5 py-2 border border-[#FF5A1D] hover:bg-orange-600 text-sm transition font-normal select-none"
+                class="bg-[#FF5A1D] text-white rounded-lg px-5 py-2 border border-[#FF5A1D] hover:bg-orange-600 text-sm transition font-normal select-none"
                 type="button">Next
         </button>
       </div>
@@ -390,22 +437,31 @@
 
   addApitRateBtn.addEventListener("click", () => {
     const div = document.createElement("div");
-    div.classList.add("grid", "grid-cols-1", "md:grid-cols-3", "gap-2", "items-center");
+    div.classList.add("flex","flex-row","gap-2", "items-center");
     div.innerHTML = `
                 <div>
                   <label for="starting-amount" class="block text-sm text-[#556476] font-medium mb-3">Starting Amount</label>
                   <input type="text" id="starting-amount" name="apit_starting_amount[]" placeholder="Starting Amount"
-                    class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                    class="w-[350px] border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
                 </div>
+                <div>
+                   <label class="mb-3"></label>
+                   <p class="w-2 pt-6"><</p>
+                </div>
+
                 <div>
                   <label for="ending-amount" class="block text-sm text-[#556476] font-medium mb-3">Ending Amount</label>
                   <input type="text" id="ending-amount" name="apit_ending_amount[]" placeholder="Ending Amount"
-                    class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                    class="w-[350px] border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                </div>
+                <div>
+                   <label class="mb-3"></label>
+                   <p class="w-2 pt-6">=</p>
                 </div>
                 <div>
                   <label for="precentage" class="block text-sm text-[#556476] font-medium mb-3">Percentage</label>
                   <input type="text" id="precentage" name="apit_percentage[]" placeholder="Percentage"
-                  class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                  class="w-[350px] border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
                 </div>
         `;
     apitRatesContainer.appendChild(div);
@@ -423,13 +479,33 @@
         <div>
           <label class="block text-sm text-[#556476] font-medium mb-3" for="designation-name-${count}">Name</label>
           <input type="text" id="designation-name-${count}" name="designationName[]" placeholder="Name"
-            class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
+            class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
         </div>
         <div>
           <label class="block text-sm text-[#556476] font-medium mb-3" for="designation-date-${count}">Effective Date</label>
-          <input type="date" id="designation-date-${count}" name="designationDate[]" placeholder="Effective Date"
-            class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
+          <div class="relative w-full">
+                  <input type="date" id="designation-date-${count}" name="designationDate[]" placeholder="Effective Date"
+                         class="w-full hidden border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                  <label for="calender"></label><input
+                  id="calender"
+                  type="text"
+                  placeholder="Effective Date"
+                  readonly
+                  class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                />
+                  <button
+                    data-date-input="designation-date-${count}"
+                    class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-500 hover:text-gray-700 transition"
+                  >
+                    <svg width="19" height="19" class="h-5 w-5" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.72909 11.0834C6.99154 11.0834 7.24324 10.9792 7.42883 10.7936C7.61441 10.608 7.71867 10.3563 7.71867 10.0938C7.71867 9.83138 7.61441 9.57967 7.42883 9.39409C7.24324 9.20851 6.99154 9.10425 6.72909 9.10425C6.46663 9.10425 6.21493 9.20851 6.02934 9.39409C5.84376 9.57967 5.7395 9.83138 5.7395 10.0938C5.7395 10.3563 5.84376 10.608 6.02934 10.7936C6.21493 10.9792 6.46663 11.0834 6.72909 11.0834ZM6.72909 13.8542C6.99154 13.8542 7.24324 13.75 7.42883 13.5644C7.61441 13.3788 7.71867 13.1271 7.71867 12.8647C7.71867 12.6022 7.61441 12.3505 7.42883 12.1649C7.24324 11.9793 6.99154 11.8751 6.72909 11.8751C6.46663 11.8751 6.21493 11.9793 6.02934 12.1649C5.84376 12.3505 5.7395 12.6022 5.7395 12.8647C5.7395 13.1271 5.84376 13.3788 6.02934 13.5644C6.21493 13.75 6.46663 13.8542 6.72909 13.8542ZM10.4895 10.0938C10.4895 10.3563 10.3852 10.608 10.1997 10.7936C10.0141 10.9792 9.76237 11.0834 9.49992 11.0834C9.23747 11.0834 8.98576 10.9792 8.80018 10.7936C8.61459 10.608 8.51034 10.3563 8.51034 10.0938C8.51034 9.83138 8.61459 9.57967 8.80018 9.39409C8.98576 9.20851 9.23747 9.10425 9.49992 9.10425C9.76237 9.10425 10.0141 9.20851 10.1997 9.39409C10.3852 9.57967 10.4895 9.83138 10.4895 10.0938ZM9.49992 13.8542C9.76237 13.8542 10.0141 13.75 10.1997 13.5644C10.3852 13.3788 10.4895 13.1271 10.4895 12.8647C10.4895 12.6022 10.3852 12.3505 10.1997 12.1649C10.0141 11.9793 9.76237 11.8751 9.49992 11.8751C9.23747 11.8751 8.98576 11.9793 8.80018 12.1649C8.61459 12.3505 8.51034 12.6022 8.51034 12.8647C8.51034 13.1271 8.61459 13.3788 8.80018 13.5644C8.98576 13.75 9.23747 13.8542 9.49992 13.8542ZM13.2603 10.0938C13.2603 10.3563 13.1561 10.608 12.9705 10.7936C12.7849 10.9792 12.5332 11.0834 12.2708 11.0834C12.0083 11.0834 11.7566 10.9792 11.571 10.7936C11.3854 10.608 11.2812 10.3563 11.2812 10.0938C11.2812 9.83138 11.3854 9.57967 11.571 9.39409C11.7566 9.20851 12.0083 9.10425 12.2708 9.10425C12.5332 9.10425 12.7849 9.20851 12.9705 9.39409C13.1561 9.57967 13.2603 9.83138 13.2603 10.0938Z" fill="black"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M6.33325 2.573C6.49073 2.573 6.64175 2.63555 6.7531 2.7469C6.86445 2.85825 6.927 3.00928 6.927 3.16675V3.7605H12.0728V3.16675C12.0728 3.00928 12.1354 2.85825 12.2467 2.7469C12.3581 2.63555 12.5091 2.573 12.6666 2.573C12.8241 2.573 12.9751 2.63555 13.0864 2.7469C13.1978 2.85825 13.2603 3.00928 13.2603 3.16675V3.76683C13.3807 3.77 13.4928 3.7758 13.5968 3.78425C13.8976 3.808 14.1795 3.86183 14.4463 3.998C14.856 4.20674 15.1891 4.53985 15.3978 4.94958C15.534 5.21637 15.5878 5.49821 15.6116 5.79904C15.6353 6.088 15.6353 6.44029 15.6353 6.86383V12.928C15.6353 13.3515 15.6353 13.7038 15.6116 13.9928C15.5878 14.2936 15.534 14.5755 15.3978 14.8423C15.1893 15.2519 14.8565 15.585 14.4471 15.7938C14.1795 15.93 13.8976 15.9838 13.5968 16.0076C13.3078 16.0313 12.9555 16.0313 12.5328 16.0313H6.46784C6.0443 16.0313 5.692 16.0313 5.40304 16.0076C5.10221 15.9838 4.82038 15.93 4.55359 15.7938C4.1441 15.5855 3.81101 15.253 3.602 14.8438C3.46584 14.5763 3.412 14.2944 3.38825 13.9936C3.3645 13.7046 3.3645 13.3523 3.3645 12.9296V6.86383C3.3645 6.44029 3.3645 6.088 3.38825 5.79904C3.412 5.49821 3.46584 5.21637 3.602 4.94958C3.81074 4.53985 4.14386 4.20674 4.55359 3.998C4.82038 3.86183 5.10221 3.808 5.40304 3.78425C5.50702 3.7758 5.61917 3.77 5.7395 3.76683V3.16675C5.7395 3.08878 5.75486 3.01157 5.7847 2.93953C5.81454 2.86749 5.85827 2.80204 5.91341 2.7469C5.96854 2.69177 6.034 2.64803 6.10604 2.61819C6.17807 2.58836 6.25528 2.573 6.33325 2.573ZM5.7395 5.14592V4.95433C5.65944 4.9568 5.57946 4.96128 5.49963 4.96779C5.27242 4.986 5.16396 5.01925 5.09271 5.05567C4.90621 5.15059 4.7546 5.3022 4.65967 5.48871C4.62325 5.55996 4.59 5.66842 4.57179 5.89562C4.55279 6.12996 4.552 6.43396 4.552 6.88758V7.323H14.4478V6.88758C14.4478 6.43475 14.4478 6.12996 14.4281 5.89562C14.4098 5.66842 14.3766 5.55996 14.3402 5.48871C14.2452 5.3022 14.0936 5.15059 13.9071 5.05567C13.8359 5.01925 13.7274 4.986 13.4994 4.96779C13.4199 4.9613 13.3401 4.95681 13.2603 4.95433V5.14592C13.2603 5.30339 13.1978 5.45441 13.0864 5.56576C12.9751 5.67711 12.8241 5.73967 12.6666 5.73967C12.5091 5.73967 12.3581 5.67711 12.2467 5.56576C12.1354 5.45441 12.0728 5.30339 12.0728 5.14592V4.948H6.927V5.14592C6.927 5.30339 6.86445 5.45441 6.7531 5.56576C6.64175 5.67711 6.49073 5.73967 6.33325 5.73967C6.17578 5.73967 6.02476 5.67711 5.91341 5.56576C5.80206 5.45441 5.7395 5.30339 5.7395 5.14592ZM14.4478 8.11467H4.552V12.9043C4.552 13.3571 4.552 13.6619 4.57179 13.8954C4.59 14.1234 4.62325 14.2319 4.65967 14.3031C4.75467 14.49 4.90588 14.6412 5.09271 14.7362C5.16396 14.7726 5.27242 14.8058 5.49963 14.824C5.73396 14.843 6.03796 14.8438 6.49159 14.8438H12.5083C12.9611 14.8438 13.2659 14.8438 13.4994 14.824C13.7274 14.8058 13.8359 14.7726 13.9071 14.7362C14.0936 14.6412 14.2452 14.4896 14.3402 14.3031C14.3766 14.2319 14.4098 14.1234 14.4281 13.8954C14.4471 13.6619 14.4478 13.3571 14.4478 12.9043V8.11467Z" fill="black"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M7.71875 6.1355C7.71875 5.97803 7.78131 5.827 7.89266 5.71565C8.00401 5.6043 8.15503 5.54175 8.3125 5.54175H10.6875C10.845 5.54175 10.996 5.6043 11.1073 5.71565C11.2187 5.827 11.2812 5.97803 11.2812 6.1355C11.2812 6.29297 11.2187 6.44399 11.1073 6.55534C10.996 6.66669 10.845 6.72925 10.6875 6.72925H8.3125C8.15503 6.72925 8.00401 6.66669 7.89266 6.55534C7.78131 6.44399 7.71875 6.29297 7.71875 6.1355Z" fill="black"/>
+                    </svg>
+                  </button>
+                </div>
         </div>
+
       `;
     designationsContainer.appendChild(div);
   });
@@ -567,54 +643,54 @@
       document.getElementById('etf-rate').value = temp.etfRate || '';
 
       // Populate APIT rates
-      if (temp.apitRates && temp.apitRates.length > 0) {
-        apitRatesContainer.innerHTML = '';
-        temp.apitRates.forEach(rate => {
-          const div = document.createElement("div");
-          div.classList.add("grid", "grid-cols-1", "md:grid-cols-3", "gap-2", "items-center");
-          div.innerHTML = `
-            <div>
-              <label class="block text-sm text-[#556476] font-medium mb-3">Starting Amount</label>
-              <input type="text" name="apit_starting_amount[]" placeholder="Starting Amount" value="${rate.start || ''}"
-                class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-            </div>
-            <div>
-              <label class="block text-sm text-[#556476] font-medium mb-3">Ending Amount</label>
-              <input type="text" name="apit_ending_amount[]" placeholder="Ending Amount" value="${rate.end || ''}"
-                class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-            </div>
-            <div>
-              <label class="block text-sm text-[#556476] font-medium mb-3">Percentage</label>
-              <input type="text" name="apit_percentage[]" placeholder="Percentage" value="${rate.percent || ''}"
-                class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-            </div>
-          `;
-          apitRatesContainer.appendChild(div);
-        });
-      }
+      // if (temp.apitRates && temp.apitRates.length > 0) {
+      //   apitRatesContainer.innerHTML = '';
+      //   temp.apitRates.forEach(rate => {
+      //     const div = document.createElement("div");
+      //     div.classList.add("grid", "grid-cols-1", "md:grid-cols-3", "gap-2", "items-center");
+      //     div.innerHTML = `
+      //       <div>
+      //         <label class="block text-sm text-[#556476] font-medium mb-3">Starting Amount</label>
+      //         <input type="text" name="apit_starting_amount[]" placeholder="Starting Amount" value="${rate.start || ''}"
+      //           class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+      //       </div>
+      //       <div>
+      //         <label class="block text-sm text-[#556476] font-medium mb-3">Ending Amount</label>
+      //         <input type="text" name="apit_ending_amount[]" placeholder="Ending Amount" value="${rate.end || ''}"
+      //           class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+      //       </div>
+      //       <div>
+      //         <label class="block text-sm text-[#556476] font-medium mb-3">Percentage</label>
+      //         <input type="text" name="apit_percentage[]" placeholder="Percentage" value="${rate.percent || ''}"
+      //           class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+      //       </div>
+      //     `;
+      //     apitRatesContainer.appendChild(div);
+      //   });
+      // }
 
       // Populate designations
-      if (temp.designations && temp.designations.length > 0) {
-        designationsContainer.innerHTML = '';
-        temp.designations.forEach((des, idx) => {
-          const count = idx + 1;
-          const div = document.createElement("div");
-          div.classList.add("grid", "grid-cols-1", "md:grid-cols-3", "gap-6", "items-center");
-          div.innerHTML = `
-            <div>
-              <label class="block text-sm text-[#556476] font-medium mb-3" for="designation-name-${count}">Name</label>
-              <input type="text" id="designation-name-${count}" name="designationName[]" placeholder="Name" value="${des.name || ''}"
-                class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
-            </div>
-            <div>
-              <label class="block text-sm text-[#556476] font-medium mb-3" for="designation-date-${count}">Effective Date</label>
-              <input type="date" id="designation-date-${count}" name="designationDate[]" placeholder="Effective Date" value="${des.date || ''}"
-                class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
-            </div>
-          `;
-          designationsContainer.appendChild(div);
-        });
-      }
+      // if (temp.designations && temp.designations.length > 0) {
+      //   designationsContainer.innerHTML = '';
+      //   temp.designations.forEach((des, idx) => {
+      //     const count = idx + 1;
+      //     const div = document.createElement("div");
+      //     div.classList.add("grid", "grid-cols-1", "md:grid-cols-3", "gap-6", "items-center");
+      //     div.innerHTML = `
+      //       <div>
+      //         <label class="block text-sm text-[#556476] font-medium mb-3" for="designation-name-${count}">Name</label>
+      //         <input type="text" id="designation-name-${count}" name="designationName[]" placeholder="Name" value="${des.name || ''}"
+      //           class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
+      //       </div>
+      //       <div>
+      //         <label class="block text-sm text-[#556476] font-medium mb-3" for="designation-date-${count}">Effective Date</label>
+      //         <input type="date" id="designation-date-${count}" name="designationDate[]" placeholder="Effective Date" value="${des.date || ''}"
+      //           class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"/>
+      //       </div>
+      //     `;
+      //     designationsContainer.appendChild(div);
+      //   });
+      // }
     }
   });
 

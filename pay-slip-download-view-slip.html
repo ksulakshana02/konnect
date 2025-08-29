@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pay Slip Download - Konnect</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
   <style>
       /* Custom scroll for sidebar if needed */
       /* Remove focus outline on elements except keyboard */
@@ -45,7 +46,7 @@
     </div>
     <nav class="flex flex-col flex-grow py-4 pl-4 space-y-2 text-gray-700">
       <button
-        class="active-nav flex items-center gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
+        class="active-nav nunito flex items-center text-white gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
         aria-current="page"
       >
         <svg class="w-5 h-5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +57,7 @@
         Companies
       </button>
       <button
-        class="flex items-center gap-3 text-[#556476] px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+        class="flex items-center nunito gap-3 text-[#556476] px-4 py-3 font-semibold rounded-lg hover:bg-pink-100 transition focus:outline-none"
       >
         <svg class="w-5 h-5 text-[#556476]" width="21" height="20" viewBox="0 0 21 20" fill="none"
              xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +82,7 @@
         All Employees
       </button>
       <button
-        class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+        class="flex items-center nunito font-semibold text-[#556476] gap-3 px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
       >
         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -101,10 +102,10 @@
     <!-- Header -->
     <header class="flex justify-between items-center border-b-[2px] border-[#E8E9EB] px-6 py-6 bg-white">
       <div class="w-96">
-        <label for="search" class="sr-only">Search</label>
-        <div class="relative">
-          <input id="search" type="search" placeholder="Search"
-                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
+        <label for="search-input" class="sr-only">Search</label>
+        <div class="relative items-center">
+          <input id="search-input" type="search" placeholder="Search"
+                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 nunito-sans placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
           <svg width="15" height="15" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" viewBox="0 0 15 15"
                fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -144,7 +145,7 @@
               class="w-8 h-8 rounded-full object-cover"
               onerror="this.onerror=null; this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fc3ddb6e-d228-4871-8bd1-eea86e0be643.png';"
             />
-            <span class="text-sm">David Johnson</span>
+            <span class="text-sm nunito-sans">David Johnson</span>
             <svg
               class="w-3 h-3 text-orange-700"
               fill="none"
@@ -159,7 +160,7 @@
             </svg>
           </button>
           <div id="profileDropdown"
-               class="hidden absolute right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
+               class="hidden absolute nunito-sans right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Profile</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Settings</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Logout</a>
@@ -172,8 +173,8 @@
       <div class="max-w-7xl mx-auto space-y-7 p-8">
         <!-- Breadcrumb and Title -->
         <header aria-label="Company Name and breadcrumb" class="mb-4">
-          <h1 class="text-[#172635] font-bold text-xl">Tech Innovations Inc.</h1>
-          <nav class="mt-1 text-[17px] font-medium text-[#556476] flex flex-wrap items-center gap-1 select-none"
+          <h1 class="text-[#172635] font-[800] nunito text-xl">Tech Innovations Inc.</h1>
+          <nav class="mt-1 text-[17px] font-medium nunito text-[#556476] flex flex-wrap items-center gap-1 select-none"
                aria-label="Breadcrumb">
             <span>Companies</span>
             <svg class="w-3 h-3 inline mx-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
@@ -182,7 +183,7 @@
             </svg>
             <span class="text-[#172635]">Reports</span>
           </nav>
-          <nav class="mt-6 flex space-x-6 border-b border-[#E8E9EB] pb-2 text-sm text-[#556476]">
+          <nav class="mt-6 flex space-x-6 nunito-sans border-b border-[#E8E9EB] pb-2 text-sm text-[#556476]">
             <button class="hover:text-orange-600 focus:outline-none">Company Info</button>
             <button class="hover:text-orange-600 focus:outline-none">Employee Info</button>
             <button class="hover:text-orange-600 focus:outline-none">Earnings</button>
@@ -196,7 +197,7 @@
       </div>
 
       <!-- Main content - Reports grid -->
-      <main class="flex-1 overflow-auto px-10">
+      <main class="flex-1 overflow-auto px-10 nunito-sans">
         <section aria-label="Manage Companies Panel"
                  class="bg-white rounded-xl p-6 shadow-md flex flex-col flex-grow max-w-full overflow-hidden">
           <div class="flex items-center justify-between mb-6">
@@ -205,10 +206,10 @@
           <div id="pdfViewer" class="border border-gray-300 rounded p-4 overflow-auto relative" style="height: 500px;">
             <!-- PDF content will be rendered here -->
           </div>
-          <div class="fixed bottom-10 right-10 flex flex-col space-y-4">
-            <button class="bg-white rounded-ful"
+          <div class="fixed bottom-10 right-20 flex flex-col space-y-2">
+            <button class="bg-white hover:bg-orange-200 text-[#556476] px-1 py-1 rounded-full shadow-lg w-16 h-16 justify-items-center"
                     id="downloadPdf">
-              <svg width="22" height="22" class="" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="22" height="22" class="w-8 h-8" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g opacity="0.75">
                   <path
                     d="M11.1987 14.4868L6.70134 9.98941L7.9606 8.68518L10.2992 11.0238V3.69312H12.0982V11.0238L14.4368 8.68518L15.6961 9.98941L11.1987 14.4868ZM5.80187 18.0847C5.30716 18.0847 4.88381 17.9087 4.53182 17.5567C4.17983 17.2047 4.00353 16.781 4.00293 16.2857V13.5873H5.80187V16.2857H16.5955V13.5873H18.3945V16.2857C18.3945 16.7804 18.2185 17.2041 17.8665 17.5567C17.5145 17.9093 17.0908 18.0853 16.5955 18.0847H5.80187Z"
@@ -216,11 +217,22 @@
                 </g>
               </svg>
             </button>
-            <button class="bg-[#FF5A1D33] hover:bg-orange-200 text-[#556476] px-4 py-2 rounded shadow-lg" id="zoomIn">
-              Zoom In
+            <button class="bg-white hover:bg-orange-200 text-[#556476] px-1 py-1 rounded-full shadow-lg w-16 h-16 justify-items-center" id="zoomIn">
+              <svg width="22" height="22" class="w-8 h-8" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g opacity="0.75">
+                  <path d="M10.2991 5.71411H8.50017V8.41252H5.80176V10.2115H8.50017V12.9099H10.2991V10.2115H12.9975V8.41252H10.2991V5.71411Z" fill="#172635"/>
+                  <path d="M9.39987 2.11621C5.4323 2.11621 2.2041 5.34441 2.2041 9.31198C2.2041 13.2795 5.4323 16.5077 9.39987 16.5077C10.9964 16.5076 12.547 15.9731 13.8046 14.9894L17.7586 18.9435L19.0305 17.6717L15.0764 13.7176C16.0606 12.4599 16.5954 10.909 16.5956 9.31198C16.5956 5.34441 13.3674 2.11621 9.39987 2.11621ZM9.39987 14.7088C6.42352 14.7088 4.00304 12.2883 4.00304 9.31198C4.00304 6.33563 6.42352 3.91515 9.39987 3.91515C12.3762 3.91515 14.7967 6.33563 14.7967 9.31198C14.7967 12.2883 12.3762 14.7088 9.39987 14.7088Z" fill="#172635"/>
+                </g>
+              </svg>
+
             </button>
-            <button class="bg-[#FF5A1D33] hover:bg-orange-200 text-[#556476] px-4 py-2 rounded shadow-lg" id="zoomOut">
-              Zoom Out
+            <button class="bg-white hover:bg-orange-200 text-[#556476] px-1 py-1 rounded-full shadow-lg w-16 h-16 justify-items-center" id="zoomOut">
+              <svg width="22" height="23" class="w-8 h-8" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g opacity="0.75">
+                  <path d="M9.84993 2.33813C11.2855 2.33804 12.692 2.74209 13.9086 3.50406C15.1252 4.26602 16.1027 5.35511 16.7293 6.64668C17.3558 7.93826 17.6061 9.38014 17.4514 10.8073C17.2968 12.2345 16.7435 13.5893 15.8548 14.7167L19.1397 18.0015C19.3035 18.1712 19.3942 18.3984 19.3921 18.6342C19.3901 18.8701 19.2955 19.0956 19.1287 19.2624C18.9619 19.4292 18.7363 19.5238 18.5005 19.5258C18.2647 19.5279 18.0375 19.4372 17.8678 19.2734L14.5829 15.9885C13.6254 16.7431 12.5013 17.2578 11.3044 17.4896C10.1075 17.7215 8.8725 17.6637 7.70246 17.3212C6.53242 16.9786 5.46126 16.3612 4.57834 15.5205C3.69543 14.6798 3.02637 13.6402 2.62698 12.4883C2.22759 11.3364 2.10945 10.1057 2.28242 8.89892C2.45539 7.6921 2.91445 6.54414 3.62131 5.55082C4.32816 4.5575 5.26231 3.74763 6.34582 3.18876C7.42933 2.62989 8.63078 2.33824 9.84993 2.33813ZM9.84993 4.13708C8.29933 4.13708 6.81223 4.75305 5.71579 5.84949C4.61934 6.94594 4.00337 8.43303 4.00337 9.98364C4.00337 11.5342 4.61934 13.0213 5.71579 14.1178C6.81223 15.2142 8.29933 15.8302 9.84993 15.8302C11.4005 15.8302 12.8876 15.2142 13.9841 14.1178C15.0805 13.0213 15.6965 11.5342 15.6965 9.98364C15.6965 8.43303 15.0805 6.94594 13.9841 5.84949C12.8876 4.75305 11.4005 4.13708 9.84993 4.13708ZM12.9981 9.08417C13.2366 9.08417 13.4654 9.17893 13.6341 9.34762C13.8028 9.5163 13.8975 9.74508 13.8975 9.98364C13.8975 10.2222 13.8028 10.451 13.6341 10.6197C13.4654 10.7883 13.2366 10.8831 12.9981 10.8831H6.70178C6.46323 10.8831 6.23444 10.7883 6.06576 10.6197C5.89708 10.451 5.80231 10.2222 5.80231 9.98364C5.80231 9.74508 5.89708 9.5163 6.06576 9.34762C6.23444 9.17893 6.46323 9.08417 6.70178 9.08417H12.9981Z" fill="#172635"/>
+                </g>
+              </svg>
+
             </button>
           </div>
 

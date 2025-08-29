@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Employee Info Inner - Konnect</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
   <style>
       /* Custom scroll for sidebar if needed */
       /* Remove focus outline on elements except keyboard */
@@ -36,7 +37,7 @@
 <body class="bg-[#F6F6F8] text-slate-800 font-sans relative min-h-screen flex flex-col">
 
 <!-- MAIN WRAPPER -->
-<div class="flex flex-1 min-h-[100svh]">
+<div class="flex flex-1 min-h-[100svh] nunito">
 
   <aside
     class="bg-[#F6F6F8] w-72 flex flex-col shadow-md select-none z-10 border-r-[2px] border-[#E8E9EB]"
@@ -47,7 +48,7 @@
     </div>
     <nav class="flex flex-col flex-grow py-4 pl-4 space-y-2 text-gray-700">
       <button
-        class="active-nav flex items-center gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
+        class="active-nav nunito flex items-center text-white gap-3 px-4 py-3 rounded-tl-lg rounded-bl-lg bg-[#FF5A1D] text-white font-semibold shadow-md hover:bg-orange-300 hover:shadow-none focus:outline-none"
         aria-current="page"
       >
         <svg class="w-5 h-5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +59,7 @@
         Companies
       </button>
       <button
-        class="flex items-center gap-3 text-[#556476] px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+        class="flex items-center nunito gap-3 text-[#556476] px-4 py-3 font-semibold rounded-lg hover:bg-pink-100 transition focus:outline-none"
       >
         <svg class="w-5 h-5 text-[#556476]" width="21" height="20" viewBox="0 0 21 20" fill="none"
              xmlns="http://www.w3.org/2000/svg">
@@ -83,7 +84,7 @@
         All Employees
       </button>
       <button
-        class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
+        class="flex items-center nunito font-semibold text-[#556476] gap-3 px-4 py-3 rounded-lg hover:bg-pink-100 transition focus:outline-none"
       >
         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -103,10 +104,10 @@
 
     <header class="flex justify-between items-center border-b-[2px] border-[#E8E9EB] px-6 py-6 bg-white">
       <div class="w-96">
-        <label for="search" class="sr-only">Search</label>
-        <div class="relative">
-          <input id="search" type="search" placeholder="Search"
-                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
+        <label for="search-input" class="sr-only">Search</label>
+        <div class="relative items-center">
+          <input id="search-input" type="search" placeholder="Search"
+                 class="w-full rounded-[8px] bg-[#FF5A1D33]/20 nunito-sans placeholder-[#556476] pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300" />
           <svg width="15" height="15" class="absolute top-2.5 left-3 h-5 w-5 text-orange-400" viewBox="0 0 15 15"
                fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -146,7 +147,7 @@
               class="w-8 h-8 rounded-full object-cover"
               onerror="this.onerror=null; this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fc3ddb6e-d228-4871-8bd1-eea86e0be643.png';"
             />
-            <span class="text-sm">David Johnson</span>
+            <span class="text-sm nunito-sans">David Johnson</span>
             <svg
               class="w-3 h-3 text-orange-700"
               fill="none"
@@ -161,7 +162,7 @@
             </svg>
           </button>
           <div id="profileDropdown"
-               class="hidden absolute right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
+               class="hidden absolute nunito-sans right-0 mt-2 w-40 bg-white ring-1 ring-black ring-opacity-5 rounded shadow-lg py-2 text-sm">
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Profile</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Settings</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-gray-700">Logout</a>
@@ -177,8 +178,8 @@
       <div class="max-w-7xl mx-auto space-y-7 p-8">
         <!-- Breadcrumb and Title -->
         <header aria-label="Company Name and breadcrumb" class="mb-4">
-          <h1 class="text-[#172635] font-bold text-xl">Tech Innovations Inc.</h1>
-          <nav class="mt-1 text-[17px] font-medium text-[#556476] flex flex-wrap items-center gap-1 select-none"
+          <h1 class="text-[#172635] font-[800] nunito text-xl">Tech Innovations Inc.</h1>
+          <nav class="mt-1 text-[17px] font-medium nunito text-[#556476] flex flex-wrap items-center gap-1 select-none"
                aria-label="Breadcrumb">
             <span>Companies</span>
             <svg class="w-3 h-3 inline mx-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
@@ -192,7 +193,7 @@
             </svg>
             <span class="text-[#172635]">Add Earnings</span>
           </nav>
-          <nav class="mt-6 flex space-x-6 border-b border-[#E8E9EB] pb-2 text-sm text-[#556476]">
+          <nav class="mt-6 flex space-x-6 nunito-sans border-b border-[#E8E9EB] pb-2 text-sm text-[#556476]">
             <button class="hover:text-orange-600 focus:outline-none">Company Info</button>
             <button class="hover:text-orange-600 focus:outline-none">Employee Info</button>
             <button class="border-b-2 border-[#FF5A1D] mb-[-10px] pb-1 focus:outline-none">Earnings</button>
@@ -224,7 +225,7 @@
         <!-- Page 1: Add Earning Basic Information -->
         <article id="page1" class="hidden">
           <form id="basicInfoForm" class="bg-white rounded-lg p-6 shadow min-w-full max-w-4xl">
-            <h2 class="text-[#FF5A1D] font-bold text-base mb-6">Basic Information</h2>
+            <h2 class="text-[#FF5A1D] nunito-sans font-bold text-base mb-6">Basic Information</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div class="flex flex-col">
                 <label for="earningName" class="block text-sm text-[#556476] font-medium mb-3 select-none">Name</label>
@@ -247,7 +248,7 @@
             </div>
             <fieldset class="mt-5">
               <legend class="block text-sm text-[#556476] font-medium mb-3 select-none">Include</legend>
-              <div class="flex gap-10">
+              <div class="flex gap-10 nunito-sans">
                 <label class="inline-flex items-center gap-3 cursor-pointer select-none">
                   <input type="checkbox" name="include" value="EPF"
                          class="form-checkbox rounded border border-pink-400 accent-pink-600 focus:ring-pink-400 focus:outline-none" />
@@ -270,7 +271,7 @@
 
         <!-- Page 2: Values Table -->
         <article id="page2" class="hidden max-w-full">
-          <div class="bg-white rounded-lg p-6 shadow min-w-full max-w-4xl">
+          <div class="bg-white rounded-lg p-6 nunito-sans shadow min-w-full max-w-4xl">
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-[#FF5A1D] font-bold text-base mb-6">Values</h2>
               <div class="flex gap-3 items-center">
@@ -362,7 +363,7 @@
             </script>
 
             <section aria-labelledby="sectionAddValueTitle" class="space-y-4 bg-white rounded-lg p-6 border border-[#E8E9EB]">
-              <h2 id="sectionAddValueTitle" class="text-[#FF5A1D] font-bold text-base mb-6 select-none">Value
+              <h2 id="sectionAddValueTitle" class="text-[#FF5A1D] font-bold nunito-sans text-base mb-6 select-none">Value
                 Allocation</h2>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
@@ -451,12 +452,12 @@
             <!-- Note Section -->
             <section aria-labelledby="sectionNoteTitle"
                      class="border border-[#FF8C8C] rounded-lg p-4 bg-white text-sm text-gray-800 select-none bg-white rounded-lg p-6 shadow">
-              <h3 id="sectionNoteTitle" class="text-[#FF5A1D] font-bold text-base mb-2">Note</h3>
+              <h3 id="sectionNoteTitle" class="text-[#FF5A1D] font-bold nunito-sans text-base mb-2">Note</h3>
               <p class="text-[#556476] font-medium text-sm">
                 Select how you'd like to assign this value, either use a formula or fix value for all users or enter
                 individual values manually.
               </p>
-              <div class="mt-3 flex gap-8">
+              <div class="mt-3 flex nunito-sans gap-8">
                 <label class="inline-flex items-center cursor-pointer">
                   <input type="radio" name="assignmentMethod" value="formula" checked
                          class="form-radio text-orange-500 accent-[#FF5A1D]" />
@@ -470,7 +471,7 @@
             </section>
 
             <!-- Formula Section -->
-            <section aria-labelledby="sectionFormulaTitle" class="space-y-3 bg-white rounded-lg p-6 border border-[#E8E9EB] mb-3">
+            <section aria-labelledby="sectionFormulaTitle" class="space-y-3 nunito-sans bg-white rounded-lg p-6 border border-[#E8E9EB] mb-3">
               <h3 id="sectionFormulaTitle" class="text-[#FF5A1D] font-bold text-base mb-2">Formula</h3>
               <div class="flex flex-row justify-between items-center">
               <label class="inline-flex items-center gap-3 cursor-pointer select-none">
