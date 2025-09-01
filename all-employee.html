@@ -36,7 +36,7 @@
 
 <body class="bg-[#F6F6F8] font-sans text-gray-900">
 
-<div class="flex min-h-screen">
+<div class="flex min-h-screen nunito-sans">
 
   <!-- Sidebar -->
   <aside
@@ -174,14 +174,14 @@
     <div class="p-6">
     <!-- Content Header -->
      <div class="justify-between flex flex-row mb-4">
-        <h2 class="text-2xl font-semibold mb-4 text-gray-900">All Employees</h2>
+        <h2 class="text-2xl font-[800] mb-4 text-[#172635] nunito">All Employees</h2>
      </div>
     
 
     <!-- Main Panel -->
     <section aria-label="Manage Companies Panel" class="bg-white rounded-xl p-6 shadow-md flex flex-col flex-grow max-w-full overflow-hidden">
       <div class="flex items-center justify-between mb-6">
-        <h3 class="text-lg font-semibold text-gray-900">Manage All Employees</h3>
+        <h3 class="text-lg font-[800] text-[#172635]">Manage All Employees</h3>
         <div class="flex items-center gap-4">
           <button
             id="search-btn"
@@ -211,25 +211,25 @@
       <!-- Filter panel (hidden by default) -->
       <div
         id="filter-panel"
-        class="mb-4 p-4 bg-pink-50 rounded-lg border border-pink-300 hidden"
+        class="mb-4 p-4 bg-[#FF5A1D33]/20 rounded-lg border border-pink-300 hidden"
         aria-label="Filter options"
       >
         <form id="filter-form" class="flex flex-wrap gap-4">
           <div class="flex flex-col">
-            <label for="filter-act" class="text-sm font-medium text-pink-700 mb-1">Act</label>
-            <select id="filter-act" class="rounded-lg border border-pink-300 px-3 py-2 text-pink-800 bg-pink-100 focus:outline-none focus:ring-1 focus:ring-pink-400">
+            <label for="filter-act" class="text-sm font-medium text-[#172635] mb-1">Act</label>
+            <select id="filter-act" class="rounded-lg border border-pink-300 px-3 py-2 text-[#172635] bg-pink-100 focus:outline-none focus:ring-1 focus:ring-pink-400">
               <option value="">All</option>
               <option value="Shop & Office Act">Shop & Office Act</option>
               <option value="Wages Board Act">Wages Board Act</option>
             </select>
           </div>
           <div class="flex flex-col flex-grow min-w-[180px]">
-            <label for="filter-desc" class="text-sm font-medium text-pink-700 mb-1">Description Contains</label>
+            <label for="filter-desc" class="text-sm font-medium text-[#172635] mb-1">Description Contains</label>
             <input
               id="filter-desc"
               type="text"
               placeholder="e.g. innovative"
-              class="rounded-lg border border-pink-300 px-3 py-2 text-pink-800 bg-pink-100 focus:outline-none focus:ring-1 focus:ring-pink-400"
+              class="rounded-lg border border-pink-300 px-3 py-2 text-[#172635] bg-pink-100 focus:outline-none focus:ring-1 focus:ring-pink-400"
             />
           </div>
           <div class="flex items-end">
