@@ -32,6 +32,84 @@
           transform: scale(1.05);
           transition: transform 0.15s ease-in-out;
       }
+
+
+      .custom-select {
+          position: relative;
+          display: inline-block;
+          width: 350px;
+          max-width: 100%;
+      }
+
+      .select-button {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          padding: 0.675em 1em;
+          cursor: pointer;
+      }
+
+      .arrow {
+          transition: transform ease-in-out 0.3s;
+          pointer-events: none;
+      }
+
+      .arrow.rotate {
+          transform: rotate(180deg);
+      }
+
+      .select-dropdown {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          border: 1px solid #caced1;
+          border-radius: 0.25rem;
+          background-color: white;
+          list-style: none;
+          padding: 0;
+          margin: 5px 0 0;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+          max-height: 150px;
+          overflow-y: auto;
+          z-index: 1000;
+      }
+
+      .select-dropdown::-webkit-scrollbar {
+          width: 7px;
+      }
+
+      .select-dropdown::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 25px;
+      }
+
+      .select-dropdown::-webkit-scrollbar-thumb {
+          background: #ccc;
+          border-radius: 25px;
+      }
+
+      .select-dropdown li {
+          padding: 10px;
+          cursor: pointer;
+      }
+
+      .select-dropdown li.selected {
+          background-color: #f2f2f2;
+          border-radius: 4px;
+          font-weight: bold;
+      }
+
+      .select-dropdown li:hover,
+      .select-dropdown li:focus {
+          background-color: #f2f2f2;
+          border-radius: 4px;
+      }
+
+      .select-dropdown.hidden {
+          display: none;
+      }
   </style>
 </head>
 <body class="bg-[#F6F6F8] font-sans text-gray-900">
@@ -202,14 +280,6 @@
               <button type="button" class="absolute top-[45px] right-3 text-gray-400 hover:text-orange-400"
                       aria-label="Toggle password visibility"
                       onclick="togglePasswordVisibility('confirmPassword', this)">
-<!--                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"-->
-<!--                     stroke="currentColor" stroke-width="2">-->
-<!--                  <path id="eye-open" stroke-linecap="round" stroke-linejoin="round"-->
-<!--                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />-->
-<!--                  <path id="eye-open" stroke-linecap="round" stroke-linejoin="round"-->
-<!--                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />-->
-<!--                  <path id="eye-closed" class="hidden" stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18" />-->
-<!--                </svg>-->
                 <svg width="12" height="12" class="h-5 w-5" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1.97389 6.659C1.92913 6.78121 1.83848 6.88115 1.7212 6.93758C1.60392 6.99401 1.46926 7.00249 1.34583 6.96122C1.2224 6.91995 1.11993 6.83217 1.06019 6.71654C1.00044 6.60092 0.98814 6.46655 1.02589 6.342C1.0442 6.28713 1.06489 6.23208 1.08789 6.179C1.12789 6.084 1.18689 5.953 1.26789 5.798C1.43289 5.488 1.68989 5.075 2.06889 4.662C2.83389 3.827 4.08689 3 5.99989 3C7.91289 3 9.16589 3.827 9.93089 4.662C10.3389 5.11021 10.67 5.62279 10.9109 6.179L10.9569 6.292C10.9599 6.3 10.9699 6.352 10.9799 6.402L10.9999 6.5C10.9999 6.5 11.0839 6.833 10.6579 6.974C10.5324 7.0159 10.3955 7.00638 10.277 6.94753C10.1586 6.88867 10.0683 6.78529 10.0259 6.66V6.657L10.0199 6.641L9.98889 6.563C9.79245 6.11375 9.52391 5.69963 9.19389 5.337C8.58389 4.674 7.58689 4 5.99989 4C4.41289 4 3.41589 4.673 2.80589 5.338C2.47596 5.70032 2.20742 6.1141 2.01089 6.563L1.98089 6.641L1.97389 6.659ZM5.99989 5C5.46946 5 4.96075 5.21071 4.58568 5.58579C4.2106 5.96086 3.99989 6.46957 3.99989 7C3.99989 7.53043 4.2106 8.03914 4.58568 8.41421C4.96075 8.78929 5.46946 9 5.99989 9C6.53032 9 7.03903 8.78929 7.4141 8.41421C7.78918 8.03914 7.99989 7.53043 7.99989 7C7.99989 6.46957 7.78918 5.96086 7.4141 5.58579C7.03903 5.21071 6.53032 5 5.99989 5ZM4.99989 7C4.99989 6.73478 5.10525 6.48043 5.29278 6.29289C5.48032 6.10536 5.73467 6 5.99989 6C6.26511 6 6.51946 6.10536 6.707 6.29289C6.89453 6.48043 6.99989 6.73478 6.99989 7C6.99989 7.26522 6.89453 7.51957 6.707 7.70711C6.51946 7.89464 6.26511 8 5.99989 8C5.73467 8 5.48032 7.89464 5.29278 7.70711C5.10525 7.51957 4.99989 7.26522 4.99989 7Z" fill="black"/>
                 </svg>
@@ -219,15 +289,27 @@
 
             <div>
               <label for="user-role" class="block text-sm text-[#556476] font-medium mb-3">User Role</label>
-              <select id="user-role" name="userRole"
-                      class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
-                <option disabled selected>User Role</option>
-                <option>Admin</option>
-                <option>Payroll Administrator</option>
-                <option>HR Manager</option>
-                <option>Finance</option>
-                <option>Payroll Manager</option>
-              </select>
+              <div id="user-role" class="custom-select">
+                <button
+                  type="button"
+                  class="select-button w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                  aria-expanded="false">
+                  <span class="selected-value">User Role</span>
+                  <span class="arrow">
+                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 0.75L5 4.25L1.5 0.75" stroke="black" stroke-width="1.16667" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </button>
+                <ul class="select-dropdown hidden">
+                  <li>Admin</li>
+                  <li>Payroll Administrator</li>
+                  <li>HR Manager</li>
+                  <li>Finance</li>
+                  <li>Payroll Manager</li>
+                </ul>
+              </div>
             </div>
           </div>
         </fieldset>
@@ -353,6 +435,64 @@
 
 
   document.addEventListener('DOMContentLoaded', () => {
+
+
+    const customSelects = document.querySelectorAll(".custom-select");
+
+    customSelects.forEach((customSelect) => {
+      const selectButton = customSelect.querySelector(".select-button");
+      const dropdown = customSelect.querySelector(".select-dropdown");
+      const arrow = selectButton.querySelector(".arrow");
+      const options = dropdown.querySelectorAll("li");
+      const selectedValue = selectButton.querySelector(".selected-value");
+
+      // Toggle dropdown visibility
+      const toggleDropdown = () => {
+        const isHidden = dropdown.classList.contains("hidden");
+        console.log("Toggling dropdown, isHidden:", isHidden); // Debug log
+        dropdown.classList.toggle("hidden", !isHidden);
+        selectButton.setAttribute("aria-expanded", isHidden);
+        arrow.classList.toggle("rotate", isHidden);
+      };
+
+      // Handle option selection
+      const handleOptionSelect = (option) => {
+        console.log("Selected option:", option.textContent); // Debug log
+        options.forEach((opt) => opt.classList.remove("selected"));
+        option.classList.add("selected");
+        selectedValue.textContent = option.textContent.trim();
+        toggleDropdown(); // Close dropdown after selection
+      };
+
+      // Click event for select button
+      selectButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        console.log("Select button clicked"); // Debug log
+        toggleDropdown();
+      });
+
+      // Click event for each option
+      options.forEach((option) => {
+        option.addEventListener("click", () => {
+          handleOptionSelect(option);
+        });
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!customSelect.contains(e.target)) {
+          console.log("Clicked outside, closing dropdown"); // Debug log
+          dropdown.classList.add("hidden");
+          selectButton.setAttribute("aria-expanded", "false");
+          arrow.classList.remove("rotate");
+        }
+      });
+    });
+
+
+
+
+
     // Sample data for the table
     const usersData = [
       { id: 1, userName: 'john.doe', userRole: 'Admin' },

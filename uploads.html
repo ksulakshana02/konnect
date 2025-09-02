@@ -170,7 +170,7 @@
     </header>
 
     <main class="flex-1 overflow-y-auto ">
-      <div class="max-w-7xl mx-auto space-y-7 p-8">
+      <div class="max-w-7xl space-y-7 p-8">
         <!-- Breadcrumb and Title -->
         <header aria-label="Company Name and breadcrumb" class="mb-4">
           <h1 class="text-[#172635] font-[800] nunito text-xl">Tech Innovations Inc.</h1>
@@ -209,7 +209,7 @@
                   <button
                     id="resignation-export-btn"
                     aria-label="Filter companies"
-                    class="flex items-center gap-3 px-4 py-2 text-xs bg-[#FF5A1D] border border-2 border-[#E8E9EB] rounded-md text-[#FFFFFF] transition focus:outline-none"
+                    class="flex items-center gap-3 px-4 py-2 text-xs bg-[#FF5A1D] rounded-md text-[#FFFFFF] transition focus:outline-none"
                   >
                     <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M5.50192 9.396L5.5 5.271" stroke="white" stroke-width="0.916667" stroke-linecap="round"
@@ -279,7 +279,7 @@
                   <button
                     id="attendance-export-btn"
                     aria-label="Filter companies"
-                    class="flex items-center gap-3 px-4 py-2 text-xs bg-[#FF5A1D] border border-2 border-[#E8E9EB] rounded-md text-[#FFFFFF] transition focus:outline-none"
+                    class="flex items-center gap-3 px-4 py-2 text-xs bg-[#FF5A1D] rounded-md text-[#FFFFFF] transition focus:outline-none"
                   >
                     <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M5.50192 9.396L5.5 5.271" stroke="white" stroke-width="0.916667" stroke-linecap="round"
@@ -348,7 +348,7 @@
                   <button
                     id="earnings-export-btn"
                     aria-label="Filter companies"
-                    class="flex items-center gap-3 px-4 py-2 text-xs bg-[#FF5A1D] border border-2 border-[#E8E9EB] rounded-md text-[#FFFFFF] transition focus:outline-none"
+                    class="flex items-center gap-3 px-4 py-2 text-xs bg-[#FF5A1D] rounded-md text-[#FFFFFF] transition focus:outline-none"
                   >
                     <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M5.50192 9.396L5.5 5.271" stroke="white" stroke-width="0.916667" stroke-linecap="round"
@@ -417,7 +417,7 @@
                   <button
                     id="deductions-export-btn"
                     aria-label="Filter companies"
-                    class="flex items-center gap-3 px-4 py-2 text-xs bg-[#FF5A1D] border border-2 border-[#E8E9EB] rounded-md text-[#FFFFFF] transition focus:outline-none"
+                    class="flex items-center gap-3 px-4 py-2 text-xs bg-[#FF5A1D] rounded-md text-[#FFFFFF] transition focus:outline-none"
                   >
                     <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M5.50192 9.396L5.5 5.271" stroke="white" stroke-width="0.916667" stroke-linecap="round"
@@ -487,7 +487,7 @@
                   <button
                     id="ot-export-btn"
                     aria-label="Filter companies"
-                    class="flex items-center gap-3 px-4 py-2 text-xs bg-[#FF5A1D] border border-2 border-[#E8E9EB] rounded-md text-[#FFFFFF] transition focus:outline-none"
+                    class="flex items-center gap-3 px-4 py-2 text-xs bg-[#FF5A1D] rounded-md text-[#FFFFFF] transition focus:outline-none"
                   >
                     <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M5.50192 9.396L5.5 5.271" stroke="white" stroke-width="0.916667" stroke-linecap="round"
@@ -555,28 +555,28 @@
   document.addEventListener('DOMContentLoaded', () => {
     // Sample data for each table
     const employeesData = [
-      { id: 1, document: 'Employee_Records_Jan2025.pdf', uploadedDate: '2025-01-15', month: '2025-01' },
-      { id: 2, document: 'Employee_Records_Feb2025.pdf', uploadedDate: '2025-02-10', month: '2025-02' },
-      { id: 3, document: 'Employee_Records_Mar2025.pdf', uploadedDate: '2025-03-12', month: '2025-03' },
+      { id: 1, document: 'Employee_Records_Jan2025.pdf', uploadedDate: '2025-01-15', month: 'January' },
+      { id: 2, document: 'Employee_Records_Feb2025.pdf', uploadedDate: '2025-02-10', month: 'January' },
+      { id: 3, document: 'Employee_Records_Mar2025.pdf', uploadedDate: '2025-03-12', month: 'January' },
     ];
 
     const attendanceData = [
-      { id: 1, document: 'Attendance_Jan2025.xlsx', uploadedDate: '2025-01-20', month: '2025-01' },
-      { id: 2, document: 'Attendance_Feb2025.xlsx', uploadedDate: '2025-02-15', month: '2025-02' },
+      { id: 1, document: 'Attendance_Jan2025.xlsx', uploadedDate: '2025-01-20', month: 'January' },
+      { id: 2, document: 'Attendance_Feb2025.xlsx', uploadedDate: '2025-02-15', month: 'January' },
     ];
 
     const earningsData = [
-      { id: 1, document: 'Earnings_Jan2025.csv', uploadedDate: '2025-01-25', month: '2025-01' },
+      { id: 1, document: 'Earnings_Jan2025.csv', uploadedDate: '2025-01-25', month: 'January' },
       { id: 2, document: 'Earnings_Feb2025.csv', uploadedDate: '2025-02-20', month: '2025-02' },
     ];
 
     const deductionsData = [
-      { id: 1, document: 'Deductions_Jan2025.pdf', uploadedDate: '2025-01-22', month: '2025-01' },
+      { id: 1, document: 'Deductions_Jan2025.pdf', uploadedDate: '2025-01-22', month: 'January' },
       { id: 2, document: 'Deductions_Feb2025.pdf', uploadedDate: '2025-02-18', month: '2025-02' },
     ];
 
     const otData = [
-      { id: 1, document: 'Overtime_Jan2025.xlsx', uploadedDate: '2025-01-18', month: '2025-01' },
+      { id: 1, document: 'Overtime_Jan2025.xlsx', uploadedDate: '2025-01-18', month: 'January' },
       { id: 2, document: 'Overtime_Feb2025.xlsx', uploadedDate: '2025-02-12', month: '2025-02' },
     ];
 

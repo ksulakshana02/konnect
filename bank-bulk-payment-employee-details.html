@@ -31,6 +31,105 @@
           transform: scale(1.05);
           transition: transform 0.15s ease-in-out;
       }
+
+
+      .custom-select {
+          position: relative;
+          display: inline-block;
+          /*min-width: 120px; !* Ensure consistent width *!*/
+      }
+
+      .select-button {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          padding: 0.5rem 0.75rem;
+          border-radius: 0.375rem;
+          font-size: 0.75rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background-color 0.2s ease-in-out;
+      }
+
+      .select-button:focus {
+          outline: 2px solid #FF5A1D; /* Match your app’s primary color */
+          outline-offset: 2px;
+      }
+
+      .arrow {
+          transition: transform 0.3s ease-in-out;
+          pointer-events: none;
+      }
+
+      .arrow.rotate {
+          transform: rotate(180deg);
+      }
+
+      .select-dropdown {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          border: 1px solid #E5E7EB; /* Light gray border */
+          border-radius: 0.375rem;
+          background-color: #FFFFFF;
+          list-style: none;
+          padding: 0.25rem 0;
+          margin: 0.25rem 0 0;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          max-height: 150px;
+          overflow-y: auto;
+          z-index: 10000;
+      }
+
+      .select-dropdown::-webkit-scrollbar {
+          width: 6px;
+      }
+
+      .select-dropdown::-webkit-scrollbar-track {
+          background: #F1F1F1;
+          border-radius: 25px;
+      }
+
+      .select-dropdown::-webkit-scrollbar-thumb {
+          background: #A1A1AA;
+          border-radius: 25px;
+      }
+
+      .select-dropdown li {
+          padding: 0.5rem 0.75rem;
+          cursor: pointer;
+          font-size: 0.75rem;
+          color: #172635;
+          transition: background-color 0.2s ease-in-out;
+      }
+
+      .select-dropdown li.selected {
+          background-color: #F3F4F6; /* Light gray for selected item */
+          font-weight: 600;
+      }
+
+      .select-dropdown li:hover,
+      .select-dropdown li:focus {
+          background-color: #FFE4E1; /* Light pink hover to match your theme */
+          border-radius: 0.25rem;
+      }
+
+      .select-dropdown.hidden {
+          display: none;
+      }
+
+      /* Status-specific styles */
+      .select-button.completed {
+          color: #00C500;
+          background-color: #E7F7F2;
+      }
+
+      .select-button.pending {
+          color: #2922ED;
+          background-color: #E5E6FF;
+      }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-700 font-sans antialiased select-none">
@@ -170,7 +269,7 @@
     </header>
 
     <main class="flex-1 overflow-y-auto ">
-      <div class="max-w-7xl mx-auto space-y-7 p-8">
+      <div class="max-w-7xl space-y-7 p-8">
         <!-- Breadcrumb and Title -->
         <header aria-label="Company Name and breadcrumb" class="mb-4">
           <h1 class="text-[#172635] font-[800] nunito text-xl">Tech Innovations Inc.</h1>
@@ -325,7 +424,7 @@
                 <th scope="col" class="p-3 whitespace-nowrap max-w-xs font-normal">Payment Amount</th>
                 <th scope="col" class="p-3 whitespace-nowrap max-w-xs font-normal">Remark</th>
                 <!--                <th scope="col" class="p-3 whitespace-nowrap max-w-xs font-normal">Join Date</th>-->
-                <th scope="col" class="p-3 w-28 text-left font-normal">Status</th>
+                <th scope="col" class="p-3 whitespace-nowrap max-w-xs font-normal">Status</th>
               </tr>
               </thead>
               <tbody id="companies-tbody" class="divide-y divide-gray-200 scrollbar-thin max-h-[52vh] overflow-y-auto"
@@ -513,12 +612,32 @@
         <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${payment.paymentAmount.toFixed(2)}</td>
         <td class="p-3 whitespace-nowrap font-normal text-[#172635]">${escapeHtml(payment.remark)}</td>
         <td class="p-3 whitespace-nowrap font-normal">
-          <select class="status-select px-3 py-1 rounded-md text-xs w-full focus:outline-none focus:ring-2 focus:ring-pink-400 ${
+          <div id="select-gender" class="custom-select">
+                  <button
+                    type="button"
+                    class="select-button px-3 py-1 gap-1 rounded-md text-xs focus:outline-none ${
         payment.status === "Completed" ? "text-[#00C500] bg-[#E7F7F2]" : "text-[#2922ED] bg-[#E5E6FF]"
-      }" data-id="${payment.id}">
-            <option value="Pending" ${payment.status === "Pending" ? "selected" : ""}>Pending</option>
-            <option value="Completed" ${payment.status === "Completed" ? "selected" : ""}>Completed</option>
-          </select>
+      }"
+                    aria-expanded="false">
+                    <span class="selected-value">${payment.status}</span>
+                    <span class="arrow ${payment.status === 'Completed' ? 'completed' : 'pending'}">
+                    <svg class="w-4 h-4" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_45_1605)">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.23611 5.23562C4.1736 5.29811 4.08883 5.33321 4.00044 5.33321C3.91205 5.33321 3.82728 5.29811 3.76477 5.23562L1.87911 3.34995C1.84727 3.3192 1.82188 3.28242 1.80441 3.24175C1.78694 3.20109 1.77774 3.15735 1.77736 3.11309C1.77697 3.06883 1.78541 3.02493 1.80217 2.98397C1.81893 2.943 1.84368 2.90578 1.87497 2.87449C1.90627 2.84319 1.94349 2.81844 1.98446 2.80168C2.02542 2.78492 2.06931 2.77648 2.11357 2.77687C2.15783 2.77725 2.20157 2.78645 2.24224 2.80392C2.28291 2.82139 2.31969 2.84678 2.35044 2.87862L4.00044 4.52862L5.65044 2.87862C5.71331 2.8179 5.79751 2.7843 5.88491 2.78506C5.97231 2.78582 6.05591 2.82088 6.11771 2.88268C6.17951 2.94448 6.21457 3.02809 6.21533 3.11548C6.21609 3.20288 6.18249 3.28708 6.12177 3.34995L4.23611 5.23562Z" fill="currentColor"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_45_1605">
+                    <rect width="8" height="8" fill="white"/>
+                    </clipPath>
+                    </defs>
+                    </svg>
+                  </span>
+                  </button>
+                  <ul class="select-dropdown hidden">
+                    <li ${payment.status === "Pending" ? 'class="selected"' : ""}>Pending</li>
+                    <li ${payment.status === "Completed" ? 'class="selected"' : ""}>Completed</li>
+                  </ul>
+                </div>
         </td>
       `;
       tbody.appendChild(row);
@@ -558,17 +677,71 @@
 
   // Attach event listeners for Status dropdowns
   function attachRowEventListeners() {
-    document.querySelectorAll(".status-select").forEach(select => {
-      select.addEventListener("change", () => {
-        const id = select.getAttribute("data-id");
-        const newStatus = select.value;
+    document.querySelectorAll(".custom-select").forEach(customSelect => {
+      const selectButton = customSelect.querySelector(".select-button");
+      const dropdown = customSelect.querySelector(".select-dropdown");
+      const arrow = selectButton.querySelector(".arrow");
+      const options = dropdown.querySelectorAll("li");
+      const selectedValue = selectButton.querySelector(".selected-value");
+      const paymentId = customSelect.closest("tr").querySelector(".row-checkbox").getAttribute("data-id");
+
+      const toggleDropdown = () => {
+        const isHidden = dropdown.classList.contains("hidden");
+        dropdown.classList.toggle("hidden", !isHidden);
+        selectButton.setAttribute("aria-expanded", isHidden);
+        arrow.classList.toggle("rotate", isHidden);
+      };
+
+      const handleOptionSelect = (option) => {
+        const newStatus = option.textContent.trim();
+        options.forEach(opt => opt.classList.remove("selected"));
+        option.classList.add("selected");
+        selectedValue.textContent = newStatus;
+
+        // Update button classes based on new status
+        selectButton.classList.remove("text-[#00C500]", "bg-[#E7F7F2]", "text-[#2922ED]", "bg-[#E5E6FF]");
+        selectButton.classList.add(
+          newStatus === "Completed" ? "text-[#00C500]" : "text-[#2922ED]",
+          newStatus === "Completed" ? "bg-[#E7F7F2]" : "bg-[#E5E6FF]"
+        );
+
+        // Close the dropdown explicitly
+        dropdown.classList.add("hidden");
+        selectButton.setAttribute("aria-expanded", "false");
+        arrow.classList.remove("rotate");
+
+        // Update payment status in localStorage
         let payments = getEmployeePayments();
-        const paymentIndex = payments.findIndex(p => p.id === id);
+        const paymentIndex = payments.findIndex(p => p.id === paymentId);
         if (paymentIndex !== -1) {
           payments[paymentIndex].status = newStatus;
           saveEmployeePayments(payments);
           filteredPayments = payments;
-          renderTable(currentPage, filteredPayments);
+          renderTable(currentPage, filteredPayments); // Or use updateRowStatus(paymentId, newStatus);
+        }
+      };
+
+      selectButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleDropdown();
+      });
+
+      options.forEach(option => {
+        option.addEventListener("click", () => {
+          handleOptionSelect(option);
+        });
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      document.querySelectorAll(".custom-select").forEach(customSelect => {
+        if (!customSelect.contains(e.target)) {
+          const dropdown = customSelect.querySelector(".select-dropdown");
+          const selectButton = customSelect.querySelector(".select-button");
+          const arrow = selectButton.querySelector(".arrow");
+          dropdown.classList.add("hidden");
+          selectButton.setAttribute("aria-expanded", "false");
+          arrow.classList.remove("rotate");
         }
       });
     });

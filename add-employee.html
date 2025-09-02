@@ -32,6 +32,106 @@
           transform: scale(1.05);
           transition: transform 0.15s ease-in-out;
       }
+
+
+      .custom-select {
+          position: relative;
+          display: inline-block;
+          width: 350px;
+          max-width: 100%;
+      }
+
+      .select-button {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          padding: 0.675em 1em;
+          cursor: pointer;
+      }
+
+      .arrow {
+          transition: transform ease-in-out 0.3s;
+          pointer-events: none;
+      }
+
+      .arrow.rotate {
+          transform: rotate(180deg);
+      }
+
+      .select-dropdown {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          border: 1px solid #caced1;
+          border-radius: 0.25rem;
+          background-color: white;
+          list-style: none;
+          padding: 0;
+          margin: 5px 0 0;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+          max-height: 150px;
+          overflow-y: auto;
+          z-index: 1000;
+      }
+
+      .select-dropdown::-webkit-scrollbar {
+          width: 7px;
+      }
+
+      .select-dropdown::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 25px;
+      }
+
+      .select-dropdown::-webkit-scrollbar-thumb {
+          background: #ccc;
+          border-radius: 25px;
+      }
+
+      .select-dropdown li {
+          padding: 10px;
+          cursor: pointer;
+      }
+
+      .select-dropdown li.selected {
+          background-color: #f2f2f2;
+          border-radius: 4px;
+          font-weight: bold;
+      }
+
+      .select-dropdown li:hover,
+      .select-dropdown li:focus {
+          background-color: #f2f2f2;
+          border-radius: 4px;
+      }
+
+      .select-dropdown.hidden {
+          display: none;
+      }
+
+
+      input[type="date"]::-webkit-calendar-picker-indicator {
+          width: 50%; /* Make the clickable area cover the input */
+          cursor: pointer; /* Indicate it's clickable */
+          background-image: url(cal.svg); /* Your custom SVG icon */
+          background-repeat: no-repeat;
+          background-position: right center;
+          background-size: 20px 20px;
+          opacity: 0.8;
+          color-scheme: dark;
+          transition-property: all;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-duration: 150ms;
+      }
+
+      /* Adjust size as needed */
+
+      input[type="date"]::-webkit-calendar-picker-indicator:hover {
+          opacity: 1
+      }
+
   </style>
 </head>
 
@@ -173,7 +273,7 @@
     </header>
 
     <main class="flex-1 overflow-y-auto nunito">
-      <div class="max-w-7xl mx-auto space-y-7 p-8">
+      <div class="max-w-7xl space-y-7 p-8">
         <header aria-label="Company Name and breadcrumb" class="mb-4">
           <h1 class="text-[#172635] font-[800] nunito text-xl">Tech Innovations Inc.</h1>
           <nav class="mt-1 text-[17px] font-medium nunito text-[#556476] flex flex-wrap items-center gap-1 select-none"
@@ -188,7 +288,7 @@
                  stroke-linecap="round" stroke-linejoin="round">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
-            <span class="text-[#172635]">EMP12657_Alexandra Johnson</span>
+            <span class="text-[#172635]">Add Employee</span>
           </nav>
           <nav class="mt-6 flex nunito-sans space-x-6 border-b border-[#E8E9EB] pb-2 text-sm text-[#556476]">
             <button
@@ -209,7 +309,8 @@
         <form id="add-company-form" class="space-y-6 max-w-6xl">
           <!-- Basic Information -->
           <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="basic-info-heading">
-            <h3 id="basic-info-heading" class="text-[#FF5A1D] nunito-sans font-bold text-base mb-4 block">Basic Information</h3>
+            <h3 id="basic-info-heading" class="text-[#FF5A1D] nunito-sans font-bold text-base mb-4 block">Basic
+              Information</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <label for="full-name" class="block text-sm text-[#556476] font-medium mb-3">Full Name</label>
@@ -218,12 +319,24 @@
               </div>
               <div>
                 <label for="select-gender" class="block text-sm text-[#556476] font-medium mb-3">Gender</label>
-                <select id="select-gender" name="selectGender"
-                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
-                  <option disabled selected>Gender</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                </select>
+                <div id="select-gender" class="custom-select">
+                  <button
+                    type="button"
+                    class="select-button w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                    aria-expanded="false">
+                    <span class="selected-value">Gender</span>
+                    <span class="arrow">
+                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 0.75L5 4.25L1.5 0.75" stroke="black" stroke-width="1.16667" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  </button>
+                  <ul class="select-dropdown hidden">
+                    <li>Male</li>
+                    <li>Female</li>
+                  </ul>
+                </div>
               </div>
               <div>
                 <label for="email" class="block text-sm text-[#556476] font-medium mb-3">Email</label>
@@ -246,18 +359,31 @@
 
 
           <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="basic-info-heading">
-            <h3 id="employment-details-heading" class="text-[#FF5A1D] nunito-sans font-bold text-base mb-4 block">Employment
+            <h3 id="employment-details-heading" class="text-[#FF5A1D] nunito-sans font-bold text-base mb-4 block">
+              Employment
               Details</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <label for="select-designation"
                        class="block text-sm text-[#556476] font-medium mb-3">Designation</label>
-                <select id="select-designation" name="selectDesignation"
-                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
-                  <option disabled selected>Designation</option>
-                  <option>SE</option>
-                  <option>UX</option>
-                </select>
+                <div id="select-designation" class="custom-select">
+                  <button
+                    type="button"
+                    class="select-button w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                    aria-expanded="false">
+                    <span class="selected-value">Designation</span>
+                    <span class="arrow">
+                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 0.75L5 4.25L1.5 0.75" stroke="black" stroke-width="1.16667" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  </button>
+                  <ul class="select-dropdown hidden">
+                    <li>SE</li>
+                    <li>UX</li>
+                  </ul>
+                </div>
               </div>
               <div>
                 <label for="join-date" class="block text-sm text-[#556476] font-medium mb-3">Join Date</label>
@@ -266,12 +392,24 @@
               </div>
               <div>
                 <label for="select-department" class="block text-sm text-[#556476] font-medium mb-3">Department</label>
-                <select id="select-department" name="selectDepartment"
-                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
-                  <option disabled selected>Department</option>
-                  <option>SE</option>
-                  <option>UX</option>
-                </select>
+                <div id="select-department" class="custom-select">
+                  <button
+                    type="button"
+                    class="select-button w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                    aria-expanded="false">
+                    <span class="selected-value">Department</span>
+                    <span class="arrow">
+                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 0.75L5 4.25L1.5 0.75" stroke="black" stroke-width="1.16667" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  </button>
+                  <ul class="select-dropdown hidden">
+                    <li>SE</li>
+                    <li>UX</li>
+                  </ul>
+                </div>
               </div>
 
               <div>
@@ -282,22 +420,48 @@
               <div>
                 <label for="employment-status" class="block text-sm text-[#556476] font-medium mb-3">Employment
                   Status</label>
-                <select id="employment-status" name="employmentStatus"
-                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
-                  <option disabled selected>Employment Status</option>
-                  <option>Active</option>
-                  <option>Inactive</option>
-                </select>
+                <div id="employment-status" class="custom-select">
+                  <button
+                    type="button"
+                    class="select-button w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                    aria-expanded="false">
+                    <span class="selected-value">Employment
+                  Status</span>
+                    <span class="arrow">
+                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 0.75L5 4.25L1.5 0.75" stroke="black" stroke-width="1.16667" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  </button>
+                  <ul class="select-dropdown hidden">
+                    <li>Active</li>
+                    <li>Inactive</li>
+                  </ul>
+                </div>
               </div>
               <div>
                 <label for="employment-type" class="block text-sm text-[#556476] font-medium mb-3">Employment
                   Type</label>
-                <select id="employment-type" name="employmentType"
-                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
-                  <option disabled selected>Employment Type</option>
-                  <option>Full Time</option>
-                  <option>Part Time</option>
-                </select>
+                <div id="employment-type" class="custom-select">
+                  <button
+                    type="button"
+                    class="select-button w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                    aria-expanded="false">
+                    <span class="selected-value">Employment
+                  Type</span>
+                    <span class="arrow">
+                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 0.75L5 4.25L1.5 0.75" stroke="black" stroke-width="1.16667" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  </button>
+                  <ul class="select-dropdown hidden">
+                    <li>Full Time</li>
+                    <li>Part Time</li>
+                  </ul>
+                </div>
               </div>
 
             </div>
@@ -305,7 +469,8 @@
 
 
           <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="basic-info-heading">
-            <h3 id="salary-compensation-details-heading" class="text-[#FF5A1D] nunito-sans font-bold text-base mb-4 block">Salary &
+            <h3 id="salary-compensation-details-heading"
+                class="text-[#FF5A1D] nunito-sans font-bold text-base mb-4 block">Salary &
               Compensation</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
@@ -316,41 +481,79 @@
               <div>
                 <label for="payment-frequency" class="block text-sm text-[#556476] font-medium mb-3">Payment
                   Frequency</label>
-                <select id="payment-frequency" name="paymentFrequency"
-                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
-                  <option disabled selected>Payment Frequency</option>
-                  <option>Monthly</option>
-                  <option>Daily</option>
-                </select>
+                <div id="payment-frequency" class="custom-select">
+                  <button
+                    type="button"
+                    class="select-button w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                    aria-expanded="false">
+                    <span class="selected-value">Monthly</span>
+                    <span class="arrow">
+                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 0.75L5 4.25L1.5 0.75" stroke="black" stroke-width="1.16667" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  </button>
+                  <ul class="select-dropdown hidden">
+                    <li>Monthly</li>
+                    <li>Daily</li>
+                  </ul>
+                </div>
               </div>
               <div>
                 <label for="select-currency" class="block text-sm text-[#556476] font-medium mb-3">Currency</label>
-                <select id="select-currency" name="selectCurrency"
-                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
-                  <option disabled selected>Currency</option>
-                  <option>LKR</option>
-                  <option>USD</option>
-                </select>
+                <div id="select-currency" class="custom-select">
+                  <button
+                    type="button"
+                    class="select-button w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                    aria-expanded="false">
+                    <span class="selected-value">LKR</span>
+                    <span class="arrow">
+                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 0.75L5 4.25L1.5 0.75" stroke="black" stroke-width="1.16667" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  </button>
+                  <ul class="select-dropdown hidden">
+                    <li>LKR</li>
+                    <li>USD</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </fieldset>
 
 
           <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="basic-info-heading">
-            <h3 id="bank-details-heading" class="text-[#FF5A1D] nunito-sans font-bold text-base mb-4 block">Bank Details</h3>
+            <h3 id="bank-details-heading" class="text-[#FF5A1D] nunito-sans font-bold text-base mb-4 block">Bank
+              Details</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <label for="bank-name" class="block text-sm text-[#556476] font-medium mb-3">Bank Name</label>
-                <select id="bank-name" name="bankName"
-                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
-                  <option disabled selected>Bank Name</option>
-                  <option>People</option>
-                  <option>Sampath</option>
-                </select>
+                <div id="bank-name" class="custom-select">
+                  <button
+                    type="button"
+                    class="select-button w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                    aria-expanded="false">
+                    <span class="selected-value">Bank Name</span>
+                    <span class="arrow">
+                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 0.75L5 4.25L1.5 0.75" stroke="black" stroke-width="1.16667" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  </button>
+                  <ul class="select-dropdown hidden">
+                    <li>People</li>
+                    <li>Sampath</li>
+                  </ul>
+                </div>
               </div>
 
               <div>
-                <label for="holder-name" class="block text-sm text-[#556476] font-medium mb-3">Account Holder Name</label>
+                <label for="holder-name" class="block text-sm text-[#556476] font-medium mb-3">Account Holder
+                  Name</label>
                 <input type="text" id="holder-name" name="holderName" placeholder="Account Holder Name"
                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
               </div>
@@ -372,41 +575,68 @@
 
               <div>
                 <label for="payment-method" class="block text-sm text-[#556476] font-medium mb-3">Payment Method</label>
-                <select id="payment-method" name="paymentMethod"
-                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
-                  <option disabled selected>Payment Method</option>
-                  <option>Bank Transfer</option>
-                </select>
+                <div id="payment-method" class="custom-select">
+                  <button
+                    type="button"
+                    class="select-button w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                    aria-expanded="false">
+                    <span class="selected-value">Payment Method</span>
+                    <span class="arrow">
+                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 0.75L5 4.25L1.5 0.75" stroke="black" stroke-width="1.16667" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  </button>
+                  <ul class="select-dropdown hidden">
+                    <li>Bank Transfer</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </fieldset>
-
 
 
           <!-- Statutory Contribution Details -->
           <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="statutory-info-heading">
-            <h3 id="deduction-info-heading" class="text-[#FF5A1D] nunito-sans font-bold text-base mb-4 block">Individual Earnings & Deductions</h3>
+            <h3 id="deduction-info-heading" class="text-[#FF5A1D] nunito-sans font-bold text-base mb-4 block">Individual
+              Earnings & Deductions</h3>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
-              <div>
-                <label for="variable-name" class="block text-sm text-[#556476] font-medium mb-3">Variable Name</label>
-                <select id="variable-name" name="variableName"
-                        class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
-                  <option disabled selected>Variable Name</option>
-                  <option>Christmas_Bonus</option>
-                </select>
-              </div>
-              <div>
-                <label for="amount" class="block text-sm text-[#556476] font-medium mb-3">Amount</label>
-                <input type="text" id="amount" name="amount" placeholder="Amount"
-                       class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+            <div id="earningContainer" class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+                <div>
+                  <label for="variable-name-1" class="block text-sm text-[#556476] font-medium mb-3">Variable
+                    Name</label>
+                  <div id="variable-name-1" class="custom-select">
+                    <button
+                      type="button"
+                      class="select-button w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                      aria-expanded="false">
+                      <span class="selected-value">Variable Name</span>
+                      <span class="arrow">
+                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 0.75L5 4.25L1.5 0.75" stroke="black" stroke-width="1.16667" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                    </button>
+                    <ul class="select-dropdown hidden">
+                      <li>Christmas_Bonus</li>
+                    </ul>
+                  </div>
+                </div>
+                <div>
+                  <label for="amount-1" class="block text-sm text-[#556476] font-medium mb-3">Amount</label>
+                  <input type="text" id="amount-1" name="amount[]" placeholder="Amount"
+                         class="w-full border border-[2px] border-[#E8E9EB] rounded-md py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+                </div>
               </div>
             </div>
-            <button type="button" id="add-apit-rate" class="text-sm nunito-sans font-bold text-[#FF5A1D] mt-2 hover:underline">+ Add
+            <button type="button" id="add-earning-deduction"
+                    class="text-sm nunito-sans font-bold text-[#FF5A1D] mt-2 hover:underline">+ Add
               More
             </button>
           </fieldset>
-
 
 
           <!-- Form Actions -->
@@ -433,6 +663,101 @@
     </main>
   </main>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    const addEarningBtn = document.getElementById("add-earning-deduction");
+    const earningContainer = document.getElementById("earningContainer");
+
+
+    addEarningBtn.addEventListener("click", () => {
+      const count = earningContainer.children.length + 1;
+      const div = document.createElement("div");
+      div.classList.add("grid", "grid-cols-1", "md:grid-cols-3", "gap-6");
+      div.innerHTML = `
+      <div>
+        <label for="department-name-${count}" class="block text-sm text-[#556476] font-medium mb-3">Variable Name</label>
+        <div id="variable-name-${count}" class="custom-select">
+                    <button
+                      type="button"
+                      class="select-button w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                      aria-expanded="false">
+                      <span class="selected-value">Variable Name</span>
+                      <span class="arrow">
+                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 0.75L5 4.25L1.5 0.75" stroke="black" stroke-width="1.16667" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                    </button>
+                    <ul class="select-dropdown hidden">
+                      <li>Christmas_Bonus</li>
+                    </ul>
+                  </div>
+      </div>
+      <div>
+        <label for="amount-${count}" class="block text-sm text-[#556476] font-medium mb-3">Amount</label>
+        <input type="text" id="amount-${count}" name="amount[]" placeholder="Amount"
+          class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+      </div>
+    `;
+      earningContainer.appendChild(div);
+    });
+
+
+    document.addEventListener("click", (e) => {
+      const target = e.target;
+
+      // Handle select-button click
+      if (target.closest(".select-button")) {
+        e.stopPropagation();
+        const selectButton = target.closest(".select-button");
+        const customSelect = selectButton.closest(".custom-select");
+        const dropdown = customSelect.querySelector(".select-dropdown");
+        const arrow = selectButton.querySelector(".arrow");
+        const isHidden = dropdown.classList.contains("hidden");
+
+        console.log("Select button clicked, isHidden:", isHidden); // Debug log
+        dropdown.classList.toggle("hidden", !isHidden);
+        selectButton.setAttribute("aria-expanded", isHidden);
+        arrow.classList.toggle("rotate", isHidden);
+      }
+
+      // Handle option selection
+      if (target.tagName === "LI" && target.closest(".select-dropdown")) {
+        const option = target;
+        const dropdown = option.closest(".select-dropdown");
+        const customSelect = dropdown.closest(".custom-select");
+        const selectButton = customSelect.querySelector(".select-button");
+        const selectedValue = selectButton.querySelector(".selected-value");
+        const options = dropdown.querySelectorAll("li");
+
+        console.log("Selected option:", option.textContent); // Debug log
+        options.forEach((opt) => opt.classList.remove("selected"));
+        option.classList.add("selected");
+        selectedValue.textContent = option.textContent.trim();
+
+        // Close dropdown
+        dropdown.classList.add("hidden");
+        selectButton.setAttribute("aria-expanded", "false");
+        selectButton.querySelector(".arrow").classList.remove("rotate");
+      }
+
+      // Close all dropdowns when clicking outside
+      if (!target.closest(".custom-select")) {
+        console.log("Clicked outside, closing all dropdowns"); // Debug log
+        document.querySelectorAll(".select-dropdown").forEach((dropdown) => {
+          dropdown.classList.add("hidden");
+          const selectButton = dropdown.closest(".custom-select").querySelector(".select-button");
+          selectButton.setAttribute("aria-expanded", "false");
+          selectButton.querySelector(".arrow").classList.remove("rotate");
+        });
+      }
+    });
+
+  });
+</script>
 </body>
 </html>
 

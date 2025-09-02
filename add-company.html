@@ -32,6 +32,85 @@
           transform: scale(1.05);
           transition: transform 0.15s ease-in-out;
       }
+
+
+      /*    custom select*/
+      .custom-select {
+          position: relative;
+          display: inline-block;
+          width: 350px;
+          max-width: 100%;
+      }
+
+      .select-button {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          padding: 0.675em 1em;
+          cursor: pointer;
+      }
+
+      .arrow {
+          transition: transform ease-in-out 0.3s;
+          pointer-events: none;
+      }
+
+      .arrow.rotate {
+          transform: rotate(180deg);
+      }
+
+      .select-dropdown {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          border: 1px solid #caced1;
+          border-radius: 0.25rem;
+          background-color: white;
+          list-style: none;
+          padding: 0;
+          margin: 5px 0 0;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+          max-height: 150px;
+          overflow-y: auto;
+          z-index: 1000;
+      }
+
+      .select-dropdown::-webkit-scrollbar {
+          width: 7px;
+      }
+
+      .select-dropdown::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 25px;
+      }
+
+      .select-dropdown::-webkit-scrollbar-thumb {
+          background: #ccc;
+          border-radius: 25px;
+      }
+
+      .select-dropdown li {
+          padding: 10px;
+          cursor: pointer;
+      }
+
+      .select-dropdown li.selected {
+          background-color: #f2f2f2;
+          border-radius: 4px;
+          font-weight: bold;
+      }
+
+      .select-dropdown li:hover,
+      .select-dropdown li:focus {
+          background-color: #f2f2f2;
+          border-radius: 4px;
+      }
+
+      .select-dropdown.hidden {
+          display: none;
+      }
   </style>
 </head>
 
@@ -187,7 +266,8 @@
       <form id="add-company-form" class="space-y-6 max-w-6xl nunito">
         <!-- Basic Information -->
         <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="basic-info-heading">
-          <h3 id="basic-info-heading" class="text-[#FF5A1D] nunito-sans font-bold text-base mb-4 block">Basic Information</h3>
+          <h3 id="basic-info-heading" class="text-[#FF5A1D] nunito-sans font-bold text-base mb-4 block">Basic
+            Information</h3>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <label for="company-name" class="block text-sm text-[#556476] font-medium mb-3">Company Name</label>
@@ -207,13 +287,25 @@
 
             <div>
               <label for="select-act" class="block text-sm text-[#556476] font-medium mb-3">Select Act</label>
-              <select id="select-act" name="selectAct"
-                      class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 pr-6 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent">
-                <option disabled selected>Select Act</option>
-                <option>Act 1</option>
-                <option>Act 2</option>
-                <option>Act 3</option>
-              </select>
+              <div id="select-act" class="custom-select">
+                <button
+                  type="button"
+                  class="select-button w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                  aria-expanded="false">
+                  <span class="selected-value">Select Act</span>
+                  <span class="arrow">
+                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.5 0.75L5 4.25L1.5 0.75" stroke="black" stroke-width="1.16667" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </button>
+                <ul class="select-dropdown hidden">
+                  <li>Act 1</li>
+                  <li>Act 2</li>
+                  <li>Act 3</li>
+                </ul>
+              </div>
             </div>
             <div>
               <label for="working-days" class="block text-sm text-[#556476] font-medium mb-3">Working Days</label>
@@ -231,21 +323,28 @@
 
 
         <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="department-info-heading">
-          <h3 id="department-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block nunito-sans">Departments</h3>
+          <h3 id="department-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block nunito-sans">
+            Departments</h3>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
-            <div>
-              <label for="department-name" class="block text-sm text-[#556476] font-medium mb-3">Department Name</label>
-              <input type="text" id="department-name" name="epfRate" placeholder="Department Name"
-                     class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
-            </div>
-            <div>
-              <label for="department-description" class="block text-sm text-[#556476] font-medium mb-3">Description</label>
-              <input type="text" id="department-description" name="etfRate" placeholder="Description"
-                     class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+          <div id="departments-container" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+              <div>
+                <label for="department-name-1" class="block text-sm text-[#556476] font-medium mb-3">Department
+                  Name</label>
+                <input type="text" id="department-name-1" name="departmentName[]" placeholder="Department Name"
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
+              <div>
+                <label for="department-description-1"
+                       class="block text-sm text-[#556476] font-medium mb-3">Description</label>
+                <input type="text" id="department-description-1" name="departmentDescription[]"
+                       placeholder="Description"
+                       class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+              </div>
             </div>
           </div>
-          <button type="button" id="add-department" class="text-sm font-bold text-[#FF5A1D] nunito-sans mt-2 hover:underline">+ Add
+          <button type="button" id="add-department"
+                  class="text-sm font-bold text-[#FF5A1D] nunito-sans mt-2 hover:underline">+ Add
             More
           </button>
         </fieldset>
@@ -253,7 +352,8 @@
 
         <!-- Statutory Contribution Details -->
         <fieldset class="bg-white shadow rounded-lg p-6" aria-labelledby="statutory-info-heading">
-          <h3 id="statutory-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block nunito-sans">Statutory Contribution
+          <h3 id="statutory-info-heading" class="text-[#FF5A1D] font-bold text-base mb-4 block nunito-sans">Statutory
+            Contribution
             Details</h3>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
@@ -301,7 +401,8 @@
             </div>
 
           </div>
-          <button type="button" id="add-apit-rate" class="text-sm font-bold text-[#FF5A1D] mt-2 hover:underline nunito-sans">+ Add
+          <button type="button" id="add-apit-rate"
+                  class="text-sm font-bold text-[#FF5A1D] mt-2 hover:underline nunito-sans">+ Add
             More
           </button>
         </fieldset>
@@ -334,10 +435,17 @@
                     data-date-input="designation-date-1"
                     class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-500 hover:text-gray-700 transition"
                   >
-                    <svg width="19" height="19" class="h-5 w-5" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M6.72909 11.0834C6.99154 11.0834 7.24324 10.9792 7.42883 10.7936C7.61441 10.608 7.71867 10.3563 7.71867 10.0938C7.71867 9.83138 7.61441 9.57967 7.42883 9.39409C7.24324 9.20851 6.99154 9.10425 6.72909 9.10425C6.46663 9.10425 6.21493 9.20851 6.02934 9.39409C5.84376 9.57967 5.7395 9.83138 5.7395 10.0938C5.7395 10.3563 5.84376 10.608 6.02934 10.7936C6.21493 10.9792 6.46663 11.0834 6.72909 11.0834ZM6.72909 13.8542C6.99154 13.8542 7.24324 13.75 7.42883 13.5644C7.61441 13.3788 7.71867 13.1271 7.71867 12.8647C7.71867 12.6022 7.61441 12.3505 7.42883 12.1649C7.24324 11.9793 6.99154 11.8751 6.72909 11.8751C6.46663 11.8751 6.21493 11.9793 6.02934 12.1649C5.84376 12.3505 5.7395 12.6022 5.7395 12.8647C5.7395 13.1271 5.84376 13.3788 6.02934 13.5644C6.21493 13.75 6.46663 13.8542 6.72909 13.8542ZM10.4895 10.0938C10.4895 10.3563 10.3852 10.608 10.1997 10.7936C10.0141 10.9792 9.76237 11.0834 9.49992 11.0834C9.23747 11.0834 8.98576 10.9792 8.80018 10.7936C8.61459 10.608 8.51034 10.3563 8.51034 10.0938C8.51034 9.83138 8.61459 9.57967 8.80018 9.39409C8.98576 9.20851 9.23747 9.10425 9.49992 9.10425C9.76237 9.10425 10.0141 9.20851 10.1997 9.39409C10.3852 9.57967 10.4895 9.83138 10.4895 10.0938ZM9.49992 13.8542C9.76237 13.8542 10.0141 13.75 10.1997 13.5644C10.3852 13.3788 10.4895 13.1271 10.4895 12.8647C10.4895 12.6022 10.3852 12.3505 10.1997 12.1649C10.0141 11.9793 9.76237 11.8751 9.49992 11.8751C9.23747 11.8751 8.98576 11.9793 8.80018 12.1649C8.61459 12.3505 8.51034 12.6022 8.51034 12.8647C8.51034 13.1271 8.61459 13.3788 8.80018 13.5644C8.98576 13.75 9.23747 13.8542 9.49992 13.8542ZM13.2603 10.0938C13.2603 10.3563 13.1561 10.608 12.9705 10.7936C12.7849 10.9792 12.5332 11.0834 12.2708 11.0834C12.0083 11.0834 11.7566 10.9792 11.571 10.7936C11.3854 10.608 11.2812 10.3563 11.2812 10.0938C11.2812 9.83138 11.3854 9.57967 11.571 9.39409C11.7566 9.20851 12.0083 9.10425 12.2708 9.10425C12.5332 9.10425 12.7849 9.20851 12.9705 9.39409C13.1561 9.57967 13.2603 9.83138 13.2603 10.0938Z" fill="black"/>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M6.33325 2.573C6.49073 2.573 6.64175 2.63555 6.7531 2.7469C6.86445 2.85825 6.927 3.00928 6.927 3.16675V3.7605H12.0728V3.16675C12.0728 3.00928 12.1354 2.85825 12.2467 2.7469C12.3581 2.63555 12.5091 2.573 12.6666 2.573C12.8241 2.573 12.9751 2.63555 13.0864 2.7469C13.1978 2.85825 13.2603 3.00928 13.2603 3.16675V3.76683C13.3807 3.77 13.4928 3.7758 13.5968 3.78425C13.8976 3.808 14.1795 3.86183 14.4463 3.998C14.856 4.20674 15.1891 4.53985 15.3978 4.94958C15.534 5.21637 15.5878 5.49821 15.6116 5.79904C15.6353 6.088 15.6353 6.44029 15.6353 6.86383V12.928C15.6353 13.3515 15.6353 13.7038 15.6116 13.9928C15.5878 14.2936 15.534 14.5755 15.3978 14.8423C15.1893 15.2519 14.8565 15.585 14.4471 15.7938C14.1795 15.93 13.8976 15.9838 13.5968 16.0076C13.3078 16.0313 12.9555 16.0313 12.5328 16.0313H6.46784C6.0443 16.0313 5.692 16.0313 5.40304 16.0076C5.10221 15.9838 4.82038 15.93 4.55359 15.7938C4.1441 15.5855 3.81101 15.253 3.602 14.8438C3.46584 14.5763 3.412 14.2944 3.38825 13.9936C3.3645 13.7046 3.3645 13.3523 3.3645 12.9296V6.86383C3.3645 6.44029 3.3645 6.088 3.38825 5.79904C3.412 5.49821 3.46584 5.21637 3.602 4.94958C3.81074 4.53985 4.14386 4.20674 4.55359 3.998C4.82038 3.86183 5.10221 3.808 5.40304 3.78425C5.50702 3.7758 5.61917 3.77 5.7395 3.76683V3.16675C5.7395 3.08878 5.75486 3.01157 5.7847 2.93953C5.81454 2.86749 5.85827 2.80204 5.91341 2.7469C5.96854 2.69177 6.034 2.64803 6.10604 2.61819C6.17807 2.58836 6.25528 2.573 6.33325 2.573ZM5.7395 5.14592V4.95433C5.65944 4.9568 5.57946 4.96128 5.49963 4.96779C5.27242 4.986 5.16396 5.01925 5.09271 5.05567C4.90621 5.15059 4.7546 5.3022 4.65967 5.48871C4.62325 5.55996 4.59 5.66842 4.57179 5.89562C4.55279 6.12996 4.552 6.43396 4.552 6.88758V7.323H14.4478V6.88758C14.4478 6.43475 14.4478 6.12996 14.4281 5.89562C14.4098 5.66842 14.3766 5.55996 14.3402 5.48871C14.2452 5.3022 14.0936 5.15059 13.9071 5.05567C13.8359 5.01925 13.7274 4.986 13.4994 4.96779C13.4199 4.9613 13.3401 4.95681 13.2603 4.95433V5.14592C13.2603 5.30339 13.1978 5.45441 13.0864 5.56576C12.9751 5.67711 12.8241 5.73967 12.6666 5.73967C12.5091 5.73967 12.3581 5.67711 12.2467 5.56576C12.1354 5.45441 12.0728 5.30339 12.0728 5.14592V4.948H6.927V5.14592C6.927 5.30339 6.86445 5.45441 6.7531 5.56576C6.64175 5.67711 6.49073 5.73967 6.33325 5.73967C6.17578 5.73967 6.02476 5.67711 5.91341 5.56576C5.80206 5.45441 5.7395 5.30339 5.7395 5.14592ZM14.4478 8.11467H4.552V12.9043C4.552 13.3571 4.552 13.6619 4.57179 13.8954C4.59 14.1234 4.62325 14.2319 4.65967 14.3031C4.75467 14.49 4.90588 14.6412 5.09271 14.7362C5.16396 14.7726 5.27242 14.8058 5.49963 14.824C5.73396 14.843 6.03796 14.8438 6.49159 14.8438H12.5083C12.9611 14.8438 13.2659 14.8438 13.4994 14.824C13.7274 14.8058 13.8359 14.7726 13.9071 14.7362C14.0936 14.6412 14.2452 14.4896 14.3402 14.3031C14.3766 14.2319 14.4098 14.1234 14.4281 13.8954C14.4471 13.6619 14.4478 13.3571 14.4478 12.9043V8.11467Z" fill="black"/>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M7.71875 6.1355C7.71875 5.97803 7.78131 5.827 7.89266 5.71565C8.00401 5.6043 8.15503 5.54175 8.3125 5.54175H10.6875C10.845 5.54175 10.996 5.6043 11.1073 5.71565C11.2187 5.827 11.2812 5.97803 11.2812 6.1355C11.2812 6.29297 11.2187 6.44399 11.1073 6.55534C10.996 6.66669 10.845 6.72925 10.6875 6.72925H8.3125C8.15503 6.72925 8.00401 6.66669 7.89266 6.55534C7.78131 6.44399 7.71875 6.29297 7.71875 6.1355Z" fill="black"/>
+                    <svg width="19" height="19" class="h-5 w-5" viewBox="0 0 19 19" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M6.72909 11.0834C6.99154 11.0834 7.24324 10.9792 7.42883 10.7936C7.61441 10.608 7.71867 10.3563 7.71867 10.0938C7.71867 9.83138 7.61441 9.57967 7.42883 9.39409C7.24324 9.20851 6.99154 9.10425 6.72909 9.10425C6.46663 9.10425 6.21493 9.20851 6.02934 9.39409C5.84376 9.57967 5.7395 9.83138 5.7395 10.0938C5.7395 10.3563 5.84376 10.608 6.02934 10.7936C6.21493 10.9792 6.46663 11.0834 6.72909 11.0834ZM6.72909 13.8542C6.99154 13.8542 7.24324 13.75 7.42883 13.5644C7.61441 13.3788 7.71867 13.1271 7.71867 12.8647C7.71867 12.6022 7.61441 12.3505 7.42883 12.1649C7.24324 11.9793 6.99154 11.8751 6.72909 11.8751C6.46663 11.8751 6.21493 11.9793 6.02934 12.1649C5.84376 12.3505 5.7395 12.6022 5.7395 12.8647C5.7395 13.1271 5.84376 13.3788 6.02934 13.5644C6.21493 13.75 6.46663 13.8542 6.72909 13.8542ZM10.4895 10.0938C10.4895 10.3563 10.3852 10.608 10.1997 10.7936C10.0141 10.9792 9.76237 11.0834 9.49992 11.0834C9.23747 11.0834 8.98576 10.9792 8.80018 10.7936C8.61459 10.608 8.51034 10.3563 8.51034 10.0938C8.51034 9.83138 8.61459 9.57967 8.80018 9.39409C8.98576 9.20851 9.23747 9.10425 9.49992 9.10425C9.76237 9.10425 10.0141 9.20851 10.1997 9.39409C10.3852 9.57967 10.4895 9.83138 10.4895 10.0938ZM9.49992 13.8542C9.76237 13.8542 10.0141 13.75 10.1997 13.5644C10.3852 13.3788 10.4895 13.1271 10.4895 12.8647C10.4895 12.6022 10.3852 12.3505 10.1997 12.1649C10.0141 11.9793 9.76237 11.8751 9.49992 11.8751C9.23747 11.8751 8.98576 11.9793 8.80018 12.1649C8.61459 12.3505 8.51034 12.6022 8.51034 12.8647C8.51034 13.1271 8.61459 13.3788 8.80018 13.5644C8.98576 13.75 9.23747 13.8542 9.49992 13.8542ZM13.2603 10.0938C13.2603 10.3563 13.1561 10.608 12.9705 10.7936C12.7849 10.9792 12.5332 11.0834 12.2708 11.0834C12.0083 11.0834 11.7566 10.9792 11.571 10.7936C11.3854 10.608 11.2812 10.3563 11.2812 10.0938C11.2812 9.83138 11.3854 9.57967 11.571 9.39409C11.7566 9.20851 12.0083 9.10425 12.2708 9.10425C12.5332 9.10425 12.7849 9.20851 12.9705 9.39409C13.1561 9.57967 13.2603 9.83138 13.2603 10.0938Z"
+                        fill="black" />
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M6.33325 2.573C6.49073 2.573 6.64175 2.63555 6.7531 2.7469C6.86445 2.85825 6.927 3.00928 6.927 3.16675V3.7605H12.0728V3.16675C12.0728 3.00928 12.1354 2.85825 12.2467 2.7469C12.3581 2.63555 12.5091 2.573 12.6666 2.573C12.8241 2.573 12.9751 2.63555 13.0864 2.7469C13.1978 2.85825 13.2603 3.00928 13.2603 3.16675V3.76683C13.3807 3.77 13.4928 3.7758 13.5968 3.78425C13.8976 3.808 14.1795 3.86183 14.4463 3.998C14.856 4.20674 15.1891 4.53985 15.3978 4.94958C15.534 5.21637 15.5878 5.49821 15.6116 5.79904C15.6353 6.088 15.6353 6.44029 15.6353 6.86383V12.928C15.6353 13.3515 15.6353 13.7038 15.6116 13.9928C15.5878 14.2936 15.534 14.5755 15.3978 14.8423C15.1893 15.2519 14.8565 15.585 14.4471 15.7938C14.1795 15.93 13.8976 15.9838 13.5968 16.0076C13.3078 16.0313 12.9555 16.0313 12.5328 16.0313H6.46784C6.0443 16.0313 5.692 16.0313 5.40304 16.0076C5.10221 15.9838 4.82038 15.93 4.55359 15.7938C4.1441 15.5855 3.81101 15.253 3.602 14.8438C3.46584 14.5763 3.412 14.2944 3.38825 13.9936C3.3645 13.7046 3.3645 13.3523 3.3645 12.9296V6.86383C3.3645 6.44029 3.3645 6.088 3.38825 5.79904C3.412 5.49821 3.46584 5.21637 3.602 4.94958C3.81074 4.53985 4.14386 4.20674 4.55359 3.998C4.82038 3.86183 5.10221 3.808 5.40304 3.78425C5.50702 3.7758 5.61917 3.77 5.7395 3.76683V3.16675C5.7395 3.08878 5.75486 3.01157 5.7847 2.93953C5.81454 2.86749 5.85827 2.80204 5.91341 2.7469C5.96854 2.69177 6.034 2.64803 6.10604 2.61819C6.17807 2.58836 6.25528 2.573 6.33325 2.573ZM5.7395 5.14592V4.95433C5.65944 4.9568 5.57946 4.96128 5.49963 4.96779C5.27242 4.986 5.16396 5.01925 5.09271 5.05567C4.90621 5.15059 4.7546 5.3022 4.65967 5.48871C4.62325 5.55996 4.59 5.66842 4.57179 5.89562C4.55279 6.12996 4.552 6.43396 4.552 6.88758V7.323H14.4478V6.88758C14.4478 6.43475 14.4478 6.12996 14.4281 5.89562C14.4098 5.66842 14.3766 5.55996 14.3402 5.48871C14.2452 5.3022 14.0936 5.15059 13.9071 5.05567C13.8359 5.01925 13.7274 4.986 13.4994 4.96779C13.4199 4.9613 13.3401 4.95681 13.2603 4.95433V5.14592C13.2603 5.30339 13.1978 5.45441 13.0864 5.56576C12.9751 5.67711 12.8241 5.73967 12.6666 5.73967C12.5091 5.73967 12.3581 5.67711 12.2467 5.56576C12.1354 5.45441 12.0728 5.30339 12.0728 5.14592V4.948H6.927V5.14592C6.927 5.30339 6.86445 5.45441 6.7531 5.56576C6.64175 5.67711 6.49073 5.73967 6.33325 5.73967C6.17578 5.73967 6.02476 5.67711 5.91341 5.56576C5.80206 5.45441 5.7395 5.30339 5.7395 5.14592ZM14.4478 8.11467H4.552V12.9043C4.552 13.3571 4.552 13.6619 4.57179 13.8954C4.59 14.1234 4.62325 14.2319 4.65967 14.3031C4.75467 14.49 4.90588 14.6412 5.09271 14.7362C5.16396 14.7726 5.27242 14.8058 5.49963 14.824C5.73396 14.843 6.03796 14.8438 6.49159 14.8438H12.5083C12.9611 14.8438 13.2659 14.8438 13.4994 14.824C13.7274 14.8058 13.8359 14.7726 13.9071 14.7362C14.0936 14.6412 14.2452 14.4896 14.3402 14.3031C14.3766 14.2319 14.4098 14.1234 14.4281 13.8954C14.4471 13.6619 14.4478 13.3571 14.4478 12.9043V8.11467Z"
+                            fill="black" />
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M7.71875 6.1355C7.71875 5.97803 7.78131 5.827 7.89266 5.71565C8.00401 5.6043 8.15503 5.54175 8.3125 5.54175H10.6875C10.845 5.54175 10.996 5.6043 11.1073 5.71565C11.2187 5.827 11.2812 5.97803 11.2812 6.1355C11.2812 6.29297 11.2187 6.44399 11.1073 6.55534C10.996 6.66669 10.845 6.72925 10.6875 6.72925H8.3125C8.15503 6.72925 8.00401 6.66669 7.89266 6.55534C7.78131 6.44399 7.71875 6.29297 7.71875 6.1355Z"
+                            fill="black" />
                     </svg>
                   </button>
                 </div>
@@ -374,7 +482,7 @@
 
   function getCompanies() {
     try {
-      const stored = localStorage.getItem('companies');
+      const stored = localStorage.getItem("companies");
       return stored ? JSON.parse(stored) : [];
     } catch (e) {
       console.error("Error parsing companies from localStorage:", e);
@@ -385,7 +493,7 @@
   // Function to save companies to localStorage
   function saveCompanies(companies) {
     try {
-      localStorage.setItem('companies', JSON.stringify(companies));
+      localStorage.setItem("companies", JSON.stringify(companies));
     } catch (e) {
       console.error("Error saving companies to localStorage:", e);
     }
@@ -399,7 +507,7 @@
   // Function to get temp company data for add/edit
   function getTempCompany() {
     try {
-      const stored = localStorage.getItem('tempCompany');
+      const stored = localStorage.getItem("tempCompany");
       return stored ? JSON.parse(stored) : {};
     } catch (e) {
       console.error("Error parsing tempCompany from localStorage:", e);
@@ -410,7 +518,7 @@
   // Function to save temp company data
   function saveTempCompany(data) {
     try {
-      localStorage.setItem('tempCompany', JSON.stringify(data));
+      localStorage.setItem("tempCompany", JSON.stringify(data));
     } catch (e) {
       console.error("Error saving tempCompany to localStorage:", e);
     }
@@ -419,7 +527,7 @@
   // Function to clear temp company data
   function clearTempCompany() {
     try {
-      localStorage.removeItem('tempCompany');
+      localStorage.removeItem("tempCompany");
     } catch (e) {
       console.error("Error clearing tempCompany from localStorage:", e);
     }
@@ -437,7 +545,7 @@
 
   addApitRateBtn.addEventListener("click", () => {
     const div = document.createElement("div");
-    div.classList.add("flex","flex-row","gap-2", "items-center");
+    div.classList.add("flex", "flex-row", "gap-2", "items-center");
     div.innerHTML = `
                 <div>
                   <label for="starting-amount" class="block text-sm text-[#556476] font-medium mb-3">Starting Amount</label>
@@ -625,22 +733,17 @@
   });
 
 
-
-
-
-
-
-  window.addEventListener('load', () => {
+  window.addEventListener("load", () => {
     const temp = getTempCompany();
     if (temp) {
-      document.getElementById('company-name').value = temp.name || '';
-      document.getElementById('contact-no').value = temp.contact || '';
-      document.getElementById('address').value = temp.address || '';
-      document.getElementById('select-act').value = temp.act || '';
-      document.getElementById('working-days').value = temp.workingDays || '';
-      document.getElementById('company-description').value = temp.description || '';
-      document.getElementById('epf-rate').value = temp.epfRate || '';
-      document.getElementById('etf-rate').value = temp.etfRate || '';
+      document.getElementById("company-name").value = temp.name || "";
+      document.getElementById("contact-no").value = temp.contact || "";
+      document.getElementById("address").value = temp.address || "";
+      document.getElementById("select-act").value = temp.act || "";
+      document.getElementById("working-days").value = temp.workingDays || "";
+      document.getElementById("company-description").value = temp.description || "";
+      document.getElementById("epf-rate").value = temp.epfRate || "";
+      document.getElementById("etf-rate").value = temp.etfRate || "";
 
       // Populate APIT rates
       // if (temp.apitRates && temp.apitRates.length > 0) {
@@ -695,22 +798,22 @@
   });
 
   // Next button - save temp and navigate to levels
-  document.getElementById('btnNextSave').addEventListener('click', () => {
-    const form = document.getElementById('add-company-form');
+  document.getElementById("btnNextSave").addEventListener("click", () => {
+    const form = document.getElementById("add-company-form");
     const formData = new FormData(form);
     const temp = getTempCompany();
 
     const data = {
       id: temp.id || generateId(),
       isEdit: temp.isEdit || false,
-      name: formData.get('companyName'),
-      contact: formData.get('contactNo'),
-      address: formData.get('address'),
-      act: formData.get('selectAct'),
-      workingDays: formData.get('workingDays'),
-      description: formData.get('companyDescription'),
-      epfRate: formData.get('epfRate'),
-      etfRate: formData.get('etfRate'),
+      name: formData.get("companyName"),
+      contact: formData.get("contactNo"),
+      address: formData.get("address"),
+      act: formData.get("selectAct"),
+      workingDays: formData.get("workingDays"),
+      description: formData.get("companyDescription"),
+      epfRate: formData.get("epfRate"),
+      etfRate: formData.get("etfRate"),
       apitRates: [],
       designations: [],
       levels: temp.levels || [], // Preserve if edit
@@ -718,37 +821,116 @@
     };
 
     // Collect APIT rates
-    const starts = formData.getAll('apit_starting_amount[]');
-    const ends = formData.getAll('apit_ending_amount[]');
-    const percents = formData.getAll('apit_percentage[]');
+    const starts = formData.getAll("apit_starting_amount[]");
+    const ends = formData.getAll("apit_ending_amount[]");
+    const percents = formData.getAll("apit_percentage[]");
     for (let i = 0; i < starts.length; i++) {
       data.apitRates.push({ start: starts[i], end: ends[i], percent: percents[i] });
     }
 
     // Collect designations
-    const names = formData.getAll('designationName[]');
-    const dates = formData.getAll('designationDate[]');
+    const names = formData.getAll("designationName[]");
+    const dates = formData.getAll("designationDate[]");
     for (let i = 0; i < names.length; i++) {
       data.designations.push({ name: names[i], date: dates[i] });
     }
 
     saveTempCompany(data);
-    window.location.href = 'add-levels.html';
+    window.location.href = "add-levels.html";
   });
 
   // Cancel button - back to main
-  document.getElementById('btnCancel').addEventListener('click', () => {
+  document.getElementById("btnCancel").addEventListener("click", () => {
     clearTempCompany();
-    window.location.href = 'index.html'; // Assume main page is companies.html
+    window.location.href = "index.html"; // Assume main page is companies.html
   });
 
   // Clear all
-  document.getElementById('btnClearAll').addEventListener('click', () => {
+  document.getElementById("btnClearAll").addEventListener("click", () => {
     form.reset();
-    apitRatesContainer.innerHTML = ''; // Clear dynamic fields
-    designationsContainer.innerHTML = '';
+    apitRatesContainer.innerHTML = ""; // Clear dynamic fields
+    designationsContainer.innerHTML = "";
     addApitRateBtn.click(); // Add one default
     addDesignationBtn.click(); // Add defaults if needed
+  });
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const customSelects = document.querySelectorAll(".custom-select");
+
+    customSelects.forEach((customSelect) => {
+      const selectButton = customSelect.querySelector(".select-button");
+      const dropdown = customSelect.querySelector(".select-dropdown");
+      const arrow = selectButton.querySelector(".arrow");
+      const options = dropdown.querySelectorAll("li");
+      const selectedValue = selectButton.querySelector(".selected-value");
+
+      // Toggle dropdown visibility
+      const toggleDropdown = () => {
+        const isHidden = dropdown.classList.contains("hidden");
+        console.log("Toggling dropdown, isHidden:", isHidden); // Debug log
+        dropdown.classList.toggle("hidden", !isHidden);
+        selectButton.setAttribute("aria-expanded", isHidden);
+        arrow.classList.toggle("rotate", isHidden);
+      };
+
+      // Handle option selection
+      const handleOptionSelect = (option) => {
+        console.log("Selected option:", option.textContent); // Debug log
+        options.forEach((opt) => opt.classList.remove("selected"));
+        option.classList.add("selected");
+        selectedValue.textContent = option.textContent.trim();
+        toggleDropdown(); // Close dropdown after selection
+      };
+
+      // Click event for select button
+      selectButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        console.log("Select button clicked"); // Debug log
+        toggleDropdown();
+      });
+
+      // Click event for each option
+      options.forEach((option) => {
+        option.addEventListener("click", () => {
+          handleOptionSelect(option);
+        });
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!customSelect.contains(e.target)) {
+          console.log("Clicked outside, closing dropdown"); // Debug log
+          dropdown.classList.add("hidden");
+          selectButton.setAttribute("aria-expanded", "false");
+          arrow.classList.remove("rotate");
+        }
+      });
+    });
+
+
+    const addDepartmentBtn = document.getElementById("add-department");
+    const departmentsContainer = document.getElementById("departments-container");
+
+
+    addDepartmentBtn.addEventListener("click", () => {
+      const count = departmentsContainer.children.length + 1;
+      const div = document.createElement("div");
+      div.classList.add("grid", "grid-cols-1", "md:grid-cols-3", "gap-6");
+      div.innerHTML = `
+      <div>
+        <label for="department-name-${count}" class="block text-sm text-[#556476] font-medium mb-3">Department Name</label>
+        <input type="text" id="department-name-${count}" name="departmentName[]" placeholder="Department Name"
+          class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+      </div>
+      <div>
+        <label for="department-description-${count}" class="block text-sm text-[#556476] font-medium mb-3">Description</label>
+        <input type="text" id="department-description-${count}" name="departmentDescription[]" placeholder="Description"
+          class="w-full border border-[2px] border-[#E8E9EB] rounded-lg py-3 px-3 text-sm font-medium text-[#172635] placeholder:text-[#172635] focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" />
+      </div>
+    `;
+      departmentsContainer.appendChild(div);
+    });
   });
 
 </script>
